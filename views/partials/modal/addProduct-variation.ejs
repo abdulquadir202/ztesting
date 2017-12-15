@@ -1,0 +1,32 @@
+<link href="/al/css/bootstrap-modal-bs3patch.css" rel="stylesheet" type="text/css" />
+<link href="/al/css/bootstrap-modal.css" rel="stylesheet" type="text/css" />
+
+<div id="addVariationModal" class="modal fade" tabindex="-1" data-width="760">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+        <h3 class="modal-title">Add a product variation</h3>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12">
+                <form action="#"> 
+                    <h4>Product Variation Information</h4>
+                    <p> Display Name<span style="color:red;"> * </span>
+                        <input type="text" class="form-control" id="vName" name="vName" required=""> </p>
+                    <p> Price<span style="color:red;"> * </span>
+                        <input type="text" class="form-control" id="vPrice" name="vPrice" required=""> </p>
+                    <p> Quantity<span style="color:red;"> * </span>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="vQuantity" name="vQuantity" required="" aria-describedby="vQty-addon1">
+                            <span id="vQty-addon1" class="input-group-addon"><%= punit %></span>
+                        </div>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn green" data-dismiss="modal" id="addVariation">Submit</button>
+        <button type="button" data-dismiss="modal" class="btn btn-outline dark">Cancel</button>
+    </div>
+</div>

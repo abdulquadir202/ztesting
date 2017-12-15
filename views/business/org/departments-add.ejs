@@ -1,0 +1,89 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.3/toastr.min.css" rel="stylesheet" />
+
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li><span><a href="/dashboard"> Home </a></span><i class="fa fa-circle"></i></li>
+                <li><span> Business </span><i class="fa fa-circle"></i></li>
+                <li><span> Organisation </span><i class="fa fa-circle"></i></li>
+                <li><span><a href="/departments"> Departments </a></span><i class="fa fa-circle"></i></li>
+                <li><span> Add </span></li>
+            </ul>
+        </div>
+        <h1 class="page-title"></h1>
+        <div class="row">
+            <div class="col-md-12">
+                <div id="form-alerts"> </div>
+                <div class="portlet light portlet-fit portlet-form bordered">
+                    <div class="portlet-title">
+                        <div class="caption  font-blue-hoki">
+                            <i class="fa fa-building-o font-blue-hoki"></i>
+                            <span class="caption-subject sbold uppercase"> Department Information</span>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <form action="<%= api.url %>/api/department?token=<%= user.token %>" id="departments_add_form" class="form-horizontal">
+                            <div class="form-body">
+                                <div class="alert alert-danger display-hide">
+                                    <button class="close" data-close="alert"></button> You have some form errors. Please check below. </div>
+                                <div class="alert alert-success display-hide">
+                                    <button class="close" data-close="alert"></button> New Department added successfully! </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Name
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" id="name" name="name">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Code
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" id="code" name="code"> 
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">HOD
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" id="hod" name="hod"> 
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Description
+                                        <!-- <span class="required"> * </span> -->
+                                    </label>
+                                    <div class="col-md-4">
+                                        <textarea rows="2" class="form-control" id="description" name="description"></textarea> 
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-offset-3 col-md-9">
+                                        <button class="btn green" type="submit" id="addDepartments"> Submit </button>
+                                        <button type="reset" class="btn default">Reset</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $().ready(function() {
+        var token = '<%= user.token %>';
+        var sUrl = '<%= api.url %>';
+    });
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.3/toastr.min.js"></script>
+<script src="/js/onground/business/org/departments-add.js"></script>

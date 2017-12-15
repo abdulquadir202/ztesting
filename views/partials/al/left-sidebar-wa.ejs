@@ -1,0 +1,156 @@
+<link rel="shortcut icon" href="/img/favicon.png" />
+<div class="page-sidebar-wrapper">
+
+    <div class="page-sidebar navbar-collapse collapse">
+        <ul class="page-sidebar-menu page-header-fixed page-sidebar-menu-closed" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px">
+            <li class="sidebar-toggler-wrapper hide">
+                <div class="sidebar-toggler">
+                    <span></span>
+                </div>
+            </li>
+
+        <li class="sidebar-search-wrapper">
+            <form class="sidebar-search  sidebar-search-bordered sidebar-search-solid" action="/search" method="POST">
+                <input type="hidden" name="_csrf" value="<%= token %>">
+                <a href="javascript:;" class="remove">
+                    <i class="icon-close"></i>
+                </a>
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search...">
+                    <span class="input-group-btn">
+                        <a href="javascript:;" class="btn submit">
+                            <i class="icon-magnifier"></i>
+                        </a>
+                    </span>
+                </div>
+            </form>
+        </li>
+
+        <li class="nav-item start <%= (nav.startsWith('dashboard'))? 'active open' : '' %>">
+            <a href="/dashboard" class="nav-link nav-toggle">
+                <i class="icon-home"></i>
+                <span class="title">Dashboard</span>
+                <% if(nav.startsWith('dashboard')) { %>
+                    <span class="selected"></span>
+                <% } %>
+            </a>
+        </li>
+
+        <li class="nav-item <%= (nav.startsWith('about'))? 'active open' : '' %>">
+            <a href="javascript:;" class="nav-link nav-toggle">
+                <i class="icon-user"></i>
+                <span class="title">About</span>
+                <span class="arrow"></span>
+                <% if(nav.startsWith('about')) { %>
+                    <span class="selected"></span>
+                <% } %>
+            </a>
+            <ul class="sub-menu">
+                <li class="nav-item <%= (nav.startsWith('about-presidents_note'))? 'active open' : '' %>">
+                    <a href="/wa/presidents_note" class="nav-link nav-toggle">
+                        <span class="title"><i class="icon-book-open "></i> President's Note </span>
+                    </a>
+                </li>
+                <li class="nav-item <%= (nav.startsWith('about-committee'))? 'active open' : '' %>">
+                    <a href="/wa/committee" class="nav-link nav-toggle">
+                        <span class="title"><i class="icon-users "></i> Committee </span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <li class="nav-item <%= (nav.startsWith('centers'))? 'active open' : '' %>">
+            <a href="/wa/centers" class="nav-link nav-toggle">
+                <i class="fa fa-dot-circle-o"></i>
+                <span class="title">Centers</span>
+                <% if(nav.startsWith('centers')) { %>
+                    <span class="selected"></span>
+                <% } %>
+            </a>
+        </li>
+
+        <li class="nav-item <%= (nav.startsWith('activities'))? 'active open' : '' %>">
+            <a href="/wa/activities" class="nav-link nav-toggle">
+                <i class="icon-puzzle"></i>
+                <span class="title">Causes</span>
+                <% if(nav.startsWith('activities')) { %>
+                    <span class="selected"></span>
+                <% } %>
+            </a>
+        </li>
+        
+        <li class="nav-item <%= (nav.startsWith('members'))? 'active open' : '' %>">
+            <a href="/wa/members" class="nav-link nav-toggle">
+                <i class="icon-emoticon-smile"></i>
+                <span class="title">Members</span>
+                <% if(nav.startsWith('members')) { %>
+                    <span class="selected"></span>
+                <% } %>
+            </a>
+        </li>
+        
+        <li class="nav-item <%= (nav.startsWith('events'))? 'active open' : '' %>">
+            <a href="/wa/events" class="nav-link nav-toggle">
+                <i class="icon-calendar"></i>
+                <span class="title">Events</span>
+                <% if(nav.startsWith('events')) { %>
+                    <span class="selected"></span>
+                <% } %>
+            </a>
+        </li>
+
+        <li class="nav-item <%= (nav.startsWith('publications'))? 'active open' : '' %>">
+            <a href="javascript:;" class="nav-link nav-toggle">
+                <i class="icon-notebook"></i>
+                <span class="title">Publications</span>
+                <span class="arrow"></span>
+                <% if(nav.startsWith('publications')) { %>
+                    <span class="selected"></span>
+                <% } %>
+            </a>
+            <ul class="sub-menu">
+                <li class="nav-item <%= (nav.startsWith('publications-magazines'))? 'active open' : '' %>">
+                    <a href="/wa/magazines" class="nav-link nav-toggle">
+                        <span class="title"><i class="icon-notebook "></i> Magazines </span>
+                    </a>
+                </li>
+                <li class="nav-item <%= (nav.startsWith('publications-submissions'))? 'active open' : '' %>">
+                    <a href="#" class="nav-link nav-toggle">
+                        <span class="title"><i class="icon-note  "></i> Submissions </span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <li class="nav-item <%= (nav.startsWith('shoppe'))? 'active open' : '' %>">
+            <a href="/wa/shoppe" class="nav-link nav-toggle">
+                <i class="icon-basket"></i>
+                <span class="title">Shoppe</span>
+                <% if(nav.startsWith('shoppe')) { %>
+                    <span class="selected"></span>
+                <% } %>
+            </a>
+        </li>
+
+        <li class="nav-item <%= (nav.startsWith('school'))? 'active open' : '' %>">
+            <a href="/wa/schools" class="nav-link nav-toggle">
+                <i class="fa fa-graduation-cap"></i>
+                <span class="title">Ankur School</span>
+                <% if(nav.startsWith('school')) { %>
+                    <span class="selected"></span>
+                <% } %>
+            </a>
+        </li>
+
+        <li class="nav-item <%= (nav.startsWith('carosal'))? 'active open' : '' %>">
+            <a href="/slider/home" class="nav-link nav-toggle">
+                <i class="fa fa-picture-o"></i>
+                <span class="title">Home Slider</span>
+                <% if(nav.startsWith('carosal')) { %>
+                    <span class="selected"></span>
+                <% } %>
+            </a>
+        </li>
+        </ul>
+    </div>
+</div>

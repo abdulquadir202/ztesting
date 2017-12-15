@@ -1,0 +1,103 @@
+<style type="text/css">
+    .modal {
+    margin-top: 0;
+    outline: 0 none;
+    overflow: visible;
+    position: absolute;
+    top: 30%;
+    width: 620px;
+    margin-left: -301px;
+}
+.modal.link-dialog.in{
+    padding-left: 13px;
+}
+</style>
+<link href="/assets/pages/css/blog.min.css" rel="stylesheet" type="text/css" />
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li><span><a href="/dashboard">Home</a></span><i class="fa fa-circle"></i></li>
+                <li><span><a href="/admin/blog/posts">Posts</a></span><i class="fa fa-circle"></i></li>
+                <li><span>Add</span></li>
+            </ul>  
+        </div>
+        <h1 class="page-title"></h1> 
+        <div class="blog-page blog-content-2">
+        <input type="hidden" id="breaking" value="">
+        <form action="<%= api.url %>/api/blog?token=<%= user.token %>" id="posts_add_form" class="form-horizontal" enctype="multipart/form-data" role="form">
+            <div class="row">
+                <div class="col-lg-9">
+                    <div class="blog-single-content bordered blog-container">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="title" name="title" placeholder="Enter the blog title" />
+                        </div>
+                        <!-- <div class="form-group">
+                            <input type="text" class="form-control" id="dTitle" name="dTitle" placeholder="Enter the blog display title" />
+                        </div> -->
+                        <div class="form-group">
+                            <textarea type="text" class="form-control" id="shortDescription" name="shortDescription" placeholder="Enter short description" ></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <div id="summernote123"></div>
+                        </div>
+                    </form>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="blog-single-sidebar bordered blog-container" style="padding-top:1px;">
+                        <div class="blog-single-sidebar-ui">
+                            <h3 class="blog-sidebar-title uppercase">Cover Image
+                                <span class="required"> * </span></h3>
+                            <div class="row ui-margin">
+                                <div class="col-md-12 ui-padding">
+                                    <img src="" id="coverImagePreview">
+                                </div>
+                                <input type="hidden" role="uploadcare-uploader" id="coverImage" name="coverImage" data-images-only />
+                            </div>
+                        </div>
+                        <% if(user.profile.roles.indexOf('news') >-1){ %>
+                        <br>   
+
+                        <div class="blog-single-sidebar-ui">
+                            <div class="mt-checkbox-list">
+                                <label class="mt-checkbox">
+                                    <input type="checkbox" id="breakingnews" class="mt-checkbox"> Breaking News
+                                    <span></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <% } %>
+                        <div class="blog-single-sidebar-ui">
+                            <h3 class="blog-sidebar-title uppercase">Category
+                                <span class="required"> * </span></h3>
+                            <div class="form-group">
+                                <select id="blogCategoriesId" class="form-control select2-multiple select2-hidden-accessible" name="blogCategoriesId"></select>
+                            </div>
+                            <!-- <div class="form-group">
+                                <span class="help-block"><a data-toggle="modal" href="#addBlogCategoriesModal"><i class="icon-plus"></i> Add New</a></span>
+                            </div> -->
+                        </div>
+
+                        <div class="blog-single-sidebar-ui">
+                            <h3 class="blog-sidebar-title uppercase">Tags</h3>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="tags" name="tags">
+                            </div>
+                        </div>
+
+                         <div class="blog-single-sidebar-ui">
+                            <h3 class="blog-sidebar-title uppercase"></h3>
+                            <div class="form-group">
+                                <button class="btn green" type="submit" id="addPosts"> Save Post </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>

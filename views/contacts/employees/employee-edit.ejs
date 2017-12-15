@@ -1,0 +1,132 @@
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li><span><a href="/dashboard">Home</a></span><i class="fa fa-circle"></i></li>
+                <li><span> Jobs</span><i class="fa fa-circle"></i></li>
+                <li><span><a href="/employee">Employees</a></span><i class="fa fa-circle"></i></li>
+                <li><span> Edit</span></li>
+            </ul>
+        </div>
+        <h1 class="page-title"></h1>
+        <div class="row">
+            <div class="col-md-12">
+                <div id="form-alerts"> </div>
+                <div class="portlet light portlet-fit portlet-form bordered">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="fa fa-bullhorn font-blue-hoki"></i>
+                            <span class="caption-subject font-blue-hoki sbold uppercase"> Edit Employee</span> | <span class="lid"></span>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <form action="<%= api.url %>/api/employee/<%= employeeId %>?token=<%= user.token %>" id="employee_add_form" class="form-horizontal">
+                            <input type="hidden" id="employeeId" value="<%= employeeId %>">
+                            <input type="hidden" id="apiUrl" value="<%= api.url %>"/>
+                            <input type="hidden" id="token" value="<%= user.token %>"/>
+
+                            <div class="form-body">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Name
+                                    <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" name="name" id="name" data-required="1" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Mobile
+                                    <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" name="mobile" id="mobile" data-required="1" class="form-control" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Department
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select id="departmentId" class="form-control select2-multiple select2-hidden-accessible" name="departmentId">
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <span class="help-block"><a data-toggle="modal" href="#addDepartmentModal"><i class="icon-plus"></i> Add New</a></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Designation
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select id="designationId" class="form-control select2-multiple select2-hidden-accessible" name="designationId">
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <span class="help-block"><a data-toggle="modal" href="#addDesignationModal"><i class="icon-plus"></i> Add New</a></span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Start Date
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" value="" size="16" class="form-control form-control-inline date-picker" name="startDate" id="startDate" data-date-format="dd-mm-yyyy">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">End Date
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" value="" size="16" class="form-control form-control-inline date-picker" name="endDate" id="endDate" data-date-format="dd-mm-yyyy">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Address
+                                    </label>
+                                    <div class="col-md-4">
+                                        <textarea rows="3" class="form-control" id="address" name="address"></textarea>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Employement Type
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select class="form-control select2-multiple select2-hidden-accessible" name="employementType" id="employementType">
+                                            <option value="PERMANENT">PERMANENT</option>
+                                            <option value="CONTRACT">CONTRACT</option>
+                                            <option value="C2H">C2H</option>
+                                            <option value="PARTTIME">PARTTIME</option>
+                                            <option value="INTERN">INTERN</option>
+                                            <option value="FREELANCER">FREELANCER</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Address</label>
+                                    <div class="col-md-4">
+                                        <textarea rows="2" class="form-control" id="address" name="address"></textarea>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-offset-3 col-md-9">
+                                        <button class="btn green" type="submit" id="editEmployee"> Update </button>
+                                        <button type="reset" class="btn default">Reset</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- partial('partials/modal/addEmpDesignation') %>
+<%- partial('partials/modal/addEmpDepartment') %>

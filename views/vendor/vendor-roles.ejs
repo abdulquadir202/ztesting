@@ -1,0 +1,168 @@
+<link href="/assets/pages/css/profile.min.css" rel="stylesheet" type="text/css" />
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li><span><a href="/dashboard">Home</a></span><i class="fa fa-circle"></i></li>
+                <li><span>Business</span><i class="fa fa-circle"></i></li>
+                <li><span>Professional</span><i class="fa fa-circle"></i></li>
+                <li><span>Profile</span></li>
+            </ul>
+        </div>
+        
+        <h1 class="page-title"></h1>
+        <div class="row">
+            <div class="col-md-12">
+                <div id="form-alerts"> </div>
+                <div class="profile-sidebar">
+                    <div class="portlet light profile-sidebar-portlet">
+                        <div class="profile-userpic">
+                            <img id ="cover" src="/al/img/avatar.png" class="img-responsive" alt=""> 
+                        </div>
+                        <div class="profile-usertitle">
+                            <div class="profile-usertitle-name"> <span id="vName"></span> </div>
+                            <div class="profile-usertitle-job"> Admin </div>
+                        </div>
+                        <!-- <div class="profile-userbuttons">
+                            <button type="button" class="btn btn-circle green btn-sm">Follow</button>
+                            <button type="button" class="btn btn-circle red btn-sm">Message</button>
+                        </div> -->
+                    </div>
+                    <div class="portlet light ">
+                        <div>
+                            <div class="profile-usermenu">
+                               <ul class="nav">
+                                    <li>
+                                        <a href="/admin/vendors/<%=uname %>">
+                                            <i class="icon-settings"></i> Accounts </a>
+                                    </li>
+                                    <li>
+                                        <a href="/admin/vendors/<%=uname %>/leads">
+                                            <i class="fa fa-bullhorn"></i> Jobs </a>
+                                    </li>
+                                    <li>
+                                        <a href="/admin/vendors/<%=uname %>/services">
+                                            <i class="icon-layers"></i> Services </a>
+                                    </li>
+                                    <li>
+                                        <a href="/admin/vendors/<%=uname %>/wallet">
+                                            <i class="icon-wallet"></i> Wallet </a>
+                                    </li>
+                                    <% if(user.profile.roles.indexOf('super-admin')>-1){ %>
+                                        <li class="active">
+                                            <a href="/admin/vendors/<%=uname %>/roles">
+                                                <i class="icon-check"></i> Roles  </a>
+                                        </li>
+                                    <% } %>
+                                    <li>
+                                        <a href="/admin/vendors/<%=uname %>/integration">
+                                            <i class="fa fa-exchange"></i> Integration </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                 <div class="profile-content">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="portlet light ">
+                                    <div class="portlet-title tabbable-line">
+                                        <div class="caption caption-md">
+                                            <i class="icon-check font-blue-hoki"></i>
+                                            <span class="caption-subject font-blue-madison bold uppercase">Roles and Modules</span>
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body">
+                                        <div class="tab-content">
+                                            <div class="row">
+                                                <!-- PERSONAL INFO TAB -->
+                                                <input type="hidden" id="pId" value="">
+                                                <input type="hidden" id="uname" value="<%= uname %>">
+                                                <input type="hidden" id="apiUrl" value="<%= api.url %>"/>
+                                                <input type="hidden" id="token" value="<%= user.token %>"/>
+                                                <div class="col-md-6">
+                                                    <div class="mt-checkbox-list">
+                                                        <label class="mt-checkbox">
+                                                            <input type="checkbox" class="roles" id="lead" value="job-mgmt"> Lead Management
+                                                            <span></span>
+                                                        </label>
+                                                        <p class="help-block">&nbsp;&nbsp;&nbsp;&nbsp; Manage leads, jobs and sources </p>
+                                                        <label class="mt-checkbox">
+                                                            <input type="checkbox" class="roles" id="order" value="order-mgmt"> Order Management
+                                                            <span></span>
+                                                        </label>
+                                                        <p class="help-block">&nbsp;&nbsp;&nbsp;&nbsp; Manage enquiries, orders and deliveries </p>
+                                                        <label class="mt-checkbox">
+                                                            <input type="checkbox" id="blog" class="roles" value="blog"> Blog
+                                                            <span></span>
+                                                        </label>
+                                                        <p class="help-block">&nbsp;&nbsp;&nbsp;&nbsp; Manage blog, categories, authors & subscribers </p>
+                                                        <label class="mt-checkbox">
+                                                            <input type="checkbox" id="aggregator" class="roles" value="aggregator"> Marketplace
+                                                            <span></span>
+                                                        </label>
+                                                        <p class="help-block">&nbsp;&nbsp;&nbsp;&nbsp; Build and manage a marketplace </p>
+                                                        <label class="mt-checkbox">
+                                                            <input type="checkbox" id="store" class="roles" value="store-mgmt"> Store Management
+                                                            <span></span>
+                                                        </label>
+                                                        <p class="help-block">&nbsp;&nbsp;&nbsp;&nbsp; Manage the list of visitors </p>
+                                                        <label class="mt-checkbox">
+                                                            <input type="checkbox" id="careers" class="roles" value="jobs-openings"> Jobs &amp; Careers
+                                                            <span></span>
+                                                        </label>
+                                                        <p class="help-block">&nbsp;&nbsp;&nbsp;&nbsp; Manage job openings and applications </p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="mt-checkbox-list">
+                                                        <label class="mt-checkbox">
+                                                            <input type="checkbox" class="roles" id="product" value="product"> Product &amp; Catalog
+                                                            <span></span>
+                                                        </label>
+                                                        <p class="help-block">&nbsp;&nbsp;&nbsp;&nbsp; Manage products and categories </p>
+                                                        <label class="mt-checkbox">
+                                                            <input type="checkbox" class="roles" id="inventory" value="inventory"> Inventory
+                                                            <span></span>
+                                                        </label>
+                                                        <p class="help-block">&nbsp;&nbsp;&nbsp;&nbsp; Manage the product inventory </p>
+                                                        <label class="mt-checkbox">
+                                                            <input type="checkbox" class="roles" id="support" value="support-tickets"> Helpdesk Management
+                                                            <span></span>
+                                                        </label>
+                                                        <p class="help-block">&nbsp;&nbsp;&nbsp;&nbsp; Manage support tickets, assets and subscriptions </p>
+                                                        <label class="mt-checkbox">
+                                                            <input type="checkbox" id="coupon" value="marketing.coupon" class="roles"> Marketing
+                                                            <span></span>
+                                                        </label>
+                                                        <p class="help-block">&nbsp;&nbsp;&nbsp;&nbsp; Create and manage coupons </p>
+                                                        <label class="mt-checkbox">
+                                                            <input type="checkbox" id="testimony" class="roles" value="testimony"> Testimonies &amp; Rating
+                                                            <span></span>
+                                                        </label>
+                                                        <p class="help-block">&nbsp;&nbsp;&nbsp;&nbsp; Manage customer reviews and ratings </p>
+                                                        <label class="mt-checkbox-disabled">
+                                                            <input type="checkbox" id="finance" class="roles" value="finance" disabled=""> Finance
+                                                            <span></span>
+                                                        </label>
+                                                        <p class="help-block">&nbsp;&nbsp;&nbsp;&nbsp; Manage your accounts and expenses </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="margin-top-30 text-center">
+                                                <button class="btn green" id="updateRole"> Save </button>
+                                                <a href="javascript:;" class="btn default"> Cancel </a>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                <!-- END PROFILE CONTENT -->
+            </div>
+        </div>
+    </div>
+</div>

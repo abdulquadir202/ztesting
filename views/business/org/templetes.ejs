@@ -1,0 +1,1183 @@
+<link href="/assets/pages/css/profile.min.css" rel="stylesheet" type="text/css" />
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li><span><a href="/dashboard">Home</a></span><i class="fa fa-circle"></i></li>
+                <li><span>Business</span><i class="fa fa-circle"></i></li>
+                <li><span>Organisation</span><i class="fa fa-circle"></i></li>
+                <li><span>Profile</span></li>
+            </ul>
+        </div>
+        
+        <h1 class="page-title"></h1>
+        <div class="row">
+            <div class="col-md-12">
+                <div id="form-alerts"> </div>
+                <div class="profile-sidebar">
+                    <div class="portlet light profile-sidebar-portlet">
+                        <div class="profile-userpic">
+                            <img src="<%= (user.coverImage ? user.coverImage : '/al/img/avatar.png')%>" class="img-responsive" alt="">
+                        </div>
+                        <div class="profile-usertitle">
+                            <div class="profile-usertitle-name"> <%= user.name %> </div>
+                            <div class="profile-usertitle-job"> Admin </div>
+                        </div>
+                        <!-- <div class="profile-userbuttons">
+                            <button type="button" class="btn btn-circle green btn-sm">Follow</button>
+                            <button type="button" class="btn btn-circle red btn-sm">Message</button>
+                        </div> -->
+                    </div>
+                    <div class="portlet light ">
+                        <div>
+                            <div class="profile-usermenu">
+                               <ul class="nav">
+                                    <li>
+                                        <a href="/organisation/detail">
+                                            <i class="icon-settings"></i> Account Settings </a>
+                                    </li>
+                                    <li>
+                                        <a href="/organisation/preference">
+                                            <i class="icon-info"></i> Preferences </a>
+                                    </li>
+                                    <li class="active">
+                                        <a href="/organisation/templates">
+                                            <i class="fa fa-code"></i> Templetes </a>
+                                    </li>
+                                    <li>
+                                        <a href="/organisation/documents/<%= user.uname %>">
+                                            <i class="fa fa-folder-o"></i> Documents </a>
+                                    </li>
+                                    <li>
+                                        <a href="/organisation/integration/<%= user.uname %>">
+                                            <i class="fa fa-exchange"></i> Integration </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                 <div class="profile-content">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="portlet light ">
+                                <div class="portlet-title tabbable-line">
+                                    <div class="caption caption-md">
+                                        <i class="icon-globe theme-font hide"></i>
+                                        <span class="caption-subject font-blue-madison bold uppercase">Templetes </span>
+                                    </div>
+                                    
+                                </div>
+                                    <div class="portlet-body">
+                                        <input type="hidden" id="apiUrl" value="<%= api.url %>"/>
+                                        <input type="hidden" id="token" value="<%= user.token %>"/>
+                                        <input type="hidden" id="tempId" value=""/>
+                                        <% if(user.orgType !=="blog"){ %>
+                                        <div class="row">
+                                            <div class="col-md-3 col-sm-3 col-xs-3">
+                                                <ul class="nav nav-tabs tabs-left">
+                                                    <li class="dropdown">
+                                                        <a data-toggle="dropdown" class="dropdown-toggle" href="javascript:;" aria-expanded="true"> LEAD
+                                                            <i class="fa fa-angle-down"></i>
+                                                        </a>
+                                                        <ul role="menu" class="dropdown-menu">
+                                                            <li class="">
+                                                                <a data-toggle="tab" tabindex="-1" href="#tab_6_1" aria-expanded="false"> New </a>
+                                                            </li>
+                                                            <li>
+                                                                <a data-toggle="tab" tabindex="-1" href="#tab_6_1_1" aria-expanded="false"> Re-schedule </a>
+                                                            </li>
+                                                            <li class="">
+                                                                <a data-toggle="tab" tabindex="-1" href="#tab_6_1_2" aria-expanded="false"> Cancel </a>
+                                                            </li>
+                                                            <li>
+                                                                <a data-toggle="tab" tabindex="-1" href="#tab_6_1_3" aria-expanded="false"> Confirm </a>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li class="dropdown">
+                                                        <a data-toggle="dropdown" class="dropdown-toggle" href="javascript:;" aria-expanded="true"> Order
+                                                            <i class="fa fa-angle-down"></i>
+                                                        </a>
+                                                        <ul role="menu" class="dropdown-menu">
+                                                            <li class="">
+                                                                <a data-toggle="tab" tabindex="-1" href="#tab_6_2" aria-expanded="false"> New </a>
+                                                            </li>
+                                                            <li class="">
+                                                                <a data-toggle="tab" tabindex="-1" href="#tab_6_2_1" aria-expanded="false"> Cancel </a>
+                                                            </li>
+                                                            <li>
+                                                                <a data-toggle="tab" tabindex="-1" href="#tab_6_2_2" aria-expanded="false"> Delivered </a>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+
+                                                    <li class="">
+                                                        <a data-toggle="tab" href="#" aria-expanded="false"> SIGN UP </a>
+                                                    </li>
+                                                    <% if(user.profile.roles.indexOf('store-mgmt') > -1){ %>
+                                                    <li class="dropdown">
+                                                        <a data-toggle="dropdown" class="dropdown-toggle" href="javascript:;" aria-expanded="true"> VISITOR
+                                                            <i class="fa fa-angle-down"></i>
+                                                        </a>
+                                                        <ul role="menu" class="dropdown-menu">
+                                                            <li class="">
+                                                                <a data-toggle="tab" tabindex="-1" href="#tab_6_4" aria-expanded="false"> Visit </a>
+                                                            </li>
+                                                            <li>
+                                                                <a data-toggle="tab" tabindex="-1" href="#tab_6_4_1" aria-expanded="false"> Measurement </a>
+                                                            </li>
+                                                            <li class="">
+                                                                <a data-toggle="tab" tabindex="-1" href="#tab_6_4_2" aria-expanded="false"> Quotation </a>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <% } %>
+                                                </ul>
+                                            </div>
+                                            <div class="col-md-9 col-sm-9 col-xs-9">
+                                                <div class="tab-content">
+                                                    <div id="tab_6_1" class="tab-pane fade active in">
+                                                        <form role="form" class="template_add_form">
+                                                            <div class="col-md-12" style="background-color:#e3e3e3">
+                                                                <b><u>Default templete (For customize more options you can find below)</u></b>
+                                                                 <br>
+                                                                 <b>Subject:-</b>  We have received your request for {{ sName }} Refernce number is :{{ leadId }}.
+                                                                 <br>
+                                                                 <br>
+                                                                 <b>BODY:- </b> Dear {{name}} ,<br>
+                                                                 We have received your request for {{ sName }}. Your reference number is {{ leadId }}. For any queries please call us at {{ mob }}.
+                                                                 <br>
+                                                                 <br>
+                                                            </div>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            <div class="form-body">
+                                                                <div class="form-group">
+                                                                    Subject (New Lead)
+                                                                    <span class="required"> * </span>
+                                                                    <br>
+                                                                    <br>
+                                                                    <div class="col-md-12">
+                                                                         <div class="form-group">
+                                                                            <textarea rows="2" class="form-control" id="subnew" name="subnew"></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    Email Templete (New Lead)
+                                                                    <span class="required"> * </span>
+                                                                    <br>
+                                                                    <br>
+                                                                    <div class="col-md-12">
+                                                                         <div class="form-group">
+                                                                            <div class="summernotetmp" id="new">
+                                                                                
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    SMS Templete (New Lead)
+                                                                    <span class="required"> * </span>
+                                                                    <br>
+                                                                    <br>
+                                                                    <div class="col-md-12">
+                                                                         <div class="form-group">
+                                                                            <textarea rows="4" class="form-control" id="smstmpnew" name="smstmpnew"></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-actions">
+                                                                <div class="row">
+                                                                    <div class="col-md-offset-3 col-md-9">
+                                                                        <button class="btn green" type="submit" id="editProduct"> Update </button>
+                                                                        <button type="reset" class="btn default">Reset</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>  
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            <b><u>Variable you can use</u></b>
+                                                            <br>
+                                                            <br>
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <ul>
+                                                                    <li> customer name:- {{name}} </li>
+                                                                    <li> customer mobile:- {{mobile}}</li>
+                                                                    <li> job date :- {{dueDate}} </li>
+                                                                    <li> service name:- {{sName}} </li>
+                                                                    <li> Address :- {{address}} </li>
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <ul>
+                                                                        <li> reference no:- {{leadId}} </li>
+                                                                        <li> company mobile:- {{mob}} </li>
+                                                                        <li> company name:- {{pName}} </li>
+                                                                        <li> company website:- {{website}} </li>
+                                                                    </ul>
+                                                                    
+                                                                </div>
+                                                            </div>`
+                                                        </form>
+                                                    </div>
+                                                    <div id="tab_6_1_1" class="tab-pane fade">
+                                                        <form role="form" class="template_add_form">
+                                                            <div class="form-body">
+                                                                <div class="form-group">
+                                                                    Subject (On Re-schedule)
+                                                                    <span class="required"> * </span>
+                                                                    <br>
+                                                                    <br>
+                                                                    <div class="col-md-12">
+                                                                         <div class="form-group">
+                                                                            <textarea rows="2" class="form-control" id="subre" name="subre"></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    Email Templete (On Re-schedule)
+                                                                    <span class="required"> * </span>
+                                                                    <br>
+                                                                    <br>
+                                                                    <div class="col-md-12">
+                                                                         <div class="form-group">
+                                                                            <div class="summernotetmp" id="reschedule">
+                                                                                
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    SMS Templete (On Re-schedule)
+                                                                    <span class="required"> * </span>
+                                                                    <br>
+                                                                    <br>
+                                                                    <div class="col-md-12">
+                                                                         <div class="form-group">
+                                                                            <textarea rows="4" class="form-control" id="smstmprsdl" name="smstmprsdl"></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-actions">
+                                                                <div class="row">
+                                                                    <div class="col-md-offset-3 col-md-9">
+                                                                        <button class="btn green" type="submit" id="editProduct"> Update </button>
+                                                                        <button type="reset" class="btn default">Reset</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>  
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            <b><u>Variable you can use</u></b>
+                                                            <br>
+                                                            <br>
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <ul>
+                                                                    <li> customer name:- {{name}} </li>
+                                                                    <li> customer mobile:- {{mobile}}</li>
+                                                                    <li> job date :- {{dueDate}} </li>
+                                                                    <li> service name:- {{sName}} </li>
+                                                                    <li> Address :- {{address}} </li>
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <ul>
+                                                                        <li> reference no:- {{leadId}} </li>
+                                                                        <li> company mobile:- {{mob}} </li>
+                                                                        <li> company name:- {{pName}} </li>
+                                                                        <li> company website:- {{website}} </li>
+                                                                    </ul>
+                                                                    
+                                                                </div>
+                                                            </div>
+                                                            
+                                                        </form>
+                                                    </div>
+                                                    <div id="tab_6_1_2" class="tab-pane fade">
+                                                        <form role="form" class="template_add_form">
+                                                            <div class="form-body">
+                                                                <div class="form-group">
+                                                                    Subject (On Cancel)
+                                                                    <span class="required"> * </span>
+                                                                    <br>
+                                                                    <br>
+                                                                    <div class="col-md-12">
+                                                                         <div class="form-group">
+                                                                            <textarea rows="2" class="form-control" id="subcan" name="subcan"></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    Email Templete (On Cancel)
+                                                                    <span class="required"> * </span>
+                                                                    <br>
+                                                                    <br>
+                                                                    <div class="col-md-12">
+                                                                         <div class="form-group">
+                                                                            <div class="summernotetmp" id="cancel">
+                                                                                
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    SMS Templete (On cancel)
+                                                                    <span class="required"> * </span>
+                                                                    <br>
+                                                                    <br>
+                                                                    <div class="col-md-12">
+                                                                         <div class="form-group">
+                                                                            <textarea rows="4" class="form-control" id="smstmpcnc" name="smstmpcnc"></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-actions">
+                                                                <div class="row">
+                                                                    <div class="col-md-offset-3 col-md-9">
+                                                                        <button class="btn green" type="submit" id="editProduct"> Update </button>
+                                                                        <button type="reset" class="btn default">Reset</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>  
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            <b><u>Variable you can use</u></b>
+                                                            <br>
+                                                            <br>
+                                                           <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <ul>
+                                                                    <li> customer name:- {{name}} </li>
+                                                                    <li> customer mobile:- {{mobile}}</li>
+                                                                    <li> job date :- {{dueDate}} </li>
+                                                                    <li> service name:- {{sName}} </li>
+                                                                    <li> Address :- {{address}} </li>
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <ul>
+                                                                        <li> reference no:- {{leadId}} </li>
+                                                                        <li> company mobile:- {{mob}} </li>
+                                                                        <li> company name:- {{pName}} </li>
+                                                                        <li> company website:- {{website}} </li>
+                                                                    </ul>
+                                                                    
+                                                                </div>
+                                                            </div>
+                                                            
+                                                        </form>
+                                                    </div>
+                                                    <div id="tab_6_1_3" class="tab-pane fade">
+                                                        <form role="form" class="template_add_form">
+                                                            <div class="col-md-12" style="background-color:#e3e3e3">
+                                                                <b><u>Default templete (For customize more options you can find below)</u></b>
+                                                                 <br>
+                                                                 <b>Subject:-</b>  Your lead with reference no {{ leadId }} has been confirmed by {{ pName }} on {{ dueDate }}.
+                                                                 <br>
+                                                                 <br>
+                                                                 <b>BODY:- Your lead with reference no {{ leadId }} has been confirmed by {{ pName }} on {{ dueDate }}.
+                                                                 <br>
+                                                                 <br>
+                                                            </div>
+                                                            <br>
+                                                            <br>
+                                                            <div class="form-body">
+                                                                <div class="form-group">
+                                                                    Subject (On confirm)
+                                                                    <span class="required"> * </span>
+                                                                    <br>
+                                                                    <br>
+                                                                    <div class="col-md-12">
+                                                                         <div class="form-group">
+                                                                            <textarea rows="2" class="form-control" id="subassg" name="subassg"></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    Email Templete (On confirm)
+                                                                    <span class="required"> * </span>
+                                                                    <br>
+                                                                    <br>
+                                                                    <div class="col-md-12">
+                                                                         <div class="form-group">
+                                                                            <div class="summernotetmp" id="assign">
+                                                                                
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    SMS Templete (On confirm)
+                                                                    <span class="required"> * </span>
+                                                                    <br>
+                                                                    <br>
+                                                                    <div class="col-md-12">
+                                                                         <div class="form-group">
+                                                                            <textarea rows="4" class="form-control" id="smstmpassgn" name="smstmpassgn"></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-actions">
+                                                                <div class="row">
+                                                                    <div class="col-md-offset-3 col-md-9">
+                                                                        <button class="btn green" type="submit" id="editProduct"> Update </button>
+                                                                        <button type="reset" class="btn default">Reset</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>  
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            <b><u>Variable you can use</u></b>
+                                                            <br>
+                                                            <br>
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <ul>
+                                                                    <li> customer name:- {{name}} </li>
+                                                                    <li> customer mobile:- {{mobile}}</li>
+                                                                    <li> job date :- {{dueDate}} </li>
+                                                                    <li> service name:- {{sName}} </li>
+                                                                    <li> Employee name:- {{ename}} </li>
+                                                                    <li> Employee Number:- {{eno}} </li>
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <ul>
+                                                                        <li> Address :- {{address}} </li>
+                                                                        <li> Price :- {{price}} </li>
+                                                                        <li> reference no:- {{leadId}} </li>
+                                                                        <li> company mobile:- {{mob}} </li>
+                                                                        <li> company name:- {{pName}} </li>
+                                                                        <li> company website:- {{website}} </li>
+                                                                    </ul>
+                                                                    
+                                                                </div>
+                                                            </div>
+                                                            
+                                                        </form>
+                                                    </div>
+                                                    <!-- 
+                                                    <div id="tab_6_2" class="tab-pane fade">
+                                                        <form role="form" class="template_add_form">
+
+                                                            <div class="col-md-12" style="background-color:#e3e3e3">
+                                                                <b><u>Default templete (For customize more options you can find below)</u></b>
+                                                                 <br>
+                                                                 <b>Subject:-</b>  Order Confirmation - Your Order with {{ cname }} {{ orderId }} has been successfully placed!
+                                                                 <br>
+                                                                 <br>
+                                                                 <b>BODY:-</p>We are pleased to confirm your order no {{ orderId}}.
+                                                                 <br>
+                                                                  Thank you for shopping with {{ cname }}! 
+                                                                 <br>
+                                                                 <br>
+                                                            </div>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+
+                                                            <div class="form-body">
+                                                                <div class="form-group">
+                                                                    Subject (New Order)
+                                                                    <span class="required"> * </span>
+                                                                    <br>
+                                                                    <br>
+                                                                    <div class="col-md-12">
+                                                                         <div class="form-group">
+                                                                            <textarea rows="2" class="form-control" id="subnewod" name="subnewod"></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    Email Templete (New Order)
+                                                                    <span class="required"> * </span>
+                                                                    <br>
+                                                                    <br>
+                                                                    <div class="col-md-12">
+                                                                         <div class="form-group">
+                                                                            <div class="summernotetmp" id="newod">
+                                                                                
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    SMS Templete (New Order)
+                                                                    <span class="required"> * </span>
+                                                                    <br>
+                                                                    <br>
+                                                                    <div class="col-md-12">
+                                                                         <div class="form-group">
+                                                                            <textarea rows="4" class="form-control" id="smstmpnewod" name="smstmpnewod"></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-actions">
+                                                                <div class="row">
+                                                                    <div class="col-md-offset-3 col-md-9">
+                                                                        <button class="btn green" type="submit" id="editProduct"> Update </button>
+                                                                        <button type="reset" class="btn default">Reset</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>  
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            <b><u>Variable you can use</u></b>
+                                                            <br>
+                                                            <br>
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <ul>
+                                                                    <li> Company name:- {{cname}} </li>
+                                                                    <li> Customer name:- {{name}} </li>
+                                                                    <li> Customer mobile:- {{mobile}}</li>
+                                                                    <li> Order date :- {{orderDate}} </li>
+                                                                    <li> Shipping address :- {{saddress}} </li>
+                                                                    <li>Sub total:- {{subTotal }}
+                                                                    <li>Delivery Charge:- {{ delivery }}
+                                                                    
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <ul>
+                                                                        <li> Billing address :- {{baddress}} </li>
+                                                                        <li> Order id:- {{orderId}} </li>
+                                                                        <li> Payment mode:- {{pmode}} </li>
+                                                                        <li> Company website:- {{ website }} </li>
+                                                                        <li>Total:- {{ total }}
+                                                                        <li>Tax percentage:- {{ tax }}
+                                                                        <li>Tax Amount:- {{ taxAmount }}
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <div id="tab_6_2_1" class="tab-pane fade">
+                                                        <form role="form" class="template_add_form">
+                                                            <div class="col-md-12" style="background-color:#e3e3e3">
+                                                                <b><u>Default templete (For customize more options you can find below)</u></b>
+                                                                 <br>
+                                                                 <b>Subject:-</b>  Cancellation of your order :{{ orderId }}.
+                                                                 <br>
+                                                                 <br>
+                                                                 <b>BODY:- </b>  We would like to inform you that we are processing your cancellation request for the following items in the Order {{ orderId }}.
+                                                                 <br>
+                                                                 <br>
+                                                            </div>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            <div class="form-body">
+                                                                <div class="form-group">
+                                                                    Subject (Order Cancellation)
+                                                                    <span class="required"> * </span>
+                                                                    <br>
+                                                                    <br>
+                                                                    <div class="col-md-12">
+                                                                         <div class="form-group">
+                                                                            <textarea rows="2" class="form-control" id="odcancelsub" name="odcancelsub"></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    Email Templete (Order Cancellation)
+                                                                    <span class="required"> * </span>
+                                                                    <br>
+                                                                    <br>
+                                                                    <div class="col-md-12">
+                                                                         <div class="form-group">
+                                                                            <div class="summernotetmp" id="odcancel">
+                                                                                
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    SMS Templete (Order Cancellation)
+                                                                    <span class="required"> * </span>
+                                                                    <br>
+                                                                    <br>
+                                                                    <div class="col-md-12">
+                                                                         <div class="form-group">
+                                                                            <textarea rows="4" class="form-control" id="smstmpodcancel" name="smstmpodcancel"></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-actions">
+                                                                <div class="row">
+                                                                    <div class="col-md-offset-3 col-md-9">
+                                                                        <button class="btn green" type="submit" id="editProduct"> Update </button>
+                                                                        <button type="reset" class="btn default">Reset</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>  
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            <b><u>Variable you can use</u></b>
+                                                            <br>
+                                                            <br>
+                                                           <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <ul>
+                                                                    <li> Company name:- {{cname}} </li>
+                                                                    <li> Customer name:- {{name}} </li>
+                                                                    <li> Customer mobile:- {{mobile}}</li>
+                                                                    <li> Order date :- {{orderDate}} </li>
+                                                                    <li> Shipping address :- {{saddress}} </li>
+                                                                    <li>Sub total:- {{subTotal }}
+                                                                    <li>Delivery Charge:- {{ delivery }}
+                                                                    
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <ul>
+                                                                        <li> Billing address :- {{baddress}} </li>
+                                                                        <li> Order id:- {{orderId}} </li>
+                                                                        <li> Payment mode:- {{pmode}} </li>
+                                                                        <li> Company website:- {{ website }} </li>
+                                                                        <li>Total:- {{ total }}
+                                                                        <li>Tax percentage:- {{ tax }}
+                                                                        <li>Tax Amount:- {{ taxAmount }}
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <div id="tab_6_2_2" class="tab-pane fade">
+                                                        <form role="form" class="template_add_form">
+                                                        <div class="col-md-12" style="background-color:#e3e3e3">
+                                                                <b><u>Default templete (For customize more options you can find below)</u></b>
+                                                                 <br>
+                                                                 <b>Subject:-</b>  Invoice Copy and Delivery Confirmation for {{cname}} Order {{orderId}}.
+                                                                 <br>
+                                                                 <br>
+                                                                 <b>BODY:- </b> Dear {{name}} ,<br>
+                                                                 Item in your order has been delivered! <br>
+                                                                 Item in order with order id {{orderId}} has been delivered! We have attached a copy of the invoice along with this email. Hope you liked our service.
+                                                                 <br>
+                                                                 <br>
+                                                            </div>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            <div class="form-body">
+                                                                <div class="form-group">
+                                                                    Subject (Order Delivery)
+                                                                    <span class="required"> * </span>
+                                                                    <br>
+                                                                    <br>
+                                                                    <div class="col-md-12">
+                                                                         <div class="form-group">
+                                                                            <textarea rows="2" class="form-control" id="suboddeliver" name="suboddeliver"></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    Email Templete (Order Delivery)
+                                                                    <span class="required"> * </span>
+                                                                    <br>
+                                                                    <br>
+                                                                    <div class="col-md-12">
+                                                                         <div class="form-group">
+                                                                            <div class="summernotetmp" id="oddeliver">
+                                                                                
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                     SMS Templete (Order Delivery)
+                                                                    <span class="required"> * </span>
+                                                                    <br>
+                                                                    <br>
+                                                                    <div class="col-md-12">
+                                                                         <div class="form-group">
+                                                                            <textarea rows="4" class="form-control" id="smstmpoddeliver" name="smstmpoddeliver"></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-actions">
+                                                                <div class="row">
+                                                                    <div class="col-md-offset-3 col-md-9">
+                                                                        <button class="btn green" type="submit" id="editProduct"> Update </button>
+                                                                        <button type="reset" class="btn default">Reset</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>  
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            <b><u>Variable you can use</u></b>
+                                                            <br>
+                                                            <br>
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <ul>
+                                                                    <li> Company name:- {{cname}} </li>
+                                                                    <li> Customer name:- {{name}} </li>
+                                                                    <li> Customer mobile:- {{mobile}}</li>
+                                                                    <li> Order date :- {{orderDate}} </li>
+                                                                    <li> Shipping address :- {{saddress}} </li>
+                                                                    <li>Sub total:- {{subTotal }}
+                                                                    <li>Delivery Charge:- {{ delivery }}
+                                                                    
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <ul>
+                                                                        <li> Billing address :- {{baddress}} </li>
+                                                                        <li> Order id:- {{orderId}} </li>
+                                                                        <li> Payment mode:- {{pmode}} </li>
+                                                                        <li> Company website:- {{ website }} </li>
+                                                                        <li>Total:- {{ total }}
+                                                                        <li>Tax percentage:- {{ tax }}
+                                                                        <li>Tax Amount:- {{ taxAmount }}
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    -->
+                                                    
+                                                    <div id="tab_6_3" class="tab-pane">
+                                                        <form role="form" class="template_add_form">
+                                                            <div class="form-body">
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                    </div>
+                                                                </div> 
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                    </div>
+                                                                </div>  
+                                                            </div>
+                                                            <div class="form-actions">
+                                                                <div class="row">
+                                                                    <div class="col-md-offset-3 col-md-9">
+                                                                        <button class="btn green" type="submit" id="editProduct"> Update </button>
+                                                                        <button type="reset" class="btn default">Reset</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>    
+                                                        </form>
+                                                    </div>
+                                                     <div id="tab_6_4" class="tab-pane fade">
+                                                            <form role="form" class="template_add_form">
+                                                                <div class="col-md-12" style="background-color:#e3e3e3">
+                                                                    <b><u>Default templete (For customize more options you can find below)</u></b>
+                                                                     <br>
+
+                                                                     <b>TEXT:- </b> Dear {{name}} ,<br>
+                                                                             Thank you for visiting our store. For more details visit our website {{ website }}.
+                                                                             <br>
+                                                                             <br>
+                                                                </div>
+                                                                <br>
+                                                                <br>
+                                                                <br>
+                                                                <br>
+                                                                <br>
+                                                                <br>
+                                                                <br>
+                                                                <div class="form-body">
+                                                                    <div class="form-group">
+                                                                        Subject (New Visitor)
+                                                                        <span class="required"> * </span>
+                                                                        <br>
+                                                                        <br>
+                                                                        <div class="col-md-12">
+                                                                             <div class="form-group">
+                                                                                <textarea rows="2" class="form-control" id="subnewvisit" name="subnewvisit"></textarea>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        Email Templete (New Visitor)
+                                                                        <span class="required"> * </span>
+                                                                        <br>
+                                                                        <br>
+                                                                        <div class="col-md-12">
+                                                                             <div class="form-group">
+                                                                                <div class="summernotetmp" id="newvisit">
+                                                                                    
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        SMS Templete (New Visitor)
+                                                                        <span class="required"> * </span>
+                                                                        <br>
+                                                                        <br>
+                                                                        <div class="col-md-12">
+                                                                             <div class="form-group">
+                                                                                <textarea rows="4" class="form-control" id="smstmpnewvisit" name="smstmpnewvisit"></textarea>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-actions">
+                                                                    <div class="row">
+                                                                        <div class="col-md-offset-3 col-md-9">
+                                                                            <button class="btn green" type="submit" id="editProduct"> Update </button>
+                                                                            <button type="reset" class="btn default">Reset</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>  
+                                                                <br>
+                                                                <br>
+                                                                <br>
+                                                                <b><u>Variable you can use</u></b>
+                                                                <br>
+                                                                <br>
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <ul>
+                                                                        <li> customer name:- {{name}} </li>
+                                                                        <li> customer mobile:- {{mobile}}</li>
+                                                                        <li> visiting date :- {{vDate}} </li>
+                                                                        <li> Address :- {{address}} </li>
+                                                                        <li> Employee Name :- {{employee}} </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <ul>
+                                                                            <li> company mobile:- {{mob}} </li>
+                                                                            <li> company name:- {{pName}} </li>
+                                                                            <li> company website:- {{website}} </li>
+                                                                            <li> Employee Mobile :- {{employee_mob}} </li>
+                                                                        </ul>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                            </form>
+                                                    </div>
+                                                     <div id="tab_6_4_1" class="tab-pane fade">
+                                                            <form role="form" class="template_add_form">
+                                                                <div class="col-md-12" style="background-color:#e3e3e3">
+                                                                    <b><u>Default templete (For customize more options you can find below)</u></b>
+                                                                     <br>
+
+                                                                     <b>TEXT:- </b> Dear {{name}} ,<br>
+                                                                             thank you for your measurement appointment, our staff will meet you soon. For more details visit our website {{ website }}.
+                                                                             <br>
+                                                                             <br>
+                                                                </div>
+                                                                <br>
+                                                                <br>
+                                                                <br>
+                                                                <br>
+                                                                <br>
+                                                                <br>
+                                                                <br>
+                                                                <br>
+                                                                <br>
+                                                                <div class="form-body">
+                                                                    <div class="form-group">
+                                                                        Subject (Measurement)
+                                                                        <span class="required"> * </span>
+                                                                        <br>
+                                                                        <br>
+                                                                        <div class="col-md-12">
+                                                                             <div class="form-group">
+                                                                                <textarea rows="2" class="form-control" id="subnewmeasure" name="subnewmeasure"></textarea>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        Email Templete (Measurement)
+                                                                        <span class="required"> * </span>
+                                                                        <br>
+                                                                        <br>
+                                                                        <div class="col-md-12">
+                                                                             <div class="form-group">
+                                                                                <div class="summernotetmp" id="measure">
+                                                                                    
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        SMS Templete (Measurement)
+                                                                        <span class="required"> * </span>
+                                                                        <br>
+                                                                        <br>
+                                                                        <div class="col-md-12">
+                                                                             <div class="form-group">
+                                                                                <textarea rows="4" class="form-control" id="smstmpmeasure" name="smstmpmeasure"></textarea>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-actions">
+                                                                    <div class="row">
+                                                                        <div class="col-md-offset-3 col-md-9">
+                                                                            <button class="btn green" type="submit" id="editProduct"> Update </button>
+                                                                            <button type="reset" class="btn default">Reset</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>  
+                                                                <br>
+                                                                <br>
+                                                                <br>
+                                                                <b><u>Variable you can use</u></b>
+                                                                <br>
+                                                                <br>
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <ul>
+                                                                        <li> customer name:- {{name}} </li>
+                                                                        <li> customer mobile:- {{mobile}}</li>
+                                                                        <li> visiting date :- {{vDate}} </li>
+                                                                        <li> Address :- {{address}} </li>
+                                                                        <li> Employee Name :- {{employee}} </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <ul>
+                                                                            <li> company mobile:- {{mob}} </li>
+                                                                            <li> company name:- {{pName}} </li>
+                                                                            <li> company website:- {{website}} </li>
+                                                                            <li> Employee Mobile :- {{employee_mob}} </li>
+                                                                        </ul>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                            </form>
+                                                    </div>
+                                                     <div id="tab_6_4_2" class="tab-pane fade">
+                                                            <form role="form" class="template_add_form">
+                                                                <div class="col-md-12" style="background-color:#e3e3e3">
+                                                                    <b><u>Default templete (For customize more options you can find below)</u></b>
+                                                                    <br>
+                                                                     <b>TEXT:- </b> Dear {{name}} ,<br>
+                                                                             Your quotation has be stored, we will look forward for your order confirmation. For more details visit our website {{ website }}.
+                                                                             <br>
+                                                                             <br>
+                                                                </div>
+                                                                <br>
+                                                                <br>
+                                                                <br>
+                                                                <br>
+                                                                <br>
+                                                                <br>
+                                                                <br>
+                                                                <br>
+                                                                <br>
+                                                                <div class="form-body">
+                                                                    <div class="form-group">
+                                                                        Subject (Quotation)
+                                                                        <span class="required"> * </span>
+                                                                        <br>
+                                                                        <br>
+                                                                        <div class="col-md-12">
+                                                                             <div class="form-group">
+                                                                                <textarea rows="2" class="form-control" id="subquote" name="subquote"></textarea>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        Email Templete (Quotation)
+                                                                        <span class="required"> * </span>
+                                                                        <br>
+                                                                        <br>
+                                                                        <div class="col-md-12">
+                                                                             <div class="form-group">
+                                                                                <div class="summernotetmp" id="quote">
+                                                                                    
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        SMS Templete (Quotation)
+                                                                        <span class="required"> * </span>
+                                                                        <br>
+                                                                        <br>
+                                                                        <div class="col-md-12">
+                                                                             <div class="form-group">
+                                                                                <textarea rows="4" class="form-control" id="smstmpquote" name="smstmpquote"></textarea>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-actions">
+                                                                    <div class="row">
+                                                                        <div class="col-md-offset-3 col-md-9">
+                                                                            <button class="btn green" type="submit" id="editProduct"> Update </button>
+                                                                            <button type="reset" class="btn default">Reset</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>  
+                                                                <br>
+                                                                <br>
+                                                                <br>
+                                                                <b><u>Variable you can use</u></b>
+                                                                <br>
+                                                                <br>
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <ul>
+                                                                        <li> customer name:- {{name}} </li>
+                                                                        <li> customer mobile:- {{mobile}}</li>
+                                                                        <li> visiting date :- {{vDate}} </li>
+                                                                        <li> Address :- {{address}} </li>
+                                                                        <li> Employee Name :- {{employee}} </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <ul>
+                                                                            <li> company mobile:- {{mob}} </li>
+                                                                            <li> company name:- {{pName}} </li>
+                                                                            <li> company website:- {{website}} </li>
+                                                                            <li> Employee Mobile :- {{employee_mob}} </li>
+                                                                        </ul>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                            </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <% }else{ %>
+                                            <div class="row">
+                                                <div class="col-md-3 col-sm-3 col-xs-3">
+                                                    <ul class="nav nav-tabs tabs-left">
+                                                        <li class="">
+                                                            <a data-toggle="tab" href="#" aria-expanded="false"> NEW BLOG </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-md-9 col-sm-9 col-xs-9">
+                                                    <div class="tab-content">
+                                                        <div id="tab_6_1" class="tab-pane fade active in">
+                                                            <form role="form" class="template_add_form">
+                                                                <div class="col-md-12" style="background-color:#e3e3e3">
+                                                                    <b><u>Default templete (For customize more options you can find below)</u></b>
+                                                                     <br>
+                                                                     <b>Subject:-</b> New blog posted .
+                                                                     <br>
+                                                                     <br>
+                                                                     <b>BODY:- </b> Dear {{name}} ,<br>
+                                                                    A new blog is waiting for approval .
+                                                                </div>
+                                                                <br>
+                                                                <br>
+                                                                <br>
+                                                                <br>
+                                                                <br>
+                                                                <br>
+                                                                <br>
+                                                                <br>
+                                                                <br>
+                                                                <div class="form-body">
+                                                                    <div class="form-group">
+                                                                        Subject (New Blog)
+                                                                        <span class="required"> * </span>
+                                                                        <br>
+                                                                        <br>
+                                                                        <div class="col-md-12">
+                                                                             <div class="form-group">
+                                                                                <textarea rows="2" class="form-control" id="subnew" name="subnew" disabled></textarea>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        Email Templete (New Blog)
+                                                                        <span class="required"> * </span>
+                                                                        <br>
+                                                                        <br>
+                                                                        <div class="col-md-12">
+                                                                             <div class="form-group">
+                                                                                <div class="summernotetmp" id="new" disabled>
+                                                                                    
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        SMS Templete (New Blog)
+                                                                        <span class="required"> * </span>
+                                                                        <br>
+                                                                        <br>
+                                                                        <div class="col-md-12">
+                                                                             <div class="form-group">
+                                                                                <textarea rows="4" class="form-control" id="smstmpnew" name="smstmpnew" disabled></textarea>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-actions">
+                                                                    <div class="row">
+                                                                        <div class="col-md-offset-3 col-md-9">
+                                                                            <button class="btn green" type="submit" id="editProduct" disabled> Update </button>
+                                                                            <button type="reset" class="btn default">Reset</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>  
+                                                                <br>
+                                                                <br>
+                                                                <br>
+                                                                <b><u>Variable you can use</u></b>
+                                                                <br>
+                                                                <br>
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <ul>
+                                                                        <li> company name:- {{name}} </li>
+                                                                        <li> Author:- {{user}}</li>
+                                                                        <li> date :- {{date}} </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <% } %>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" id="apiUrl" value="<%= api.url %>"/>
+                <!-- END PROFILE CONTENT -->
+            </div>
+        </div>
+    </div>
+</div>

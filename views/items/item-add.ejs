@@ -1,0 +1,472 @@
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li><span><a href="/dashboard">Home</a></span><i class="fa fa-circle"></i></li>
+                <li><span><a href="/items">Items</a></span><i class="fa fa-circle"></i></li>
+                <li><span> Add</span></li>
+            </ul>
+        </div>
+        <h1 class="page-title"> <!-- Add Item
+            <small>Add a new sales Item</small> -->
+        </h1>
+        <div class="row">
+            <div class="col-md-12">
+                <div id="form-alerts"> </div>
+                <div class="portlet light portlet-fit portlet-form bordered">
+
+                    <div class="portlet light ">
+                        <div class="portlet-title tabbable-line">
+                            <div class="caption caption-md">
+                               <i class="icon-layers font-blue-hoki"></i>
+                                <span class="caption-subject font-blue-hoki sbold uppercase"> Item Information</span>
+                            </div>
+                            <ul class="nav nav-tabs">
+                                <li id ="1" class="active">
+                                    <a href="#tab_1_1" aria-expanded="false"> General </a>
+                                </li>
+                                <li id ="2" class="disabled">
+                                    <a  href="#tab_1_2" aria-expanded="true"> Checklist </a>
+                                </li>
+                                <!-- <li id ="3" class="disabled">
+                                    <a href="#tab_1_3" aria-expanded="true"> Process </a>
+                                </li>
+                                <li id ="4" class="disabled">
+                                    <a href="#tab_1_4" aria-expanded="true"> Additional </a>
+                                </li> -->
+                                <li id ="5" class="disabled">
+                                    <a href="#tab_1_5" aria-expanded="true"> SEO </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="portlet-body">
+                            <div class="tab-content">
+                                <div id="tab_1_1" class="tab-pane active">
+                                    <form id="item_add_form" class="form-horizontal" enctype="multipart/form-data">
+                                        <div class="form-body">
+
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">Name
+                                                    <span class="required"> * </span>
+                                                </label>
+                                                <div class="col-md-4">
+                                                    <input type="text" class="form-control" id="name" name="name"> 
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">Category
+                                                    <span class="required"> * </span>
+                                                </label>
+                                                <div class="col-md-4">
+                                                    <select id="itemCategoryId" class="form-control select2-multiple select2-hidden-accessible" name="itemCategoryId"></select>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <span class="help-block"><a data-toggle="modal" href="#itemCategoryModal"><i class="icon-plus"></i> Add New</a></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group hidden">
+                                                <input type="hidden" name="itemType" id="itemType" value="service">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">Price
+                                                </label>
+                                                <div class="col-md-4">
+                                                    <input type="text" class="form-control" id="price" name="price"> 
+                                                </div>
+                                            </div>
+                                            <% if(user.profile.roles.indexOf('aggregator')>-1){ %>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3">Lead Price
+                                                    </label>
+                                                    <div class="col-md-4">
+                                                        <input type="text" class="form-control" id="lprice" name="lprice"> 
+                                                    </div>
+                                                </div>
+                                            <%}%>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">Description
+                                                </label>
+                                                <div class="col-md-4">
+                                                    <textarea rows="2" class="form-control" id="description" name="description"></textarea> 
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">
+                                                </label>
+                                                <div class="col-md-4">
+                                                    <div class="mt-checkbox-list">
+                                                        <label class="mt-checkbox">
+                                                            <input type="checkbox" id="addToTruneto" class="mt-checkbox"> List this service in Truneto.com marketplace
+                                                            <span></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group hidden" id="tser">
+                                                <label class="control-label col-md-3">Truneto Service
+                                                    <span class="required"> * </span>
+                                                </label>
+                                                <div class="col-md-4">
+                                                    <select id="mpServiceId" class="form-control select2-multiple select2-hidden-accessible" name="mpServiceId"></select>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">Short Description
+                                                </label>
+                                                <div class="col-md-4">
+                                                    <input type="text" class="form-control" id="sdescription" name="sdescription"> 
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">Item Image
+                                                </label>
+                                                <div class="col-md-4">
+                                                    <input type="file" name="fileToUpload" id="fileToUpload">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">Video Title
+                                                </label>
+                                                <div class="col-md-4">
+                                                    <input type="text" class="form-control" id="vTitle" name="vTitle"> 
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">Video Url
+                                                </label>
+                                                <div class="col-md-4">
+                                                    <input type="text" class="form-control" id="vurl" name="vurl"> 
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">Video Credit
+                                                </label>
+                                                <div class="col-md-4">
+                                                    <input type="text" class="form-control" id="vCredit" name="vCredit"> 
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">Youtube Id
+                                                </label>
+                                                <div class="col-md-4">
+                                                    <input type="text" class="form-control" id="vId" name="vId"> 
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">Youtube Thumbnail Url
+                                                </label>
+                                                <div class="col-md-4">
+                                                    <input type="text" class="form-control" id="vthumb" name="vthumb"> 
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div>
+                                        <div class="row">
+                                            <div class="col-md-offset-3 col-md-9">
+                                                <button type="reset" class="btn default">Reset</button>
+                                                <button class="btn green" id="save" data-id="tab_1_2" data-prev="tab_1_1" tab-id="2" tab-prev="1"> Save and Continue </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="tab_1_2" class="tab-pane disabled">
+                                    <form  id="item_add_form" class="form-horizontal" enctype="multipart/form-data">
+                                        <div class="form-body">
+                                            <div class="form-group">
+                                                <div class="mt-repeater">
+                                                    <div data-repeater-list="group-b">
+                                                        <div class="row checklist" data-repeater-item="">
+                                                            <div class="col-md-1">
+                                                                <label class="control-label">sequence</label>
+                                                                <input type="number" class="form-control" id="cseq" name
+                                                                ="cseq" placeholder="1"> 
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <label class="control-label">Title</label>
+                                                                <input type="text" class="form-control" id="ctitle" name
+                                                                ="ctitle" placeholder="title"> 
+                                                            </div>
+                                                             <div class="col-md-3">
+                                                                <label class="control-label">Descriprion</label>
+                                                                <input type="text" class="form-control" id="cdesc" name
+                                                                ="cdesc" placeholder="Descriprion"> 
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <label class="control-label">video url</label>
+                                                                <input type="text" class="form-control" id="cvurl" name
+                                                                ="cvurl" placeholder="video url"> 
+                                                            </div>
+                                                            <div class="col-md-1" style="padding-top:25px;">
+                                                                <label class="control-label">&nbsp;</label>
+                                                                <a class="btn btn-danger" data-repeater-delete="" href="javascript:;">
+                                                                    <i class="fa fa-close"></i>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                    <a class="btn btn-info mt-repeater-add pull-right" data-repeater-create="" href="javascript:;">
+                                                        <i class="fa fa-plus"></i> Add More</a>
+                                                    <br>
+                                                    <br> 
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div class="form-actions">
+                                        <div class="row">
+                                            <div class="col-md-offset-3 col-md-9">
+                                                <button type="reset" class="btn default next" data-id="tab_1_5" data-prev="tab_1_2" tab-id="5" tab-prev="2">Skip</button>
+                                                 <button class="btn green" id ="addCheck" data-id="tab_1_5" data-prev="tab_1_2" tab-id="5" tab-prev="2"> Save and Continue </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div id="tab_1_3" class="tab-pane">
+                                    <form id="item_add_form" class="form-horizontal" enctype="multipart/form-data">
+                                        <div class="form-body">
+                                            <div class="form-group">
+                                                <div class="mt-repeater">
+                                                    <div data-repeater-list="group-b">
+                                                        <div class="row process" data-repeater-item="">
+                                                            <div class="row">
+                                                                <div class="col-md-1">
+                                                                    <label class="control-label">sequence</label>
+                                                                    <input type="number" class="form-control" id="pseq" name
+                                                                    ="pseq" placeholder="1"> 
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <label class="control-label">Title</label>
+                                                                    <input type="text" class="form-control" id="ptitle" name
+                                                                    ="ptitle" placeholder="title"> 
+                                                                </div>
+                                                                 <div class="col-md-4">
+                                                                    <label class="control-label">Descriprion</label>
+                                                                    <input type="text" class="form-control" id="pdesc" name
+                                                                    ="pdesc" placeholder="Description"> 
+                                                                </div>
+
+                                                                <div class="col-md-3">
+                                                                    <label class="control-label">Cover Image</label>
+                                                                    <input type="file" name="pcimage" id="pcimage"> 
+                                                                </div>
+                                                            </div>    
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <label class="control-label">Video Title</label>
+                                                                    <input type="text" class="form-control" id="pvtitle" name ="pvtitle" placeholder="Video title"> 
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label class="control-label">video url</label>
+                                                                    <input type="text" class="form-control" id="pvurl" name
+                                                                    ="pvurl" placeholder="video url"> 
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label class="control-label">video credit</label>
+                                                                    <input type="text" class="form-control" id="pvcredit" name
+                                                                    ="pvcredit" placeholder="video credit"> 
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <label class="control-label">youtube Id</label>
+                                                                    <input type="text" class="form-control" id="pvid" name
+                                                                    ="pvid" placeholder="youtube Id"> 
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label class="control-label">youtube thumbnail url</label>
+                                                                    <input type="text" class="form-control" id="pvthumb" name
+                                                                    ="pvthumb" placeholder="youtube thumbnail"> 
+                                                                </div>
+                                                                <div class="col-md-1" style="padding-top:25px;">
+                                                                    <label class="control-label">&nbsp;</label>
+                                                                    <a class="btn btn-danger" data-repeater-delete="" href="javascript:;">
+                                                                        <i class="fa fa-close"></i>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                    <a class="btn btn-info mt-repeater-add pull-right" data-repeater-create="" href="javascript:;">
+                                                        <i class="fa fa-plus"></i> Add More</a>
+                                                    <br>
+                                                    <br> 
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div class="form-actions">
+                                        <div class="row">
+                                            <div class="col-md-offset-3 col-md-9">
+                                                <button type="reset" class="btn default next"  data-id="tab_1_4" data-prev="tab_1_3" tab-id="4" tab-prev="3">Skip</button>
+                                                 <button class="btn green" id = "process" data-id="tab_1_4" data-prev="tab_1_3" tab-id="4" tab-prev="3"> Next </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="tab_1_4" class="tab-pane">
+                                    <form  id="item_add_form" class="form-horizontal" enctype="multipart/form-data">
+                                        <div class="form-body">
+                                            <div class="form-group">
+                                                <div class="mt-repeater">
+                                                    <div data-repeater-list="group-b">
+                                                        <div class="row" data-repeater-item="">
+                                                            <b>Why this service</b>
+                                                            <hr>
+                                                            <div class="row">
+                                                                <div class="col-md-1">
+                                                                    <label class="control-label">sequence</label>
+                                                                    <input type="number" class="form-control" id="wseq" name
+                                                                    ="wseq" placeholder="1"> 
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <label class="control-label">Title</label>
+                                                                    <input type="text" class="form-control" id="wtitle" name
+                                                                    ="wtitle" placeholder="title"> 
+                                                                </div>
+                                                                 <div class="col-md-3">
+                                                                    <label class="control-label">Descriprion</label>
+                                                                    <input type="text" class="form-control" id="wdesc" name
+                                                                    ="wdesc" placeholder="Description"> 
+                                                                </div>
+
+                                                                <div class="col-md-2">
+                                                                    <label class="control-label">Video URL</label>
+                                                                    <input type="text" class="form-control" id="wvurl" name
+                                                                    ="wvurl" placeholder="video url"> 
+                                                                </div>
+
+                                                                <div class="col-md-3">
+                                                                    <label class="control-label">Cover Image</label>
+                                                                    <input type="file" name="wcimage" id="wcimage"> 
+                                                                </div>
+                                                            </div>  
+                                                            <br>  
+                                                            <b>Health Warning</b>
+                                                            <hr>
+                                                            <div class="row">
+                                                                <div class="col-md-1">
+                                                                    <label class="control-label">sequence</label>
+                                                                    <input type="number" class="form-control" id="hseq" name
+                                                                    ="hseq" placeholder="1"> 
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <label class="control-label">Title</label>
+                                                                    <input type="text" class="form-control" id="htitle" name
+                                                                    ="htitle" placeholder="title"> 
+                                                                </div>
+                                                                 <div class="col-md-3">
+                                                                    <label class="control-label">Descriprion</label>
+                                                                    <input type="text" class="form-control" id="hdesc" name
+                                                                    ="hdesc" placeholder="Description"> 
+                                                                </div>
+
+                                                                <div class="col-md-2">
+                                                                    <label class="control-label">Video URL</label>
+                                                                    <input type="text" class="form-control" id="hvurl" name
+                                                                    ="hvurl" placeholder="video url"> 
+                                                                </div>
+
+                                                                <div class="col-md-2">
+                                                                     <label class="control-label">More Info URL</label>
+                                                                    <input type="text" class="form-control" id="hmore" name
+                                                                    ="hmore" placeholder="more info url"> 
+                                                                </div>
+                                                                <div class="col-md-1" style="padding-top:25px;">
+                                                                    <label class="control-label">&nbsp;</label>
+                                                                    <a class="btn btn-danger" data-repeater-delete="" href="javascript:;">
+                                                                        <i class="fa fa-close"></i>
+                                                                    </a>
+                                                                </div>
+                                                            </div>    
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                    <a class="btn btn-info mt-repeater-add pull-right" data-repeater-create="" href="javascript:;">
+                                                        <i class="fa fa-plus"></i> Add More</a>
+                                                    <br>
+                                                    <br> 
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div class="form-actions">
+                                        <div class="row">
+                                            <div class="col-md-offset-3 col-md-9">
+                                                <button type="reset" class="btn default next" data-id="tab_1_5" data-prev="tab_1_4" tab-id="5" tab-prev="4">Skip</button>
+                                                 <button class="btn green next" data-id="tab_1_5" data-prev="tab_1_4" tab-id="5" tab-prev="4"> Next </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> -->
+                                <div id="tab_1_5" class="tab-pane">
+                                    <form id="item_add_form" class="form-horizontal" enctype="multipart/form-data">
+                                        <div class="form-body">
+
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">OG Type
+                                                </label>
+                                                <div class="col-md-4">
+                                                    <input type="text" class="form-control" id="otype" name="otype"> 
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">OG Title
+                                                </label>
+                                                <div class="col-md-4">
+                                                    <input type="text" class="form-control" id="otitle" name="otitle"> 
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">OG Description
+                                                </label>
+                                                <div class="col-md-4">
+                                                    <input type="text" class="form-control" id="odesc" name="odesc"> 
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">OG URL
+                                                </label>
+                                                <div class="col-md-4">
+                                                    <input type="text" class="form-control" id="ourl" name="ourl"> 
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">OG Image
+                                                </label>
+                                                <div class="col-md-4">
+                                                    <input type="file" name="oimage" id="oimage">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div class="form-actions">
+                                        <div class="row">
+                                            <div class="col-md-offset-3 col-md-9">
+                                                <button class="btn green" id="seo" type="submit"> Submit </button>
+                                                <button type="reset" class="btn default">Reset</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--END TABS-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" id="apiUrl" value="<%= api.url %>"/>
+<input type="hidden" id="itemId" value=""/>
+<input type="hidden" id="token" value="<%= user.token %>"/>
+
+<%- partial('partials/modal/addItemCategories') %>

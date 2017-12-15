@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->  
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
+    <head>
+        <% meta_title = title; %> 
+        <% meta_description = description; %> 
+        <% meta_keywords = keywords; %> 
+        <% canonical_url = canonical; %> 
+        <% body_props = bodyProp; %>
+        <title><%= title %> - zinetgo.com</title>
+        <%- partial('partials/head') %>
+        <link rel="shortcut icon" href="/img/favicon.ico" /> 
+    </head>
+    <body <%= body_props %> >
+
+        <!-- <%= body_props %>  -->
+        
+            <%- partial('partials/header') %>
+        
+            <%- body %>
+
+            <%- partial('partials/footer') %>
+
+        </div>
+        
+       <%- partial('partials/scripts') %> 
+    </body>
+</html>

@@ -1,0 +1,39 @@
+<link href="/al/css/bootstrap-modal-bs3patch.css" rel="stylesheet" type="text/css" />
+<link href="/al/css/bootstrap-modal.css" rel="stylesheet" type="text/css" />
+
+<div id="addEmployeeModal" class="modal fade" tabindex="-1" data-width="760">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+        <h3 class="modal-title">Add New Employee</h3>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12">
+                <form action="#"> 
+                <h4>Employee Information</h4>
+                <p> Name<span style="color:red;"> * </span>
+                    <input type="text" class="form-control" id="mEmployeeName" name="mEmployeeName" required=""> </p>
+                <p> Mobile No<span style="color:red;"> * </span>
+                    <input type="mobile" class="form-control" id="mEmployeeMobile" name="mEmployeeMobile" required=""> </p>
+                <p> Email<span style="color:red;"> </span>
+                    <input type="email" class="form-control" id="mEmployeeEmail" name="mEmployeeEmail" required=""> </p>
+                
+                <p> Employment Type<span style="color:red;"> * </span>
+                    <select class="form-control" name="mEmployeeType" id="mEmployeeType" required="">
+                        <option value="">Select an option</option>
+                        <option value="PERMANENT">PERMANENT</option>
+                        <option value="CONTRACT">CONTRACT</option>
+                        <option value="C2H">CONTRACT TO HIRE</option>
+                        <option value="PARTTIME">PARTTIME</option>
+                        <option value="INTERN">INTERN</option>
+                        <option value="FREELANCER">FREELANCER</option>
+                    </select> </p>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn green" data-dismiss="modal" id="addEmployee">Submit</button>
+        <button type="button" data-dismiss="modal" class="btn btn-outline dark">Cancel</button>
+    </div>
+</div>

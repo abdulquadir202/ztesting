@@ -1,0 +1,8 @@
+2017-12-13T11:17:49.499633981 0.187604s notice: Recursively removing directory /home/aq/aqkhan/projects/zinetgo-ui-testing/rethinkdb_data/tmp
+2017-12-13T11:17:49.520943677 0.208913s notice: Initializing directory /home/aq/aqkhan/projects/zinetgo-ui-testing/rethinkdb_data
+2017-12-13T11:17:49.521101618 0.209070s info: Creating a default database for your convenience. (This is because you ran 'rethinkdb' without 'create', 'serve', or '--join', and the directory '/home/aq/aqkhan/projects/zinetgo-ui-testing/rethinkdb_data' did not already exist or is empty.)
+2017-12-13T11:17:49.521154046 0.209123s notice: Running rethinkdb 2.3.6 (GCC 5.4.0)...
+2017-12-13T11:17:49.525833958 0.213808s notice: Running on Linux 4.10.0-42-generic x86_64
+2017-12-13T11:17:49.525935084 0.213904s notice: Loading data from directory /home/aq/aqkhan/projects/zinetgo-ui-testing/rethinkdb_data
+2017-12-13T11:17:49.868566506 0.556536s info: Automatically using cache size of 2084 MB
+2017-12-13T11:17:49.902754238 0.590723s error: TCP socket creation failed for port 29015: Address already in use.

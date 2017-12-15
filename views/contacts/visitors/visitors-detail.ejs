@@ -1,0 +1,110 @@
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li><span><a href="/dashboard">Home</a></span><i class="fa fa-circle"></i></li>
+                <li><span> Jobs</span><i class="fa fa-circle"></i></li>
+                <li><span><a href="/visitors">Visitors</a></span><i class="fa fa-circle"></i></li>
+                <li><span class="lid"></span></li>
+            </ul>
+        </div>
+        <h1 class="page-title"></h1>
+        <div class="row">
+            <div class="col-md-12">
+                <div id="form-alerts"> </div>
+                <div class="portlet light bordered">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="fa fa-bullhornfa fa-bullhorn font-blue-hoki"></i>
+                            <span class="caption-subject font-blue-hoki bold uppercase">Visitors Detail</span>
+                            <!-- <span class="caption-helper">some info...</span> -->
+                        </div>
+                        <div class="dt-buttons pull-right">
+                            <a class="dt-button buttons-print btn blue-hoki btn-outline" href="/visitors/<%= visitorId %>/edit"><span><i class="fa fa-edit"></i> Edit</span></a>
+                            <a class="dt-button buttons-print btn blue-hoki btn-outline btn-delete" id= "delete"href="javascript:;"><span><i class="fa fa-trash"></i> Delete</span></a>
+                            <!-- <a href="" class="collapse"> </a>
+                            <a href="#portlet-config" data-toggle="modal" class="config"> </a>
+                            <a href="" class="reload"> </a>
+                            <a href=""> <i class="fa fa-edit"></i> </a>
+                            <a href=""> <i class="fa fa-trash"></i> </a> -->
+                        </div>
+                    </div>
+                    <div class="portlet-body form">
+                        <!-- BEGIN FORM-->
+                        <input type="hidden" id="visitorId" value="<%= visitorId %>">
+                        <input type="hidden" id="url" value="<%= api.url %>/api/visitor/<%= visitorId %>?token=<%= user.token %>">
+
+                        <form class="form-horizontal" role="form">
+                            <div class="form-body">
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Date:</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="vDate"></p>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Name:</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="name"></p>
+                                    </div>
+                                </div>
+                            
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Mobile:</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="mobile"></p>
+                                    </div>
+                                </div>
+                            
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Email:</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="email"></p>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Attended By:</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="employee"></p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Address:</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="address"></p>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Sales Stage:</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="salesStage"></p>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Follow-up Date:</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="fDate"></p>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Description:</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="description"></p>
+                                    </div>
+                                </div>
+                                    
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

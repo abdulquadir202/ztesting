@@ -1,0 +1,221 @@
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li><span><a href="/dashboard">Home</a></span><i class="fa fa-circle"></i></li>
+                <li><span> Jobs</span><i class="fa fa-circle"></i></li>
+                <li><span><a href="/leads">Leads</a></span><i class="fa fa-circle"></i></li>
+                <li><span> Add</span></li>
+            </ul>
+        </div>
+        <h1 class="page-title"></h1>
+        <div class="row">
+            <div class="col-md-12">
+                <div id="form-alerts"> </div>
+                <div class="portlet light portlet-fit portlet-form bordered">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="fa fa-bullhorn font-blue-hoki"></i>
+                            <span class="caption-subject font-blue-hoki sbold uppercase"> Add Lead</span>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <form action="<%= api.url %>/api/lead?token=<%= user.token %>" id="leads_add_form" class="form-horizontal">
+
+                            <div class="form-body">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Job Date
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <div class="input-group date form_datetime form_datetime bs-datetime">
+                                            <input type="text" class="form-control" size="16" name="dueDate" id="dueDate" data-date-format="dd-mm-yyyy">
+                                            <span class="input-group-addon" style="padding:0px;">
+                                                <button type="button" class="btn default date-set">
+                                                    <i class="fa fa-calendar"></i>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Booking Date
+                                    </label>
+                                    <div class="col-md-4">
+                                        <div class="input-group date form_datetime form_datetime bs-datetime">
+                                            <input type="text" class="form-control" size="16" name="createdOn" id="createdOn" data-date-format="dd-mm-yyyy">
+                                            <span class="input-group-addon" style="padding:0px;">
+                                                <button type="button" class="btn default date-set">
+                                                    <i class="fa fa-calendar"></i>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Bill No
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" value="" size="16" class="form-control form-control-inline" name="bill" id="bill">
+                                    </div>
+                                </div>
+                                
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Customer
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select id="customerId" class="form-control select2-multiple select2-hidden-accessible" name="customerId">
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <span class="help-block"><a data-toggle="modal" href="#addCustomerModal"><i class="icon-plus"></i> Add New</a></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Service
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select id="itemId" class="form-control select2-multiple select2-hidden-accessible" name="itemId">
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <span class="help-block"><a data-toggle="modal" href="#addItemModal"><i class="icon-plus"></i> Add New</a></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">City
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select class="form-control select2-multiple select2-hidden-accessible" name="city" id="city">
+                                            <option value="Bangalore" selected="true">Bangalore/Bengaluru</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Address
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <textarea rows="3" class="form-control" id="address" name="address"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="form-group hide">
+                                    <label class="control-label col-md-3">Referral Type
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select class="form-control select2-multiple select2-hidden-accessible" name="referralType" id="referralType">
+                                            <option value="Direct" selected="true">Direct</option>
+                                            <option value="Vendor">Vendor</option>
+                                            <option value="Customer">Customer</option>
+                                            <option value="Lead Source">Lead Source</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group hide" id="customerOption">
+                                    <label class="control-label col-md-3">Customer
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select id="customerId" class="form-control select2-multiple select2-hidden-accessible" name="customerId"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group hide" id="vendorOption">
+                                    <label class="control-label col-md-3">Vendor
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select id="vendorId" class="form-control select2-multiple select2-hidden-accessible" name="vendorId"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group hide" id="leadSourcesOption">
+                                    <label class="control-label col-md-3">Aggregator
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select id="aggregatorId" class="form-control select2-multiple select2-hidden-accessible" name="aggregatorId"></select>
+                                    </div>
+                                </div> 
+
+                                <div class="form-group hide" id="leadSourcesOption">
+                                    <label class="control-label col-md-3">Aggregator Tracking Id
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" name="referralTrackingId" id="referralTrackingId" data-required="1" class="form-control" /> 
+                                    </div>
+                                </div>
+
+                                <div class="form-group hide">
+                                    <label class="control-label col-md-3">Coupon Code
+                                        <!-- <span class="required"> * </span> -->
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" name="couponId" id="couponId" data-required="1" class="form-control" /> 
+                                    </div>
+                                </div>
+
+                                <div class="form-group hide">
+                                    <label class="control-label col-md-3">Status
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select class="form-control select2-multiple select2-hidden-accessible" name="leadStatus" id="leadStatus">
+                                            <option value="NEW" selected="true">New</option>
+                                            <!--<option value="INSPECTION PENDING">Inspection Pending</option>-->
+                                            <!--<option value="INSPECTION IN PROGRESS">Inspection in Progress</option>-->
+                                            <!--<option value="QUOTE PENDING">Quote Pending</option>-->
+                                            <!--<option value="QUOTE SEND">Quote Send</option>-->
+                                            <!--<option value="QUOTE APPROVED">Quote Approved</option>-->
+                                            <option value="ON HOLD">On Hold</option>
+                                            <option value="CANCELLED">Cancelled</option>
+                                            <option value="CONVERTED">Confirmed</option>
+                                        </select> 
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Channel
+                                        <!-- <span class="required"> * </span> -->
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select class="form-control select2-multiple select2-hidden-accessible" name="channel" id="channel">
+                                            <option value="WEBSITE" selected>Website</option>
+                                            <option value="MOBILEAPP">Mobile App</option>
+                                            <option value="SMS">SMS</option>
+                                            <option value="EMAIL">Email</option>
+                                            <option value="WHATSAPP">WhatsApp</option>
+                                            <option value="OFFLINE">Offline</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Description</label>
+                                    <div class="col-md-4">
+                                        <textarea rows="2" class="form-control" id="description" name="description"></textarea>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-offset-3 col-md-9">
+                                        <button class="btn green" type="submit" id="addLeads"> Submit </button>
+                                        <button type="reset" class="btn default">Reset</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%- partial('partials/modal/addCustomer') %>
+<%- partial('partials/modal/addItem') %>

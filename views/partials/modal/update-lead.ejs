@@ -1,0 +1,40 @@
+<link href="/al/css/bootstrap-modal-bs3patch.css" rel="stylesheet" type="text/css" />
+<link href="/al/css/bootstrap-modal.css" rel="stylesheet" type="text/css" />
+
+<div id="leadUpdateModal" class="modal fade" tabindex="-1" data-width="760">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+        <h3 class="modal-title">Confirm Lead</h3>
+    </div>
+    
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12">
+                <form action="#">
+                    <input type="hidden" id="leadId">
+                    <input type="hidden" id="price">
+                    <p> Status
+                       <select class="form-control select2-multiple select2-hidden-accessible" name="leadStatus" id="leadStatus">
+                            <option value="NEW" selected="true">New</option>
+                            <!--<option value="INSPECTION PENDING">Inspection Pending</option>-->
+                            <!--<option value="INSPECTION IN PROGRESS">Inspection in Progress</option>-->
+                            <!--<option value="QUOTE PENDING">Quote Pending</option>-->
+                            <!--<option value="QUOTE SEND">Quote Send</option>-->
+                            <option value="PAID">Paid</option>
+                            <option value="ON HOLD">On Hold</option>
+                            <option value="CANCELLED">Cancelled</option>
+                            <option value="CONVERTED">Confirmed</option>
+                        </select> 
+                    </p>
+                    <p> Price
+                        <input type="text" class="form-control" id="mPrice" name="mPrice"  value = "" required=""> 
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" data-dismiss="modal" class="btn btn-outline dark">Cancel</button>
+        <button type="button" class="btn green" data-dismiss="modal" id="updatelead">Submit</button>
+    </div>
+</div>

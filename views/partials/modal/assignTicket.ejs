@@ -1,0 +1,30 @@
+<link href="/al/css/bootstrap-modal-bs3patch.css" rel="stylesheet" type="text/css" />
+<link href="/al/css/bootstrap-modal.css" rel="stylesheet" type="text/css" />
+
+<div id="assignTicketModal" class="modal fade" tabindex="-1" data-width="760">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+        <h3 class="modal-title">Assign Ticket</h3>
+    </div>
+    
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12">
+                <form action="#">
+                    <input type="hidden" id="tokenId">
+                    <p> Assigned To
+                        <select id="employeeId" class="form-control select2-multiple select2-hidden-accessible" name="employeeId">
+                        </select>
+                    </p>
+                    <!-- <p> Quantity
+                        <input type="number" class="form-control" id="mQuantity" name="mQuantity" required=""> 
+                    </p> -->
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" data-dismiss="modal" class="btn btn-outline dark">Cancel</button>
+        <button type="button" class="btn green" data-dismiss="modal" id="assignTicket">Submit</button>
+    </div>
+</div>

@@ -1,0 +1,341 @@
+<style type="text/css">
+    .greenDiv{
+        color: red;
+    }
+    .greyDiv{
+        color: grey;
+    }
+}
+</style>
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li><span><a href="/dashboard">Home</a></span><i class="fa fa-circle"></i></li>
+                <li><span><a href="/leads">Leads</a></span><i class="fa fa-circle"></i></li>
+                <li><span>Quotation</span><i class="fa fa-circle"></i></li>
+                <li><span> Add</span></li>
+            </ul>
+        </div>
+        <h1 class="page-title"></h1>
+        <div class="row">
+            <div class="col-md-12">
+                <div id="form-alerts"> </div>
+                <div class="portlet light portlet-fit portlet-form bordered">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="fa fa-bullhorn font-blue-hoki"></i>
+                            <span class="caption-subject font-blue-hoki sbold uppercase"> Create Quotation</span>
+                        </div>
+                    </div>
+                    <div class="portlet-body" style="border-size:2px;border-style:solid;border-color:black; margin-top:5px;margin-right:75px;margin-left:75px;margin-buttom:75px;">
+                        <input type="hidden" id="totalval" value="">
+                        <input type="hidden" id="discount" value="">
+                        <input type="hidden" id="taxamount" value="">
+                        <input type="hidden" id="stt" value="">
+                        <input type="hidden" id="leadId" value="<%= leadId %>">
+
+                        <form class="form-horizontal">
+                            <div class="form-body" style="padding-top:0px;" >
+                                <div class="col-md-8" style="margin-top:35px;">
+                                    <div class="form-group">
+                                        <img src="<%= data.portfolio.org.coverImage %>" style="max-width: 200px; max-height: 150px;" alt="" id ="logo"/> 
+                                        
+                                    </div>
+                                    <div class="row" style="margin-top:90px;">
+                                        <div class="col-md-5">
+                                            <div class="form-group">
+                                                <h4 class="text-left"> Quotation From</h4> 
+                                                    <textarea rows="6" class="form-control" id="from" name="from"> <%=data.portfolio.org.name %>
+<%=data.portfolio.org.address.trim() %></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-1">
+
+                                        </div>
+                                         <div class="col-md-5">
+                                            <div class="form-group">
+                                                <h4 class="text-left"> Quotation To</h4> 
+                                                    <textarea rows="6" class="form-control" id="to" name="to"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2"  style="margin-top:35px;">
+                                </div>
+                                <div class="col-md-2"  style="margin-top:35px;">
+                                    <div class="form-group">
+                                        <h4 class="text-right">Quotation No</h4>
+                                        <div class="input-group">
+                                            <input type="text" placeholder="Quotation No" id="qno" name ="qno" class="form-control text-right" value="<%= data.quote %>">
+                                            <span class="input-group-addon">
+                                                #
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <h4 class="text-right">PAN NO</h4> 
+                                        <input type="text" placeholder="PAN" id = "pan" name="pan" class="form-control" value="<%= data.portfolio.org.panNumber %>">
+                                    </div>
+                                    <div class="form-group">
+                                        <h4 class="text-right">GSTIN</h4> 
+                                        <input type="text" placeholder="GSTIN" id="gst" name= "gst" class="form-control" value="<%= data.portfolio.org.gstNumber %>">
+                                    </div>
+                                    <div class="form-group">
+                                        <h4 class="text-right">Quotation Date <span style="color:red;">*</span></h4>
+                                        <div class="input-group">
+                                            <input type="text" value="" size="16" placeholder="YYYY-MM-DD" class="form-control form-control-inline date-picker" name="qdate" id="qdate" data-date-format="yyyy-mm-dd">
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <div class="mt-repeater">
+                                            <div data-repeater-list="group-b">
+                                                <div class="row service" data-repeater-item="">
+                                                    <div class="col-md-5">
+                                                        <label class="control-label">Item</label>
+                                                        <input type="text" class="form-control" id="item1" name
+                                                        ="item1" value = "<%=item %>" placeholder="item/service"> 
+                                                    </div>
+                                                     <div class="col-md-2">
+                                                        <label class="control-label">Rate</label>
+                                                        <input type="number" class="form-control" id="rate" name
+                                                        ="rate" placeholder="0" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" onkeyup="callme(this);"/> 
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <label class="control-label">Quantity</label>
+                                                        <input type="number" class="form-control" id="qty" name
+                                                        ="qty" placeholder="1" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" onkeyup="callme(this);"/> 
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <label class="control-label">Amount</label>
+                                                        <input type="text" class="form-control" name
+                                                        ="amount" placeholder="0" disabled="" /> 
+                                                    </div>
+                                                    <div class="col-md-1" style="padding-top:25px;" id="close">
+                                                        <label class="control-label">&nbsp;</label>
+                                                        <a class="btn btn-danger" data-repeater-delete="" href="javascript:;">
+                                                            <i class="fa fa-close"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <a class="mt-repeater-add" data-repeater-create="" href="javascript:;" id="repeat">
+                                                <i class="fa fa-plus"></i> Add More</a>
+                                            <br>
+                                            <br> 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-7">
+                                    </div>
+                                    <div class="col-md-5" style="padding-right: 38px;">
+                                        <div class="form-group">
+                                            <label class="col-md-3">Sub Total:</label>
+                                            <div class="col-md-5">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="input-group">
+                                                    <span class="pull-left" id="st" name="st"><i class="fa fa-inr"></i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3">Tax:</label>
+                                            <div class="col-md-5">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="input-group">
+                                                    <input type="number" placeholder="0" id ="tax" name= "tax" class="form-control" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" style="width: 80px;" onkeyup="callme(this);"/>
+                                                    <span class="input-group-addon">
+                                                       <a><span class="pointer greenDiv" id="tper">% </span></a>
+                                                        |<a><span class="pointer greyDiv" id="trs"><i class="fa fa-inr"></i> </span></a>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3">Discount:</label>
+                                            <div class="col-md-5">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="input-group">
+                                                    <input type="number" placeholder="0" id="dis" name="dis" class="form-control" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" style="width: 80px;" onkeyup="callme(this);"/>
+                                                    <span class="input-group-addon">
+                                                       <a><span class="pointer greyDiv" id="dper">% </span></a>
+                                                        |<a><span class="pointer greenDiv" id="drs"><i class="fa fa-inr"></i> </span></a>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3">Total:</label>
+                                            <div class="col-md-5">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="input-group">
+                                                    <span class="pull-left" id="total" name="total"><i class="fa fa-inr"></i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="form-group">
+                                        <h4 class="text-left"> Notes</h4> 
+                                            <textarea rows="4" class="form-control" id="notes" placeholder="Any Additional notes" name="notes"></textarea>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-9">
+                                    <div class="form-group">
+                                        <h4 class="text-left"> Terms</h4> 
+                                            <textarea rows="4" class="form-control" id="terms" placeholder="your terms and payment schedule etc.." name="terms"></textarea>
+                                    </div>
+                                </div><!-- 
+                                <hr style="margin: auto; width: 95%; border-width: 14px; color:red;"> -->
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-offset-3 col-md-9" style="padding-bottom:5px;">
+                                    <a class="dt-button buttons-csv buttons-html5 btn green btn-outline filter-btn" id="addQuotation"><span><i class="fa fa-download"></i> Save and Download</span></a>
+                                    <a class="dt-button buttons-csv buttons-html5 btn  dark btn-outline btn-invoice filter-btn" data-toggle="modal" href="#preview"><span><i class="icon-info"></i> Preview</span></a>
+
+                                    <a class="dt-button buttons-csv buttons-html5 btn green btn-outline btn-invoice filter-btn" id="sendEmail"><span><i class="fa-paper-plane"></i> Send Email</span></a>
+                                    
+                                    <button type="reset" class="btn default">Reset</button>
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- partial('partials/modal/quotation-preview') %>
+<script type="text/javascript" src="/public/plugins/jquery-1.12.4.min.js"></script>
+
+<script type="text/javascript">
+    var idArray = [];
+    $('.greenDiv').each(function () {
+        idArray.push(this.id);
+
+    });
+    function callme(field) {
+        var current = $('#'+field.getAttribute('id')).val();
+        if(current ==''){
+            current =0;
+        }
+        if(field.getAttribute('id') === 'dis'){
+            if(idArray.indexOf('dper')> -1){
+                alert($('#stt').val());
+                var damount = parseInt($('#stt').val()) * (parseInt(current)/100);
+             }else{
+                var damount =(parseInt(current));
+             }
+            
+            var disamount = parseInt($('#discount').val()) || 0;
+
+            var subtotal =  (disamount + parseInt($('#totalval').val())) - damount;
+
+            $('#discount').val(damount);
+
+            $('#total').html('₹'+subtotal);
+            $('#totalval').val(subtotal);
+        }else if(field.getAttribute('id') === 'tax'){
+             if(idArray.indexOf('tper')> -1){
+                var tamount = parseInt($('#stt').val()) * (parseInt(current)/100);
+             }else{
+                var tamount =(parseInt(current));
+             }
+             
+             $('#taxamount').val(tamount);
+            if($('#discount').val() ==0){
+                var subtotal = (parseInt($('#discount').val())+tamount)+ parseInt($('#stt').val());
+            }else{
+                var subtotal = (tamount-parseInt($('#discount').val()))+ parseInt($('#stt').val());
+            }
+            
+            $('#total').html('₹'+subtotal);
+            $('#totalval').val(subtotal);
+        }else{
+            var tamount = 0;
+            var checklist =[];
+            var disamount = 0;
+            jQuery('.service').each(function(e){
+                var obj = {
+                    item:$(this).find('input[name*="item1"]').val(),
+                    price:$(this).find('input[name*="rate"]').val() || 0,
+                    quantity:$(this).find('input[name*="qty"]').val() || 1
+                }
+                obj.amount = parseInt(obj.price) * parseInt(obj.quantity);
+                $(this).find('input[name*="amount"]').val(parseInt(obj.price) * parseInt(obj.quantity));
+                checklist.push(obj);
+            });
+            
+            var tt = 0
+            for(var i =0;i< checklist.length;i++){
+                tt += parseInt(checklist[i].amount);
+            }
+            $('#amount').val(parseInt(rate) * parseInt(qty));
+            $('#st').html('₹'+tt);
+            $('#stt').val(tt);
+
+            var subtotal = tamount - disamount + parseInt($('#stt').val());
+
+            if(idArray.indexOf('tper')> -1){
+                if($('#tax').val() !=''){
+                    tamount = subtotal * (parseInt($('#tax').val())/100);
+                }else{
+                    tamount = 0;
+                }
+            }else{
+                if($('#tax').val() !=''){
+                    tamount = parseInt($('#tax').val());
+                }else{
+                    tamount = 0;
+                }
+            }
+
+            if(idArray.indexOf('dper')> -1){
+                if($('#dis').val() !=''){
+                    disamount = subtotal * (parseInt($('#dis').val())/100);
+                }else{
+                    disamount = 0;
+                }
+            }else{
+                if($('#dis').val() !=''){
+                    disamount = parseInt($('#dis').val());
+                }else{
+                    disamount = 0;
+                }
+            }
+
+            $('#taxamount').val(tamount);
+            $('#discount').val(disamount);
+
+            subtotal = subtotal+(tamount-disamount);
+
+            $('#total').html('₹'+subtotal);
+            $('#totalval').val(subtotal);
+        }
+        //var value = this.value;   
+    }
+   var specialKeys = new Array();
+    specialKeys.push(8); //Backspace
+    function IsNumeric(e) {
+        var keyCode = e.which ? e.which : e.keyCode
+        var ret = ((keyCode >= 48 && keyCode <= 57) || specialKeys.indexOf(keyCode) != -1);
+        //document.getElementById("error").style.display = ret ? "none" : "inline";
+        return ret;
+    }
+</script>

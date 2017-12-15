@@ -1,0 +1,109 @@
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li><span><a href="/dashboard">Home</a></span><i class="fa fa-circle"></i></li>
+                <li><span><a href="/wa/events">Events</a></span><i class="fa fa-circle"></i></li>
+                <li><span id="hEventName"></span></li>
+            </ul>
+        </div>
+        <h1 class="page-title"></h1>
+        
+        <div class="row">
+            <div class="col-md-12">
+                <div id="form-alerts"> </div>
+                <div class="portlet light bordered">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="icon-calendar font-blue-hoki"></i>
+                            <span class="caption-subject font-blue-hoki sbold uppercase"> Event - <span id="hEventName1"></span>
+                                <span class="hidden-xs">| <span id="hEventDate"></span> </span>
+                            </span>
+                        </div>
+
+
+                        <div class="actions">
+                            <div class="dt-buttons pull-right">
+                                <a class="dt-button buttons-print btn green btn-outline" href="/wa/activities/new"><span><i class="icon-note"></i> Edit</span></a>
+                                <a class="dt-button buttons-print btn green btn-outline" href="/wa/events/<%= eventId %>/upload-photos"><span><i class="icon-plus"></i> Add Photos</span></a>
+                                <a class="dt-button buttons-print btn green btn-outline" href="/wa/activities/new"><span><i class="icon-trash"></i> Delete</span></a>
+
+                                <%- partial('partials/al/table-tools') %>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portlet-body form">
+                        
+                        <input type="hidden" id="eventId" value="<%= eventId %>">
+                        <input type="hidden" id="url" value="<%= api.url %>/api/wa/event/<%= eventId %>?token=<%= user.token %>">
+
+                        <div class="tabbable-line">
+                            <ul class="nav nav-tabs nav-tabs-lg">
+                                <li class="active">
+                                    <a data-toggle="tab" href="#details" aria-expanded="true"> Details </a>
+                                </li>
+                                <li class="">
+                                    <a data-toggle="tab" href="#photos" aria-expanded="false"> Photos
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div id="details" class="tab-pane active">
+                                    <div class="row">
+                                        <form class="form-horizontal" role="form">
+                                            <div class="form-body">
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3">Name:</label>
+                                                    <div class="col-md-9">
+                                                        <p class="form-control-static" id="displayName"></p>
+                                                    </div>
+                                                </div>
+                                            
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3">Event Date:</label>
+                                                    <div class="col-md-9">
+                                                        <p class="form-control-static" id="displayDate"></p>
+                                                    </div>
+                                                </div>
+                                            
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3">Venue:</label>
+                                                    <div class="col-md-9">
+                                                        <p class="form-control-static" id="displayVenue"></p>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3">Address:</label>
+                                                    <div class="col-md-9">
+                                                        <p class="form-control-static" id="displayAddress"></p>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3">Description:</label>
+                                                    <div class="col-md-9">
+                                                        <p class="form-control-static" id="displayDescription"></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div id="photos" class="tab-pane">
+                                    <div class="table-container" style="">
+                                        <div id="images" class="row">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/js/onground/wa/events-detail.js"></script>

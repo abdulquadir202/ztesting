@@ -1,0 +1,110 @@
+<input type="hidden" id="salesEntryId" value="<%= salesEntryId %>">
+<input type="hidden" id="url" value="<%= api.url %>/api/sales-entry/<%= salesEntryId %>?token=<%= user.token %>">
+<div class="col-md-12 col-md-offset-2">
+<table border="1" cellpadding="0" cellspacing="0" width="100%" id="dataTable">
+	<tr>
+		<td width="50%">
+			<img src="/images/hoppers.png" /><br>
+			<br>
+			<div style="padding-left:4px;"><b><span id="orgName"></span></b><br>
+			<br>Luxury Service Apartment
+			<h6 id="address"><span id="portfolioAddress"></span></br>
+			Tel : <span id="portfolioMobile"></span><br>
+			Email : <span id="portfolioEmail"></span></h6></div>
+		</td>
+		<td colspan="2">
+			<h6><div style="padding-left:4px;">Bill No : <span id="salesEntryRef"></span><span style="padding-left:27%;">Bill Date : <span id="salesEntryDate"></span></span></div>
+			<br>
+			<div style="padding-left:4px;">Tariff :<span style="padding-left:39%;">Type of Room :</span></div>
+			<br>
+			<div style="padding-left:4px;">Adv Rec No :<span style="padding-left:28%;">Adv Amount :</span></div>
+			<br>
+			<div style="padding-left:4px;">Check in Date :<span style="padding-left:24%;">Check out Date :</span></div>
+			<br>
+			<div style="padding-left:4px;">Room No :</div></h6>
+		</td>
+	</tr>
+
+	<tr>
+		<td colspan="3">
+			<div style="padding-left:4px;"><h6><table width="100%" height="150" cellpadding="0" cellspacing="0">
+			<tr>
+			<td width="50%">
+			Name of Guest : <span id="custName"></span></td> <td>Nationality : Indian</td>
+			</tr>
+			<tr>
+			<td width="50%">
+			Address : <span id="custAddress"></span> </td><td> LI No : </td>
+			</tr>
+			<tr>
+			<td width="50%">
+			Passport No : <br></td>
+			</tr>
+			</table></h6></div>
+		</td>
+	</tr>
+	
+	<tr>
+		<td colspan="3" width="100%"><br>
+				<tr>
+					<td colspan="3" width="100%"><br>
+						<table border="1" width="100%" cellpadding="0" cellspacing="0">
+							<tr>
+								<th><h6>DATE</h6></th>
+								<th><h6>TARIFF</h6></th>
+								<th><h6>EXTRA BED</h6></th>
+								<th><h6>LUXURY TAX</h6></th>
+								<th><h6>SERVICE TAX</h6></th>
+								<th><h6>F&AMP;B SERVICE</h6></th>
+								<th><h6>LAUNDRY</h6></th>
+								<th><h6>MISC</h6></th>
+								<th><h6>TOTAL</h6></th>
+							</tr>
+							<tr>
+								<td align="center"><h6>03/01/2013<br>To<br>03/01/2013</h6></td>
+								<td align="center"><h6></h6></td>
+								<td align="center"><h6>0</h6></td>
+								<td align="center"><h6></h6></td>
+								<td align="center"><h6><span id="serviceTax"></span></h6></td>
+								<td align="center"><h6>0</h6></td>
+								<td>
+									<table border="1" width="100%" height="50" cellpadding="0" cellspacing="0">
+										<tr>
+											<td width="50%" align="center"><h6>0</h6></td>
+											<td align="center"><h6> </h6></td>
+										</tr>
+									</table>
+								</td></h6>
+								<td align="center"><h6>0</h6></td>
+								<td align="center"><h6><span id="total"></span></h6></td>
+							</tr>
+						</table><br>
+					</td>
+				</tr>
+				<tr>
+					<td width="50%"><div style="padding-left:4px;"><h6>Mode of Payment : <span id="paymentMode"></span></h6></div></td>
+					<td align="center" width="22%"><h6>TOTAL</h6></td>
+					<td align="center"><h6><span id="total1"></span></h6></td>
+				</tr>
+				<tr>
+					<td width="50%"><div style="padding-left:4px;"><h6>In Words : <span id="total2"></span> only.</h6></div></td>
+					<td align="center" width="22%"><h6>LESS ADVANCE</h6></td>
+					<td align="center"><h6><span id="advance"></span></h6></td>
+				</tr>
+				<tr>
+					<td width="50%"></td>
+					<td align="center" width="22%"><h6>NET DUE</h6></td>
+					<td align="center"><h6>674</h6></td>
+				</tr>
+				<tr>
+					<td colspan="3">	
+					<div style="padding-left:10px"><h6>Sign. of Guest<span style="padding-left:65%;">Sign. of Cashier</span></h6></div>
+					</td>
+				</tr>
+			</table><br>
+		</td>
+	</tr>
+</table></div>
+
+<script src="/assets/numtoword.js" type="text/javascript"></script>
+<script src="/js/onground/accounting/report/sales-ledger-report.js"></script>

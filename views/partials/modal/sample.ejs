@@ -1,0 +1,272 @@
+
+<link href="/al/css/bootstrap-modal-bs3patch.css" rel="stylesheet" type="text/css" />
+<link href="/al/css/bootstrap-modal.css" rel="stylesheet" type="text/css" />
+
+<div id="content" class="modal fade" tabindex="-1" data-width="1000" style="width: 100%; margin-left: -641px; ">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+        <div id="remove-me">
+            <button id="download-me" class="pull-right">Download PDF</button>
+        </div> 
+    </div>
+  <div class="print">
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12">
+              <form action="#">
+                <div style="background:#f0f0f0;  padding:20px 0px 0px 0px; border-style: solid;">
+                  <p style="text-align: center;">
+                    <strong><u>APPLICATION FORM FOR ADMISSION TO DIPLOMA COURSES<br> FOR THE ACADEMIC SESSION 2017-18, BSF IT BENGALURU-560063</u></strong>
+                  </p>
+                  <div style="margin-left: 50px; margin-top: 50px;">
+                    <label> DD No. :</label>
+                       <p id="ddNo"></p>
+                  </div>
+                  <div style="margin-left: 50px; margin-top: 20px;">
+                    <label> Name of the Bank :</label>
+                    <p id="bankName"></p>
+                  </div>
+                  <div style="margin-left: 50px; margin-top: 20px;">
+                    <label>Date:</label>
+                     <p id="date"></p>
+                  </div>
+
+                  <div style="margin-left: 50px; margin-top: 20px;">
+                    <label>1. Name of Candidate :</label>
+                     <p id="cName"></p>
+                  </div>
+
+                  <div style="margin-left: 50px; margin-top: 20px;">
+                    <label>2. a). Age as on 1<sup>st</sup> Oct 17 :</label>
+                     <p id="cAge"></p>
+                  </div>
+
+                  <div style="margin-left: 50px; margin-top: 20px;">
+                    <label>&nbsp;&nbsp;&nbsp;&nbsp;b). Date of Birth :</label>
+                    <p id="dob"></p>
+                  </div>
+
+                  <div style="margin-left: 50px; margin-top: 20px;">
+                    <label>3. Blood Group :</label>
+                    <p id="bloodgroup"></p>
+                  </div>
+
+                  <p style="margin-top: 20px; margin-left: 30px;">
+                    <strong>4. <u>PARTICULARS OF FATHER/GUARDIAN OF THE CANDIDATE</u></strong>
+                  </p>
+
+                  <div style="margin-left: 50px; margin-top: 20px;">
+                    <label>a). Name :</label>
+                    <p id="fName"></p>
+                  </div>
+
+                  <div style="margin-left: 50px; margin-top: 20px;">
+                    <label>b). Regtd No/IRLA No :</label>
+                    <p id="regtdNo"></p>
+                  </div>
+
+                  <div style="margin-left: 50px; margin-top: 20px;">
+                    <label>c). Rank :</label>
+                    <p id="rank"></p>
+                  </div>
+
+                  <div style="margin-left: 50px; margin-top: 20px;">
+                    <label>d). Unit/Deptt :</label>
+                    <p id="unit"></p>
+                  </div>
+
+                  <div style="margin-left: 50px; margin-top: 20px;">
+                    <label>e). E-Mail ID :</label>
+                    <p id="femail"></p>
+                  </div>
+
+                  <div style="margin-left: 50px; margin-top: 20px;">
+                    <div class="col-md-6">
+                        <label>f). Mobile :</label>
+                        <p id="mobile"></p>
+                      </div>
+                    <div class="col-md-6">
+                      <label> Land line No :</label>
+                        <p id="landLine"></p>
+                    </div>    
+                    
+                  </div>
+
+                  <div style="margin-left: 50px; margin-top: 20px;">
+                    <label>g). Date of Retirement/Death :</label>
+                    <p id="retirement"></p>
+                  </div>
+
+                  <div style="margin-left: 50px; margin-top: 20px;">
+                    <label>h). Whether belongs to SC/ST category :</label>
+                    <p id="category"></p>
+                  </div>
+
+                  <div style="margin-left: 50px; margin-top: 20px;">
+                    <label>i). Permanent Home address :</label>
+                    <p id="address"></p>
+                  </div>
+                  <div>
+                  <p style="margin-top: 20px; margin-left: 30px;">
+                    <strong>5. Particulars of qualifying examination passed class X pattern or equivalent attach attested copies of mark sheet.(Enter marks of <u>X</u> class only</strong>
+                  </p>
+
+                  <div style="margin-left: 50px; margin-top: 20px;">
+                    <label>i). Name of Examination :</label>
+                    <p id="nameOfExamination"></p>
+                  </div>
+
+                  <div style="margin-left: 50px; margin-top: 20px;">
+                    <label>ii). Name of School / Board :</label>
+                    <p id="nameOfSchool"></p>
+                  </div>
+
+                  <div style="margin-left: 50px; margin-top: 20px;">
+                    <label>ii). Year of Passing :</label>
+                    <p id="passingYear"></p>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-12 col-sm-12">
+                          <div class="portlet grey-cascade box" style="margin-right:10px;margin-left:10px;">
+                               <div class="portlet-title">
+                                  <div class="control-label col-md-7">
+                                     <B>  MARKS OF Class Xth or Equivalent</B>
+                                  </div>
+                             </div>
+                              <div class="portlet-body">
+                                  <div class="table-responsive">
+                                      <table style="width:100%">
+                                          <thead>
+                                              <tr>
+                                              <th class="text-center"> Subjects: </th>
+                                              <th class="text-center"> Max Marks:</th>
+                                              <th class="text-center"> Obtained:</th>
+                                              </tr>
+                                          </thead>
+                                          <tbody id='cData10' class="text-center">
+                                            <tr>
+                                              <td>
+                                                 MAthematics
+                                              </td>
+                                              <td> 100</td>
+                                              <td>85</td>
+                                            </tr>
+                                            <tr>
+                                              <td>
+                                                 MAthematics
+                                              </td>
+                                              <td> 100</td>
+                                              <td>85</td>
+                                            </tr>
+                                            <tr>
+                                              <td>
+                                                 MAthematics
+                                              </td>
+                                              <td> 100</td>
+                                              <td>85</td>
+                                            </tr>
+                                          </tbody>
+                                              <tr>
+                                                  <td class="text-center"><b>Total:</b></td>
+                                                  <td class="text-center" id="maxMark10"></td>
+                                                  <td class="text-center" id="markObtained10"></td>
+                                              </tr>
+                                              <tr>
+                                                  <td class="text-center"><b>% in Math & Science(10th):</b></td>
+                                                  <td class="text-center" id="maxMarkMS"></td>
+                                                  <td class="text-center" id="percentageMS"></td>
+                                              </tr>
+                                     </table>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  </div>
+
+                  <p style="margin-top: 20px; margin-left: 30px;">
+                    <strong>6. Particulars of qualifying examination passed class 10+2 pattern or equivalent attach attested copies of marks sheet.(Enter marks of <u>XII</u> class only</strong>
+                  </p>
+
+
+                  <div style="margin-left: 50px; margin-top: 20px;">
+                    <label>i). Name of Examination :</label>
+                    <p id="nameOfExamination12"></p>
+                  </div>
+
+                  <div style="margin-left: 50px; margin-top: 20px;">
+                    <label>ii). Name of School / Board :</label>
+                    <p id="nameOfSchool12"></p>
+                  </div>
+
+                  <div style="margin-left: 50px; margin-top: 20px;">
+                    <label>ii). Year of Passing :</label>
+                    <p id="passingYear12"></p>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                      <div class="portlet grey-cascade box" style="margin-right:10px;margin-left:10px;">
+                           <div class="portlet-title">
+                              <div class="control-label col-md-7">
+                                <b> MARKS OF Class XIIth or Equivalent</b>
+                            </div>
+                         </div>
+                          <div class="portlet-body">
+                              <div class="table-responsive">
+                                  <table class="table table-hover table-bordered table-striped">
+                                      <thead>
+                                          <tr>
+                                          <th class="text-center"> Subjects: </th>
+                                          <th class="text-center"> Max Marks:</th>
+                                          <th class="text-center"> Obtained:</th>
+                                          </tr>
+                                      </thead>
+                                      <tbody id='cData12' class="text-center"></tbody>
+                                      <tr>
+                                          <td class="text-center"><b>Total:</b></td>
+                                          <td class="text-center" id="maxMark12"></td>
+                                          <td class="text-center" id="markObtained12"></td>
+                                      </tr>
+                                      <tr>
+                                          <td class="text-center"><b>% in PCM or PCB(12th):</b></b></td>
+                                          <td class="text-center" id="maxMarkPCM"></td>
+                                          <td class="text-center" id="percentagePCM"></td>
+                                      </tr>
+                                 </table>
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+<!--
+                  <p style="margin-top: 20px; margin-left: 30px;">
+                    <strong>7. I solemnly declare that the above particulars are correct to the best of my knowledge and that I have not concealed anything.</strong>
+                  </p>
+
+                  <div style="margin-left: 50px; margin-top: 40px;">
+                      <label style="margin-left: 80px;">Signature of the candidate</label>
+                      <label style="margin-left: 140px;">Signature of Father/Mother</label>
+                  </div>
+
+                  <div style="margin-left: 50px; margin-top: 20px;">
+                      <label style="margin-left: 80px;">Date : </label>
+                  </div>
+
+                  <p style="margin-top: 20px; margin-left: 50px;">
+                    <strong>Certified that above particulars are correct and necessary certificates are attached.</strong>
+                  </p>
+
+                  <div style="margin-left: 50px; margin-top: 40px;">
+                      <label style="margin-left: 80px;">Date : </label>
+                      <label style="margin-left: 220px;">Signature of Commandant / Head of the Office</label>
+                  </div>
+                  <div style="margin-left: 50px;">
+                      <label style="margin-left: 80px;">Place : </label>
+                  </div>
+                  -->  
+              </form>
+            </div>
+        </div>
+    </div>
+  </div>  
+</div>

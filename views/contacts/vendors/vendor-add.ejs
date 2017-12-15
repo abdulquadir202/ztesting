@@ -1,0 +1,78 @@
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li><span><a href="/dashboard">Home</a></span><i class="fa fa-circle"></i></li>
+                <li><span>Contacts</span><i class="fa fa-circle"></i></li>
+                <li><span><a href="/vendors">Vendors</a></span><i class="fa fa-circle"></i></li>
+                <li><span>Add</span></li>
+            </ul>
+        </div>
+        <h1 class="page-title"></h1>
+        <div class="row">
+            <div class="col-md-12">
+                <div id="form-alerts"> </div>
+                <div class="portlet light portlet-fit portlet-form bordered">
+                    <div class="portlet-title">
+                        <div class="caption font-blue-hoki">
+                            <i class="icon-grid font-blue-hoki"></i>
+                            <span class="caption-subject sbold uppercase"> Vendor Information</span>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <form action="<%= api.url %>/api/vendor?token=<%= user.token %>" id="vendor_add_form" class="form-horizontal">
+                            <div class="form-body">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Mobile Number
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="mobile" class="form-control" id="mobile" name="mobile" maxlength="10"> 
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Name
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" id="name" name="name">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Email
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="email" class="form-control" id="email" name="email">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Address
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" id="address" name="address"> 
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Description
+                                    </label>
+                                    <div class="col-md-4">
+                                        <textarea rows="2" class="form-control" id="description" name="description"></textarea> 
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-offset-3 col-md-9">
+                                        <button class="btn green" type="submit" id="addVendor"> Submit </button>
+                                        <button type="reset" class="btn default">Reset</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,70 @@
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li><span><a href="/dashboard">Dashboard</a></span><i class="fa fa-circle"></i></li>
+                <li><span>Blogs</span></li>
+            </ul>
+            <div class="page-toolbar">
+                <div id="date-range" class="pull-right btn btn-sm">
+                    <i class="icon-calendar"></i>&nbsp;
+                    <span class="thin uppercase"></span>&nbsp;
+                    <i class="fa fa-angle-down"></i>
+                </div>
+            </div>
+        </div>
+        <h3 class="page-title"> Dashboard
+            <!-- <small>posts</small> -->
+        </h3>
+        <div class="row" id="blogs_dashboard_portlet">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 margin-bottom-10">
+                <div class="dashboard-stat purple">
+                    <div class="visual">
+                        <i class="fa fa-sticky-note-o fa-icon-medium"></i>
+                    </div>
+                    <div class="details">
+                        <div class="number"> <span id="posts"></span> </div>
+                        <div class="desc"> Posts </div>
+                    </div>
+                    <a class="more" href="/admin/blog/posts"> View more
+                        <i class="m-icon-swapright m-icon-white"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 margin-bottom-10">
+                <div class="dashboard-stat blue">
+                    <div class="visual">
+                        <i class="fa fa-thumbs-o-up fa-icon-medium"></i>
+                    </div>
+                    <div class="details">
+                        <div class="number"> <span id="approved"></span> </div>
+                        <div class="desc"> Approved </div>
+                    </div>
+                    <a class="more" href="#"> View more
+                        <i class="m-icon-swapright m-icon-white"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 margin-bottom-10">
+                <div class="dashboard-stat red">
+                    <div class="visual">
+                        <i class="fa fa-thumbs-o-down fa-icon-medium"></i>
+                    </div>
+                    <div class="details">
+                        <div class="number"> <span id="pending"></span> </div>
+                        <div class="desc"> Pending </div>
+                    </div>
+                    <a class="more" href="#"> View more
+                        <i class="m-icon-swapright m-icon-white"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+
+    </div>
+</div>
+<input type="hidden" id="token" value="<%= user.token %>" />
+<input type="hidden" id="url" value="<%= api.url %>" />
+
+

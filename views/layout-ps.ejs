@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->  
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
+<head>
+        <% meta_title = title; %> 
+        <% meta_description = description; %> 
+        <% meta_keywords = keywords; %> 
+        <% canonical_url = canonical; %> 
+        <% page_css = css; %>
+        <% page_scripts = scripts; %>
+        <% nav = menu; %>
+
+        <title><%= title %> - zinetgo.com</title>
+        <%- partial('partials/ps/head') %>
+    </head>
+    <body class="<%= bodyClass %>">
+        <div class="header-wrapper <%= headerWrapper %>">
+            <%- partial('partials/ps/header') %>
+            <%- body %>
+            <%- partial('partials/ps/footer') %>
+        </div>
+        
+       <%- partial('partials/ps/scripts') %> 
+       <%- partial('partials/ps/page-scripts') %> 
+    </body>
+</html>

@@ -1,0 +1,190 @@
+<link href="/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" type="text/css" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.3/toastr.min.css" rel="stylesheet" />
+
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li><span><a href="/dashboard">Home</a></span><i class="fa fa-circle"></i></li>
+                <li><span><a href="/subscriptions">Subscription</a></span><i class="fa fa-circle"></i></li>
+                <li><span>Add</span></li>
+            </ul>
+        </div>
+        <h1 class="page-title"></h1>                          
+        <div class="row">
+            <div class="col-md-12">
+                <div id="form-alerts"> </div>
+                <div class="portlet light portlet-fit portlet-form bordered">
+                    <div class="portlet-title">
+                        <div class="caption font-blue-hoki">
+                            <i class="icon-control-play font-blue-hoki"></i>
+                            <span class="caption-subject sbold uppercase"> Subscription Information </span>
+                        </div>
+                    </div>
+
+                    <div class="portlet-body">
+                        <form action="<%= api.url %>/api/subscription?token=<%= user.token %>" id="subscription_add_form" class="form-horizontal" enctype="multipart/form-data">
+                        	<div class="form-body">
+                        	<div class="form-group">
+                                    <label class="control-label col-md-3">Customer
+                                        
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select id="customerId" class="form-control select2-multiple select2-hidden-accessible" name="customerId">
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <span class="help-block"><a data-toggle="modal" href="#addCustomerModal"><i class="icon-plus"></i> Add New</a></span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Service
+                                        
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select id="itemId" class="form-control select2-multiple select2-hidden-accessible" name="itemId">
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <span class="help-block"><a data-toggle="modal" href="#addItemModal"><i class="icon-plus"></i> Add New</a></span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Start Date
+                                        
+                                    </label>
+                                     <div class="col-md-4">
+                                        <input type="text" name="startDate" id="startDate" data-required="1" class="form-control form-control-inline date-picker" data-date-format="dd-mm-yyyy"/> 
+                                    </div>
+                                </div>
+                                <!-- <div class="form-group">
+                                    <label class="control-label col-md-3">End Date
+                                       
+                                    </label>
+                                     <div class="col-md-4">
+                                        <input type="text" name="endDate" id="endDate" data-required="1" class="form-control form-control-inline date-picker" data-date-format="dd-mm-yyyy"/> 
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Next dueDate
+                                        
+                                    </label>
+                                     <div class="col-md-4">
+                                        <input type="text" name="dueDate" id="dueDate" data-required="1" class="form-control form-control-inline date-picker" data-date-format="dd-mm-yyyy"/> 
+                                    </div>
+                                </div> -->
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">No. of Service
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" id="noservice" name="noservice"> 
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Location
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" id="location" name="location"> 
+                                    </div>
+                                </div>
+                                <!-- <div class="form-group">
+                                    <label class="control-label col-md-3">Total Amount
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" id="tamount" name="tamount"> 
+                                    </div>
+                                </div> -->
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Amount per Service
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" id="samount" name="samount"> 
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Tax Applicable(%)
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" id="tax" name="tax"> 
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Frequency Type
+                                        
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select class="form-control select2-multiple select2-hidden-accessible" name="frequency" id="frequency" data-required="1">
+                                            <option value="DAILY">Daily</option>
+                                            <option value="WEEKLY">Weekly</option>
+                                            <option value="FORTNIGHTLY">Fortnightly</option>
+                                            <option value="MONTHLY">Monthly</option>
+                                            <option value="QUATERLY">Quaterly</option>
+                                            <option value="HALFYEARLY">Half Yearly</option>
+                                            <option value="YEARLY">Yearly</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Tax Class
+                                        
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select class="form-control select2-multiple select2-hidden-accessible" name="taxClass" id="taxClass" data-required="1">
+                                            <option value="VAT">GST</option>
+                                            <option value="SERVICETAX">Service Tax</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Payment Method
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select class="form-control select2-multiple select2-hidden-accessible" name="payment" id="payment" data-required="1">
+                                            <option value="PREPAID">Prepaid</option>
+                                            <option value="POSTPAID">Postpaid</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Payment Mode
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select class="form-control select2-multiple select2-hidden-accessible" name="paymentMode" id="paymentMode" data-required="1">
+                                            <option value="CASH">Cash</option>
+                                            <option value="CHEQUE">Cheque</option>
+                                            <option value="NEFT">NEFT</option>
+                                            <option value="WALLET">Wallet</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Payable
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select class="form-control select2-multiple select2-hidden-accessible" name="payable" id="payable" data-required="1">
+                                            <option value="ONETIME">One Time</option>
+                                            <option value="AFTEREACHSERVICE">After each Service</option>
+                                            <option value="MONTHLY">Monthly</option>
+                                            <option value="YEARLY">Yearly</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-offset-3 col-md-9">
+                                        <button class="btn green" type="submit" id="addSubscription"> Submit </button>
+                                        <button type="reset" class="btn default">Reset</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- partial('partials/modal/addCustomer') %>
+<%- partial('partials/modal/addItem') %>
+

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+    <!--<![endif]-->
+    <!-- BEGIN HEAD -->
+    <head>
+        <meta charset="utf-8" />
+        <title><%= title %> - ZinetGo.com</title>
+        <%- partial('partials/al/head') %>
+    </head>
+    <body class="page-header-fixed page-container-bg-solid page-content-white page-sidebar-fixed page-sidebar-closed">
+
+    <!-- <body class="page-sidebar-closed-hide-logo page-content-white page-header-fixed page-sidebar-fixed"> -->
+            <%- partial('partials/al/header') %>
+        <div class="page-container">
+
+            <% nav= menu; %>
+            <% sb = sidebar; %>
+            <!-- http://stackoverflow.com/questions/29196562/how-to-include-a-template-with-parameters-in-ejs -->
+            <% if(user.orgType.includes('welfare-association')){ %>
+                <%- partial('partials/al/left-sidebar-wa') %>
+            <% }else if(user.orgType.includes('blog')){ %>
+                <%- partial('partials/al/left-sidebar-blog') %>
+            <% }else{ %>
+                <% if(user.profile.roles.indexOf('inventory') >-1){ %>
+                  <%- partial('partials/al/left-sidebar-inventory') %>
+                <%  }else { %>
+                <%- partial('partials/al/left-sidebar') %>
+                <% } %>
+            <% } %>
+
+            <%- body %>
+
+            <%- partial('partials/al/footer') %>
+
+        </div>
+        <input type="hidden" id="apiUrl" value="<%= api.url %>"/>
+        <input type="hidden" id="apiToken" value="<%= user.token %>"/>
+
+        <%- partial('partials/al/scripts') %>
+        <% if(pagescript && pagescript != null){  %>
+          <script type="text/javascript" src="<%= pagescript %>"></script>
+        <% } %>
+       
+    <script>
+
+        /*
+         * Uploadcare Summernote plugin (1.0.0)
+         */
+
+        (function (factory) {
+          if (typeof define === 'function' && define.amd) {
+            define(['jquery'], factory);
+          } else if (typeof module === 'object' && module.exports) {
+            module.exports = factory(require('jquery'));
+          } else {
+            factory(window.jQuery);
+          }
+        }(function($) {
+          function ensureWidget(version) {
+            if (typeof uploadcare == 'undefined') $.getScript([
+              'https://ucarecdn.com/widget/', version, '/uploadcare/uploadcare.min.js'
+            ].join(''))
+          }
+
+          function createButton(context, opts) {
+            return function() {
+              var icon = opts.buttonIcon ? '<i class="fa fa-' + opts.buttonIcon + '" /> ' : '';
+
+              return $.summernote.ui.button({
+                contents: icon + opts.buttonLabel,
+                tooltip: opts.tooltipText,
+                click: function() {
+                  var dialog = uploadcare.openDialog({}, opts);
+
+                  context.invoke('editor.saveRange');
+                  dialog.done(done(context, opts));
+                }
+              }).render();
+            };
+          }
+
+          function init(context) {
+            var opts = $.extend({
+              crop: '',
+              version: '2.9.0',
+              buttonLabel: 'Uploadcare',
+              tooltipText: 'Upload files via Uploadcare'
+            }, context.options.uploadcare);
+
+            ensureWidget(opts.version);
+
+            context.memo('button.uploadcare', createButton(context, opts));
+          }
+
+          function standardCallback(context, blob) {
+            context.invoke('editor.insertNode', $(
+              (blob.isImage
+                ? [
+                  '<img src="',
+                  blob.cdnUrl + (blob.cdnUrlModifiers ? '' : '-/preview/'),
+                  '" alt="', blob.name, '" />'
+                ]
+                : ['<a href="', blob.cdnUrl, '">', blob.name, '</a>']
+              ).join('')
+            ).get(0));
+          }
+
+          function done(context, opts) {
+            return function(data) {
+              var isMultiple = opts.multiple;
+              var uploads = isMultiple ? data.files() : [data];
+
+              $.when.apply(null, uploads).done(function() {
+                var blobs = [].slice.apply(arguments);
+                var cb = opts.uploadCompleteCallback;
+
+                context.invoke('editor.restoreRange');
+
+                $.each(blobs, function(i, blob) {
+                  if ($.isFunction(cb)) {
+                    cb.call(context, blob);
+                  } else {
+                    standardCallback(context, blob);
+                  }
+                });
+              });
+            }
+          }
+
+          $.extend($.summernote.plugins, {uploadcare: init});
+        }));
+
+
+         $(function() {
+          $('#summernote123').summernote({
+            height: 625,
+            focus: true,
+            dialogsInBody: true,
+            toolbar: [
+              ['style', ['style']],
+              ['font', ['bold', 'italic', 'underline', 'clear']],
+              ['fontname', ['fontname']],
+              ['color', ['color']],
+              ['para', ['ul', 'ol', 'paragraph']],
+              ['height', ['height']],
+              ['table', ['table']],
+              ['insert', ['media', 'link', 'hr', 'uploadcare',  'video']],
+              ['view', ['fullscreen', 'codeview']],
+              ['help', ['help']]
+            ],
+            uploadcare: {
+              // uploadcare widget options,
+              // see https://uploadcare.com/documentation/widget/#configuration
+              // button name (default is Uploadcare)
+              buttonLabel: '',
+              // font-awesome icon name (you need to include font awesome on the page)
+              buttonIcon: 'picture-o',
+              // text which will be shown in button tooltip
+              tooltipText: 'Upload files or video or something',
+              //tooltipText: '',
+              publicKey: 'e016898a23c03d30dc92', // set your API key
+              crop: 'free',
+              tabs: 'all',
+              multiple: true
+            }
+          });
+          $('.summernotetmp').summernote({
+            height: 200,
+            focus: true,
+            dialogsInBody: true,
+            toolbar: [
+              ['style', ['style']],
+              ['font', ['bold', 'italic', 'underline', 'clear']],
+              ['fontname', ['fontname']],
+              ['color', ['color']],
+              ['para', ['ul', 'ol', 'paragraph']],
+              ['height', ['height']],
+              ['table', ['table']],
+              ['insert', ['media', 'link', 'hr', 'uploadcare',  'video']],
+              ['view', ['fullscreen', 'codeview']],
+              ['help', ['help']]
+            ],
+            uploadcare: {
+              // uploadcare widget options,
+              // see https://uploadcare.com/documentation/widget/#configuration
+              // button name (default is Uploadcare)
+              buttonLabel: '',
+              // font-awesome icon name (you need to include font awesome on the page)
+              buttonIcon: 'picture-o',
+              // text which will be shown in button tooltip
+              tooltipText: 'Upload files or video or something',
+              //tooltipText: '',
+              publicKey: 'e016898a23c03d30dc92', // set your API key
+              crop: 'free',
+              tabs: 'all',
+              multiple: true
+            }
+          });
+        });
+    
+        UPLOADCARE_PUBLIC_KEY = 'e016898a23c03d30dc92';
+
+    </script>
+    <script>
+    $(".bs-datetime").datetimepicker("setDate", new Date());
+    $('.bs-datetime').datetimepicker({
+    format: 'dd-MM-yyyy hh:mm',
+    autoclose: true,
+    keepOpen: false
+    }).on('dp.show', function () {
+        $('a.btn[data-action="incrementMinutes"], a.btn[data-action="decrementMinutes"]').removeAttr('data-action').attr('disabled', true);
+        $('span.timepicker-minute[data-action="showMinutes"]').removeAttr('data-action').attr('disabled', true).text('00');
+    }).on('dp.change', function () {
+        $(this).val($(this).val().split(':')[0]+':00')
+        $('span.timepicker-minute').text('00')
+    });
+    $('.bs-datetime').on('changeDate', function(ev){
+        $(this).datetimepicker('hide');
+    });
+      //$(".bs-datetime").datetimepicker("setDate", new Date());
+    </script>
+    </body>
+</html>

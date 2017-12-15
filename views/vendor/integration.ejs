@@ -1,0 +1,163 @@
+<link href="/assets/pages/css/profile.min.css" rel="stylesheet" type="text/css" />
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li><span><a href="/dashboard">Home</a></span><i class="fa fa-circle"></i></li>
+                <li><span>Business</span><i class="fa fa-circle"></i></li>
+                <li><span>Professional</span><i class="fa fa-circle"></i></li>
+                <li><span>Integration</span></li>
+            </ul>
+        </div>
+        
+        <h1 class="page-title"></h1>
+        <div class="row">
+            <div class="col-md-12">
+                <div id="form-alerts"> </div>
+                <div class="profile-sidebar">
+                    <div class="portlet light profile-sidebar-portlet">
+                        <div class="profile-userpic">
+                            <img src="<%= (user.coverImage ? user.coverImage : '/al/img/avatar.png')%>" class="img-responsive" alt=""> 
+                        </div>
+                        <div class="profile-usertitle">
+                            <div class="profile-usertitle-name"> <%= user.name %> </div>
+                            <div class="profile-usertitle-job"> Admin </div>
+                        </div>
+                        <!-- <div class="profile-userbuttons">
+                            <button type="button" class="btn btn-circle green btn-sm">Follow</button>
+                            <button type="button" class="btn btn-circle red btn-sm">Message</button>
+                        </div> -->
+                    </div>
+                    <div class="portlet light ">
+                        <div>
+                            <div class="profile-usermenu">
+                               <ul class="nav">
+                                    <li>
+                                        <a href="/admin/vendors/<%=uname %>">
+                                            <i class="icon-settings"></i> Accounts </a>
+                                    </li>
+                                    <li>
+                                        <a href="/admin/vendors/<%=uname %>/leads">
+                                            <i class="fa fa-bullhorn"></i> Jobs </a>
+                                    </li>
+                                    <li>
+                                        <a href="/admin/vendors/<%=uname %>/services">
+                                            <i class="icon-layers"></i> Services </a>
+                                    </li>
+                                     <li>
+                                        <a href="/admin/vendors/<%=uname %>/wallet">
+                                            <i class="icon-wallet"></i> Wallet </a>
+                                    </li>
+                                    <% if(user.profile.roles.indexOf('super-admin')>-1){ %>
+                                        <li>
+                                            <a href="/admin/vendors/<%=uname %>/roles">
+                                                <i class="icon-check"></i> Roles  </a>
+                                        </li>
+                                    <% } %>
+                                    <li class="active">
+                                        <a href="/admin/vendors/<%=uname %>/integration">
+                                            <i class="fa fa-exchange"></i> Integration </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                 <div class="profile-content">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="portlet light ">
+                                    <div class="portlet-title tabbable-line">
+                                        <div class="caption caption-md">
+                                            <i class="icon-globe theme-font hide"></i>
+                                            <span class="caption-subject font-blue-madison bold uppercase">Integrations</span>
+                                        </div>
+                                        <ul class="nav nav-tabs">
+                                            <li class="active">
+                                                <a href="#tab_1_1" data-toggle="tab">Payment Gateway</a>
+                                            </li>
+                                            <li>
+                                                <a href="#tab_1_2" data-toggle="tab">API Intergration</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="portlet-body">
+                                        <div class="tab-content">
+                                            <!-- PERSONAL INFO TAB -->
+                                            <input type="hidden" id="apiUrl" value="<%= api.url %>"/>
+                                            <input type="hidden" id="token" value="<%= user.token %>"/>
+                                            <input type="hidden" id="uname" value="<%= uname %>"/>
+                                            <div class="tab-pane active" id="tab_1_1">
+                                                <form role="form" class="preference_add_form">
+                                                    <div class="form-body">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <img src="https://d1qb2nb5cznatu.cloudfront.net/startups/i/74754-25c89bc8083780838916c9fbc5d2d4a5-medium_jpg.jpg?buster=1381766510" height="23">
+                                                                <label class="control-label">Instamojo</label>
+
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="control-label">Authentication Key</label>
+                                                                <input type="text" placeholder="Authentication Key" class="form-control" name="authKey" id="authKey" value="" /> 
+                                                            </div>
+                                                           
+                                                            <div class="form-group">
+                                                                <label class="control-label">API Key</label>
+                                                                <input type="text" placeholder="API Key" class="form-control" name="apiKey" id="apiKey" value=""/> 
+                                                            </div>
+                                                        </div>  
+                                                    </div>
+                                                    <div class="form-actions">
+                                                        <div class="row">
+                                                            <div class="col-md-offset-3 col-md-9">
+                                                                <button class="btn green" type="submit" id="editProduct"> Update </button>
+                                                                <button type="reset" class="btn default">Reset</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <!-- END PERSONAL INFO TAB -->
+                                            <!-- CHANGE PASSWORD TAB -->
+                                            <div class="tab-pane" id="tab_1_2">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <form class="form-horizontal" role="form">
+                                                            <div class="form-body">
+                                                                <div class="form-group">
+                                                                    <label class="control-label col-md-3">API KEY:</label>
+                                                                    <div class="col-md-9">
+                                                                        <p class="form-control-static" id="papiKey"></p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="control-label col-md-3">TP KEY:</label>
+                                                                    <div class="col-md-9">
+                                                                        <p class="form-control-static" id="tpKey"></p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="control-label col-md-3">PROFILE ID:</label>
+                                                                    <div class="col-md-9">
+                                                                        <p class="form-control-static" id="portfolioId"></p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- END CHANGE AVATAR TAB -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                <!-- END PROFILE CONTENT -->
+            </div>
+        </div>
+    </div>
+</div>

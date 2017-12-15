@@ -1,0 +1,153 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.3/toastr.min.css" rel="stylesheet" />
+
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li><span><a href="/dashboard"> Home </a></span><i class="fa fa-circle"></i></li>
+                <li><span> Business </span><i class="fa fa-circle"></i></li>
+                <li><span> Organisation </span><i class="fa fa-circle"></i></li>
+                <li><span><a href="/bank-accounts"> Bank Accounts </a></span><i class="fa fa-circle"></i></li>
+                <li><span> Add</span></li>
+            </ul>
+        </div>
+        <h1 class="page-title"></h1>
+        <div class="row">
+            <div class="col-md-12">
+                <div id="form-alerts"> </div>
+                <div class="portlet light portlet-fit portlet-form bordered">
+                    <div class="portlet-title">
+                        <div class="caption font-blue-hoki">
+                            <i class="fa fa-bank font-blue-hoki"></i>
+                            <span class="caption-subject sbold uppercase"> Bank Information</span>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <form action="<%= api.url %>/api/mode?token=<%= user.token %>" id="bankAccount_add_form" class="form-horizontal">
+                            <div class="form-body">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Bank Name
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select class="form-control select2-multiple select2-hidden-accessible" name="bankName" id="bankName" data-required="1">
+                                            <option value="Allahabad Bank" selected="true">Allahabad Bank</option>
+                                            <option value="Andhra Bank">Andhra Bank</option>
+                                            <option value="C2H">Bank of Baroda</option>
+                                            <option value="Canara Bank">Canara Bank</option>
+                                            <option value="Citibank India">Citibank India</option>
+                                            <option value="Corporation Bank">Corporation Bank</option>
+                                            <option value="Dena Bank">Dena Bank</option>
+                                            <option value="HDFC Bank">HDFC Bank</option>
+                                            <option value="HSBC">HSBC</option>
+                                            <option value="ICICI Bank">ICICI Bank</option>
+                                            <option value="IDBI Bank">IDBI Bank</option>
+                                            <option value="Indian Bank">Indian Bank</option>
+                                            <option value="Indian Overseas Bank">Indian Overseas Bank</option>
+                                            <option value="IndusInd Bank Ltd.">IndusInd Bank Ltd.</option>
+                                            <option value="ING Vysya Bank">ING Vysya Bank</option>
+                                            <option value="Karnataka Bank Ltd.">Karnataka Bank Ltd.</option>
+                                            <option value="Kotak Mahindra Bank">Kotak Mahindra Bank</option>
+                                            <option value="Oriental Bank of Commerce">Oriental Bank of Commerce</option>
+                                            <option value="Punjab and Sind Bank">Punjab and Sind Bank</option>
+                                            <option value="State Bank of India">State Bank of India</option>
+                                            <option value="State Bank of Bikaner and Jaipur">State Bank of Bikaner and Jaipur</option>
+                                            <option value="State Bank of Hyderabad">State Bank of Hyderabad</option>
+                                            <option value="State Bank of Mysore">State Bank of Mysore</option>
+                                            <option value="State Bank of Patiala">State Bank of Patiala</option>
+                                            <option value="State Bank of Saurashtra">State Bank of Saurashtra</option>
+                                            <option value="State Bank of Travancore">State Bank of Travancore</option>
+                                            <option value="Syndicate Bank">Syndicate Bank</option>
+                                            <option value="UCO Bank">UCO Bank</option>
+                                            <option value="Union Bank of India">Union Bank of India</option>
+                                            <option value="Vijaya Bank">Vijaya Bank</option>
+                                            <option value="Yes Bank">Yes Bank</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Account Number
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="number" class="form-control" id="accountNo" name="accountNo">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Account Type
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select class="form-control select2-multiple select2-hidden-accessible" name="accountType" id="accountType" data-required="1">
+                                            <option value="current" selected="true">Current Account</option>
+                                            <option value="saving">Saving Account</option>
+                                            <option value="demat">Demat Account</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Branch Name
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" id="branchName" name="branchName"> 
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">IFSC Code
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" id="ifscCode" name="ifscCode"> 
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">MICR Code
+                                        <!-- <span class="required"> * </span> -->
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" id="micrCode" name="micrCode"> 
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Contact Number
+                                        <!-- <span class="required"> * </span> -->
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" id="contactNo" name="contactNo" maxlength="10"> 
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Description
+                                        <!-- <span class="required"> * </span> -->
+                                    </label>
+                                    <div class="col-md-4">
+                                        <textarea rows="2" class="form-control" id="description" name="description"></textarea> 
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-offset-3 col-md-9">
+                                        <button class="btn green" type="submit" id="addbankAccount"> Submit </button>
+                                        <button type="reset" class="btn default">Reset</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $().ready(function() {
+        var token = '<%= user.token %>';
+        var sUrl = '<%= api.url %>';
+    });
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.3/toastr.min.js"></script>
+<script src="/js/onground/business/org/bank-account-add.js"></script>

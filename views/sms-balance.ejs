@@ -1,0 +1,298 @@
+<style type="text/css">
+.pricing-content-1 .price-column-container.border-active {
+    border: 1px solid #e5e9ee;
+}
+.pricing-content-1 .price-column-container {
+    background-color: #fff;
+    margin: 0;
+    text-align: center;
+}
+.pricing-content-1 .price-table-head {
+color: #fff;
+padding: 20px 0;
+}
+.bg-blue {
+    background: #3598dc none repeat scroll 0 0 !important;
+}
+.pricing-content-1 .arrow-down {
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 15px solid;
+    height: 0;
+    margin: auto;
+    width: 0;
+}
+.border-top-after-blue::after, .border-top-before-blue::before, .border-top-blue {
+    border-top-color: #3598dc !important;
+}
+.pricing-content-1 .price-column-container {
+    text-align: center;
+}
+.pricing-content-1 .price-table-content {
+    background-color: #f7f9fb;
+    color: #5c6d7e;
+    font-size: 16px;
+    font-weight: 600;
+}
+.container-fluid::after, .container-fluid::before, .container::after, .container::before, .row::after, .row::before {
+    content: " ";
+    display: table;
+}
+.container-fluid::after, .container-fluid::before, .container::after, .container::before, .row::after, .row::before {
+    content: " ";
+    display: table;
+}
+.btn-group-vertical > .btn-group::after, .btn-toolbar::after, .clearfix::after, .container-fluid::after, .container::after, .dropdown-menu > li > a, .form-horizontal .form-group::after, .modal-footer::after, .modal-header::after, .navbar-collapse::after, .navbar-header::after, .navbar::after, .pager::after, .panel-body::after, .row::after {
+    clear: both;
+}
+.pricing-content-1 .price-table-content .row:first-child {
+    padding-top: 20px;
+}
+.pricing-content-1 .price-table-content .row {
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+.row {
+    margin-left: -15px;
+    margin-right: -15px;
+}
+.pricing-content-1 .price-table-footer > .price-button {
+    font-weight: 700;
+    padding: 10px 20px;
+}
+.pricing-content-1 .arrow-down.arrow-grey {
+    border-top-color: #f7f9fb;
+}
+.pricing-content-1 .arrow-down {
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 15px solid;
+    height: 0;
+    margin: auto;
+    width: 0;
+}
+a, button, code, div, img, input, label, li, p, pre, select, span, svg, table, td, textarea, th, ul {
+    border-radius: 0 !important;
+}
+.pricing-content-1 .price-table-footer {
+    padding: 20px 0;
+}
+
+.pricing-content-1 .price-ribbon::after {
+    border-color: #64120f transparent transparent #64120f;
+    border-style: solid;
+    border-width: 5px 10px;
+    content: " ";
+    height: 0;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    width: 0;
+}
+.pricing-content-1 .price-ribbon {
+    background-color: #d91e18;
+    box-shadow: 0 2px 4px #888;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 300;
+    padding: 6px 20px 6px 15px;
+    position: absolute;
+    right: -4px;
+    text-shadow: 0 1px 2px #bbb;
+    text-transform: uppercase;
+    top: 75px;
+    width: 90px;
+}
+</style>
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li><span><a href="/dashboard">Home</a></span><i class="fa fa-circle"></i></li>
+                <li><span>SMS</span></li>
+            </ul>
+        </div>
+        <h1 class="page-title"></h1>
+        <div class="row">
+            <div class="col-md-12">
+                <div id="form-alerts"> 
+                </div>
+
+                <div class="portlet light bordered" id="orders_portlet">
+                    <div class="portlet-title">
+                        <div class="caption font-blue-hoki">
+                            <i class="fa fa-envelope-o"></i>
+                            <span class="caption-subject bold uppercase"> Available SMS balance:  <%= data %></span>
+                        </div>
+
+                        <div class="dt-buttons pull-right">
+                            <%- partial('partials/al/table-tools') %>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="dataTables_wrapper no-footer">
+                            <div class="portlet-body">
+                                <div class="pricing-content-1">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="price-column-container border-active">
+                                                <div class="price-table-head bg-blue">
+                                                    <h2 class="no-margin">Budget</h2>
+                                                </div>
+                                                <div class="arrow-down border-top-blue"></div>
+                                                <div class="price-table-pricing">
+                                                    <h3>
+                                                        <sup class="price-sign"></sup>5000</h3>
+                                                    <p>SMS Credits</p>
+                                                </div>
+                                                <div class="price-table-content">
+                                                    <div class="row mobile-padding">
+                                                        <div class="col-xs-3 text-right mobile-padding">
+                                                            <i class="fa fa-inr"></i>
+                                                        </div>
+                                                        <div class="col-xs-9 text-left mobile-padding">20 p/sms</div>
+                                                    </div>
+                                                    <div class="row mobile-padding">
+                                                        <div class="col-xs-3 text-right mobile-padding">
+                                                            <i class="icon-drawer"></i>
+                                                        </div>
+                                                        <div class="col-xs-9 text-left mobile-padding">Rs. 1000 + Service Tax</div>
+                                                    </div>
+                                                    <div class="row mobile-padding">
+                                                        <div class="col-xs-3 text-right mobile-padding">
+                                                            <i class="icon-refresh"></i>
+                                                        </div>
+                                                        <div class="col-xs-9 text-left mobile-padding">Unlimited Validity</div>
+                                                    </div>
+                                                </div>
+                                                <div class="price-table-footer">
+                                                    <button class="btn grey-salsa btn-outline sbold uppercase price-button" data-id= "1000" type="button">Buy Now</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="price-column-container border-active">
+                                                <div class="price-table-head bg-red">
+                                                    <h2 class="no-margin">Solo</h2>
+                                                </div>
+                                                <div class="arrow-down border-top-red"></div>
+                                                <div class="price-table-pricing">
+                                                    <h3>
+                                                        <sup class="price-sign"></sup>10,000</h3>
+                                                    <p>SMS Credits</p>
+                                                </div>
+                                                <div class="price-table-content">
+                                                    <div class="row mobile-padding">
+                                                        <div class="col-xs-3 text-right mobile-padding">
+                                                            <i class="fa fa-inr"></i>
+                                                        </div>
+                                                        <div class="col-xs-9 text-left mobile-padding">18 p/sms</div>
+                                                    </div>
+                                                    <div class="row mobile-padding">
+                                                        <div class="col-xs-3 text-right mobile-padding">
+                                                            <i class="icon-drawer"></i>
+                                                        </div>
+                                                        <div class="col-xs-9 text-left mobile-padding">Rs. 1800 + Service Tax</div>
+                                                    </div>
+                                                    
+                                                    <div class="row mobile-padding">
+                                                        <div class="col-xs-3 text-right mobile-padding">
+                                                            <i class="icon-refresh"></i>
+                                                        </div>
+                                                        <div class="col-xs-9 text-left mobile-padding">Unlimited Validity</div>
+                                                    </div>
+                                                </div>
+                                                <div class="price-table-footer">
+                                                    <button class="btn grey-salsa btn-outline price-button sbold uppercase" data-id= "1800" type="button">Buy Now</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="price-column-container border-active">
+                                                <div class="price-table-head bg-green">
+                                                    <h2 class="no-margin">Start up</h2>
+                                                </div>
+                                                <div class="arrow-down border-top-green"></div>
+                                                <div class="price-table-pricing">
+                                                    <h3>
+                                                        <sup class="price-sign"></sup>25,000</h3>
+                                                    <p>SMS Credits</p>
+                                                    <div class="price-ribbon">Popular</div>
+                                                </div>
+                                                <div class="price-table-content">
+                                                    <div class="row mobile-padding">
+                                                        <div class="col-xs-3 text-right mobile-padding">
+                                                            <i class="fa fa-inr"></i>
+                                                        </div>
+                                                        <div class="col-xs-9 text-left mobile-padding">16 p/sms</div>
+                                                    </div>
+                                                    <div class="row mobile-padding">
+                                                        <div class="col-xs-3 text-right mobile-padding">
+                                                            <i class="icon-drawer"></i>
+                                                        </div>
+                                                        <div class="col-xs-9 text-left mobile-padding">Rs. 4000 + Service Tax</div>
+                                                    </div>
+                                                    
+                                                    <div class="row mobile-padding">
+                                                        <div class="col-xs-3 text-right mobile-padding">
+                                                            <i class="icon-refresh"></i>
+                                                        </div>
+                                                        <div class="col-xs-9 text-left mobile-padding">Unlimited Validity</div>
+                                                    </div>
+                                                </div>
+                                                <div class="price-table-footer">
+                                                    <button class="btn green price-button sbold uppercase" data-id= "4000" type="button">Buy Now</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="price-column-container border-active">
+                                                <div class="price-table-head bg-purple">
+                                                    <h2 class="no-margin">Enterprise</h2>
+                                                </div>
+                                                <div class="arrow-down border-top-purple"></div>
+                                                <div class="price-table-pricing">
+                                                    <h3>
+                                                        <sup class="price-sign"></sup>50,000</h3>
+                                                    <p>SMS Credits</p>
+                                                </div>
+                                                <div class="price-table-content">
+                                                    <div class="row mobile-padding">
+                                                        <div class="col-xs-3 text-right mobile-padding">
+                                                            <i class="fa fa-inr"></i>
+                                                        </div>
+                                                        <div class="col-xs-9 text-left mobile-padding">14 p/sms</div>
+                                                    </div>
+                                                    <div class="row mobile-padding">
+                                                        <div class="col-xs-3 text-right mobile-padding">
+                                                            <i class="icon-drawer"></i>
+                                                        </div>
+                                                        <div class="col-xs-9 text-left mobile-padding">Rs. 7000 + Service Tax</div>
+                                                    </div>
+                                                    
+                                                    <div class="row mobile-padding">
+                                                        <div class="col-xs-3 text-right mobile-padding">
+                                                            <i class="icon-refresh"></i>
+                                                        </div>
+                                                        <div class="col-xs-9 text-left mobile-padding">Unlimited Validity</div>
+                                                    </div>
+                                                </div>
+                                                <div class="price-table-footer">
+                                                    <button class="btn grey-salsa btn-outline price-button sbold uppercase" data-id= "7000" type="button">Buy Now</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" id="wallet" value="<%= wallet %>"/>
+                            <input type="hidden" id="apiUrl" value="<%= api.url %>"/>
+                            <input type="hidden" id="token" value="<%= user.token %>"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%- partial('partials/modal/sms-rechargemodal') %>

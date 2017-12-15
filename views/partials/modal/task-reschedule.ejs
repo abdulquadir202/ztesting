@@ -1,0 +1,38 @@
+<link href="/al/css/bootstrap-modal-bs3patch.css" rel="stylesheet" type="text/css" />
+<link href="/al/css/bootstrap-modal.css" rel="stylesheet" type="text/css" />
+
+<div id="taskreschedule" class="modal fade" tabindex="-1" data-width="760">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+        <h3 class="modal-title">Create Task</h3>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12">
+             <input type="hidden" id="taskId">
+                <form action="#">
+                    <p> Date <span style="color:red;"> * </span>
+                        <div class="col-md-12" style="padding-left: 2px; float: right;">
+                        <div class="input-group date form_datetime form_datetime bs-datetime">
+                            <input type="text" class="form-control" size="16" name="tDate" id="tDate" data-date-format="dd-mm-yyyy">
+                            <span class="input-group-addon" style="padding:0px;">
+                                <button type="button" class="btn default date-set">
+                                    <i class="fa fa-calendar"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                        
+                    </p>
+                    <p> Description<span style="color:red;"> * </span>
+                        <textarea rows="8" class="form-control" id="description" name="description" required=""></textarea>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn green" data-dismiss="modal" id="addTask">Submit</button>
+        <button type="button" data-dismiss="modal" class="btn btn-outline dark">Cancel</button>
+    </div>
+</div>

@@ -1,0 +1,154 @@
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li><span><a href="/dashboard">Home</a></span><i class="fa fa-circle"></i></li>
+                <li><span>Accounting</span><i class="fa fa-circle"></i></li>
+                <li><span>Entry</span><i class="fa fa-circle"></i></li>
+                <li><span>Expense</span></li>
+            </ul>
+        </div>
+        <h1 class="page-title"></h1>
+        <div class="row">
+            <div class="col-md-12">
+                <div id="form-alerts"> </div>
+                <div class="portlet light portlet-fit portlet-form bordered">
+                    <div class="portlet-title">
+                        <div class="caption font-blue-hoki">
+                            <i class="icon-wallet font-blue-hoki"></i>
+                            <span class="caption-subject sbold uppercase"> Expense Entry</span>
+                        </div>
+                        <div class="dt-buttons pull-right">
+                            <a class="dt-button buttons-print btn green btn-outline" href="/expenses"><span><i class="icon-notebook"></i> Expense Ledger</span></a>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <form action="<%= api.url %>/api/expense?token=<%= user.token %>"class="form-horizontal" id="expense_entry_form">
+                            <div class="form-body">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Expense Category
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select id="expenseCategoryId" class="form-control select2-multiple select2-hidden-accessible" name="expenseCategoryId"></select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <span class="help-block"><a data-toggle="modal" href="#expenseCategoriesModal"><i class="icon-plus"></i> Add New</a></span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Date
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" name="tDate" id="tDate" data-required="1" class="form-control form-control-inline date-picker" data-date-format="dd-mm-yyyy"/> 
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Amount
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" name="amount" id="amount" data-required="1" class="form-control" /> </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Modes
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select class="form-control select2-multiple select2-hidden-accessible" name="modeType" id="modeType">
+                                            <option value="cash" selected="true">Cash</option>
+                                            <option value="bank">Bank</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group hide" id="bankOption">
+                                    <label class="control-label col-md-3">Bank
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select id="bankAccount" class="form-control select2-multiple select2-hidden-accessible" name="bankAccount"></select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <span class="help-block"><a data-toggle="modal" href="#addBankModal"><i class="icon-plus"></i> Add New</a></span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Expense For
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select class="form-control select2-multiple select2-hidden-accessible" name="expenseFor" id="expenseFor">
+                                            <option value="self">Self</option>
+                                            <option value="customer">Customer</option>
+                                            <option value="vendor">Vendor</option>
+                                            <option value="employee">Employee</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group hide" id="customerOption">
+                                    <label class="control-label col-md-3">Customer
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select id="customerId" class="form-control select2-multiple select2-hidden-accessible" name="customerId"></select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <span class="help-block"><a data-toggle="modal" href="#addCustomerModal"><i class="icon-plus"></i> Add New</a></span>
+                                    </div>
+                                </div>
+                                <div class="form-group hide" id="vendorOption">
+                                    <label class="control-label col-md-3">Vendor
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select id="vendorId" class="form-control select2-multiple select2-hidden-accessible" name="vendorId"></select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <span class="help-block"><a data-toggle="modal" href="#addVendorModal"><i class="icon-plus"></i> Add New</a></span>
+                                    </div>
+                                </div>
+                                <div class="form-group hide" id="employeeOption">
+                                    <label class="control-label col-md-3">Employee
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select id="employeeId" class="form-control select2-multiple select2-hidden-accessible" name="employeeId"></select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <span class="help-block"><a data-toggle="modal" href="#addEmployeeModal"><i class="icon-plus"></i> Add New</a></span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Reference No</label>
+                                    <div class="col-md-4">
+                                        <input name="refNo" id="refNo" type="text" class="form-control" /> </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Description</label>
+                                    <div class="col-md-4">
+                                        <textarea rows="2" class="form-control" id="description" name="description"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-offset-3 col-md-9">
+                                        <button type="submit" class="btn green" id="addExpenseEntry">Submit</button>
+                                        <button type="reset" class="btn default">Reset</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<%- partial('partials/modal/addBank') %>
+<%- partial('partials/modal/addCustomer') %>
+<%- partial('partials/modal/addVendor') %>
+<%- partial('partials/modal/addEmployee') %>
+<%- partial('partials/modal/addExpenseCategories') %>

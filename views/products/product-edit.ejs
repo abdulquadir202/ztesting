@@ -1,0 +1,143 @@
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li><span><a href="/dashboard">Home</a></span><i class="fa fa-circle"></i></li>
+                <li><span> Catalog</span><i class="fa fa-circle"></i></li>
+                <li><span><a href="/products/catalog">Products</a></span><i class="fa fa-circle"></i></li>
+                <li><span> Edit</span></li>
+            </ul>
+        </div>
+        <h1 class="page-title"></h1>
+        <div class="row">
+            <div class="col-md-12">
+                <div id="form-alerts"> </div>
+                <div class="portlet light portlet-fit portlet-form bordered">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="fa fa-bullhorn font-blue-hoki"></i>
+                            <span class="caption-subject font-blue-hoki sbold uppercase"> Edit Product</span> | <span class="lid"></span>
+                        </div>
+                    </div>
+                    
+
+                    <div class="portlet-body">
+                        <form action="<%= api.url %>/api/product/<%= productId %>?token=<%= user.token %>" id="products_add_form" class="form-horizontal">
+                            <input type="hidden" id="productId" value="<%= productId %>">
+                            <input type="hidden" id="apiUrl" value="<%= api.url %>"/>
+                            <input type="hidden" id="token" value="<%= user.token %>"/>
+
+                            <div class="form-body">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Name
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" name="productName" id="productName">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">SKU
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" name="sku" id="sku">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Cover Image
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="file" name="fileToUpload" id="fileToUpload">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Category
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select id="categoryId" class="form-control select2-multiple select2-hidden-accessible" name="categoryId">
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <span class="help-block"><a data-toggle="modal" href="#addCategoryModal"><i class="icon-plus"></i> Add New</a></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3"> Brand Name
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" name="brandName" id="brandName">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3"> Measurement Unit
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select class="form-control select2-multiple select2-hidden-accessible" name="unit" id="unit" data-required="1">
+                                            <option value="piece" selected="true">Piece</option>
+                                            <option value="kg">KG</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <% if(parseInt(user.profile.roles.indexOf('inventory')) < 0 ){   %>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Stock</label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" name="stock" id="stock">
+                                    </div>
+                                </div>
+                                <% } %>
+
+                                
+                                <div class="form-group">
+                                    <label class="control-label col-md-3"> Price ( <i class="fa fa-inr"></i> )
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" name="price" id="price">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Discount Price ( <i class="fa fa-inr"></i> )
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" name="salesPackage" id="salesPackage">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Description</label>
+                                    <div class="col-md-4">
+                                        <textarea rows="4" class="form-control" id="description" name="description"></textarea>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-offset-3 col-md-9">
+                                        <button class="btn green" type="submit" id="editProduct"> Update </button>
+                                        <button type="reset" class="btn default">Reset</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- partial('partials/modal/addCategory') %>

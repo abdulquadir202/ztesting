@@ -1,0 +1,453 @@
+<link href="//fonts.googleapis.com/css?family=Open+Sans:400,300" rel="stylesheet" type="text/css">
+<link href="/invoices/templates/accwaves/styles/free-invoice.css" rel="stylesheet">
+<script type="text/javascript" src="/invoices/templates/accwaves/js/invoice-generator.js"></script>
+
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li><span><a href="/dashboard">Home</a></span><i class="fa fa-circle"></i></li>
+                <li><span><a href ="/leads">Leads</a></span><i class="fa fa-circle"></i></li>
+                <li><span><a href="/quotations">Quotations</a></span><i class="fa fa-circle"></i></li>
+                <li><span>Quotation/Estimate</span></li>
+            </ul>
+        </div>
+        <h1 class="page-title"></h1>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="portlet light portlet-fit portlet-form bordered">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="fa fa-file-text-o font-blue-hoki"></i>
+                            <span class="caption-subject font-blue-hoki sbold uppercase"> Quotation</span>
+                        </div>
+
+                        <div class="dt-buttons pull-right">
+                            <button class="dt-button buttons-print btn green btn-outline" type="submit" id="addQuotation" form="quotation_add_form" ><i class="fa fa-floppy-o"></i> Save </button>
+
+                            <!-- <button onclick = "printQuote()" class= "dt-button buttons-print btn dark btn-outline"><span><i class ="fa fa-print"></i>Print</span></button> -->
+                            <a class="dt-button buttons-print btn dark btn-outline" href="javascript:;" onclick = "printQuote('printableArea')"><span><i class="fa fa-print"></i> Print</span></a>
+
+                            <a class="dt-button buttons-print btn blue btn-outline" href="mailto:"><span><i class="fa fa-envelope-o  "></i> Email</span></a>
+
+                            <a class="dt-button buttons-pdf buttons-html5 btn purple btn-outline" href="javascript:;"><span><i class="fa fa-file-pdf-o"></i> PDF</span></a>
+
+                            
+                            <a class="dt-button buttons-csv buttons-html5 btn dark btn-outline fullscreen"><span><i class="icon-size-fullscreen"></i></span></a>
+                        </div>
+
+                        
+                    </div>
+                    <div class="portlet-body" id="printableArea">
+                        <form action="<%= api.url %>/api/quotation?token=<%= user.token %>" id="quotation_add_form" class="form-horizontal">
+                        
+                        <input type="hidden" id="lUrl" value="<%= api.url %>/api/lead/<%= leadId %>?token=<%= user.token %>">
+                        <input type="hidden" id ="coverImage" value="<%=user.coverImage %>">
+                            <div class="text-center">
+                                <%if (user.coverImage && user.coverImage != null) { %>
+                                    <img src="<%= user.coverImage %>" id="companyLogo" name="companyLogo" height="80" width= "200"></img>
+                                <%}else{%>
+                                   <img src="/invoices/templates/accwaves/logo1.png" id="companyLogo"></img>
+                                <%}%>
+                                
+                                <!-- <input type="file" name="fileToUpload" id="fileToUpload"/>
+                                    <button type="upload" class="btn blue start">
+                                        <i class="fa fa-upload"></i>
+                                        <span> Start upload </span>
+                                    </button> -->
+                            </div>
+                            <div class="row" style="padding:20px 50px 0px 50px;">
+                                <table width="100%" cellpadding="0" cellspacing="0" border="1">
+                                    <tbody>
+                                        <tr span="2">
+                                            <td width="51%">
+                                            <!-- <label class="control-label">Name</label> -->
+                                            <input type="text" readonly id="companyName" name="companyName" class="adr bld f20" tabindex="1" autofocus="focus" placeholder="Your Company Name:" onfocus="InvoiceGenerator.strikeInfo('compAddInfo', true); InvoiceGenerator.showHideErr('cName', false);" onblur="InvoiceGenerator.strikeInfo('compAddInfo', false)" name="companyName" value="<%=user.name %>" data-json-node="company_name" data-is-array="false">
+                                            <small id="address1_err" class="text-danger hide">Please fill in your company’s name</small>
+                                            <br>
+                                            <input type="text" id="companyMobile" name="companyMobile"class="adr" tabindex="2"  onfocus="InvoiceGenerator.strikeInfo('compAddInfo', true)" placeholder="Mobile Number:" onblur="InvoiceGenerator.strikeInfo('compAddInfo', false)" name="street" value="<%= user.profile.mobile %>" data-json-node="user_name" data-is-array="false">
+                                            <br>
+                                            <input type="text" id="companyEmail" name="companyEmail" class="adr" tabindex="3" placeholder="Email:" onfocus="InvoiceGenerator.strikeInfo('compAddInfo', true)" onblur="InvoiceGenerator.strikeInfo('compAddInfo', false)" value="<%= user.email %>" name="province" data-json-node="company_address_1" data-is-array="false">
+                                            <br>
+                                            <input type="text" class="adr" id="city" tabindex="4" placeholder="Address:" onfocus="InvoiceGenerator.strikeInfo('compAddInfo', true)" onblur="InvoiceGenerator.strikeInfo('compAddInfo', false)" name="city" data-json-node="company_address_2" data-is-array="false">
+<!--                                             <br>
+                                            <input type="text" class="adr" tabindex="5" id="country" placeholder="Address" onfocus="InvoiceGenerator.strikeInfo('compAddInfo', true)" onblur="InvoiceGenerator.strikeInfo('compAddInfo', false)" name="country" data-json-node="company_country" data-is-array="false">
+                                            <br>
+                                            <input type="email" class="adr" tabindex="6" id="email" placeholder="Email" onfocus="InvoiceGenerator.strikeInfo('compAddInfo', true)" onblur="InvoiceGenerator.strikeInfo('compAddInfo', false)" name="email" data-json-node="email" data-is-array="false">
+                                            <br> -->
+                                            <!-- </td> -->
+                                           <!--  <td>
+                                                <table>
+                                                <tr>
+                                                    <input type="text" value="Invoice No." id="invoiceNoKey" class="bld text-left" tabindex="13" onfocus="InvoiceGenerator.strikeInfo('invNumberInfo', true)" onblur="InvoiceGenerator.strikeInfo('invNumberInfo', false)" name="invoiceNoKey" data-json-node="invoice_number_label" data-is-array="false">
+                                                </tr>
+
+                                                <tr>
+                                                    <input type="text" class="" id="invoiceNoValue" tabindex="14" placeholder=" INV-12" onfocus="InvoiceGenerator.strikeInfo('invNumberInfo', true)" onblur="InvoiceGenerator.strikeInfo('invNumberInfo', false)" name="invoiceNoValue" data-json-node="invoice_number" data-is-array="false">
+                                                </tr>
+                                                <tr>
+                                                    <input type="text" value="Delivery Note" id="deliveryNoteKey" class="bld text-left" tabindex="15" onfocus="InvoiceGenerator.strikeInfo('invNumberInfo', true)" onblur="InvoiceGenerator.strikeInfo('invNumberInfo', false)" name="deliveryNoteKey" data-json-node="invoice_number_label" data-is-array="false">
+                                                </tr>
+                                                <tr>
+                                                    <input type="text" class="" id="deliveryNoteValue" tabindex="16" placeholder=" Add" onfocus="InvoiceGenerator.strikeInfo('invNumberInfo', true)" onblur="InvoiceGenerator.strikeInfo('invNumberInfo', false)" name="deliveryNoteValue" data-json-node="invoice_number" data-is-array="false">
+                                                </tr>
+                                                <tr>
+                                                    <input type="text" value="Supplier's Ref." id="supplierRef.key" class="bld text-left w100" tabindex="17" onfocus="InvoiceGenerator.strikeInfo('invNumberInfo', true)" onblur="InvoiceGenerator.strikeInfo('invNumberInfo', false)" name="supplierRef.key" data-json-node="invoice_number_label" data-is-array="false">
+                                                </tr>
+                                                <tr>
+                                                    <input type="text" class="059" id="supplierRef.value" tabindex="18" placeholder=" Add" onfocus="InvoiceGenerator.strikeInfo('invNumberInfo', true)" onblur="InvoiceGenerator.strikeInfo('invNumberInfo', false)" name="supplierRef.value" data-json-node="invoice_number" data-is-array="false">
+                                                </tr>
+                                                </table>
+                                            </td> -->
+                                            <!-- <td>
+                                                <table>
+                                                <tr>
+                                                    <input type="text" value="Invoice Date" id="invoiceDateKey" class="bld text-left" tabindex="25" onfocus="InvoiceGenerator.strikeInfo('invNumberInfo', true)" onblur="InvoiceGenerator.strikeInfo('invNumberInfo', false)" name="invoiceDateKey" data-json-node="invoice_date_label" data-is-array="false">
+                                                </tr>
+                                                <tr>
+                                                    <input class="iDate" type="text" id="invoiceDateValue" tabindex="26" placeholder=" Jun 22, 2016" onfocus="InvoiceGenerator.strikeInfo('invNumberInfo', true)" onblur="InvoiceGenerator.strikeInfo('invNumberInfo', false)" name="invoiceDateValue" data-json-node="invoice_date" data-is-array="false">
+                                                </tr>
+                                                <tr>
+                                                    <input type="text" value="Mode/Terms of Payment" id="paymentModeKey" class="bld text-left" tabindex="27" onfocus="InvoiceGenerator.strikeInfo('invNumberInfo', true)" onblur="InvoiceGenerator.strikeInfo('invNumberInfo', false)" name="paymentModeKey" data-json-node="invoice_number_label" data-is-array="false">
+                                                </tr>
+                                                <tr>
+                                                    <input type="text" class="" id="paymentModeValue" tabindex="28" placeholder=" NEFT" onfocus="InvoiceGenerator.strikeInfo('invNumberInfo', true)" onblur="InvoiceGenerator.strikeInfo('invNumberInfo', false)" name="paymentModeValue" data-json-node="invoice_number" data-is-array="false">
+                                                </tr>
+                                                <tr>
+                                                    <input type="text" value="Other Reference(s)" id="otherRefKey" class="bld text-left" tabindex="29" onfocus="InvoiceGenerator.strikeInfo('invNumberInfo', true)" onblur="InvoiceGenerator.strikeInfo('invNumberInfo', false)" name="otherRefKey" data-json-node="invoice_number_label" data-is-array="false">
+                                                </tr>
+                                                <tr>
+                                                    <input type="text" class="" id="otherRefValue" tabindex="30" placeholder=" Add reference" onfocus="InvoiceGenerator.strikeInfo('invNumberInfo', true)" onblur="InvoiceGenerator.strikeInfo('invNumberInfo', false)" name="otherRefValue" data-json-node="invoice_number" data-is-array="false">
+                                                </tr>     
+                                                </table>
+                                            </td> -->
+                                        <!-- </tr> -->
+                                        <!-- <tr>
+                                        <td>
+                                        <input type="text" value="Bill To:" id="billTo" class="adr bill-to bld" tabindex="7" onfocus="InvoiceGenerator.strikeInfo('clientAddInfo', true)" onblur="InvoiceGenerator.strikeInfo('clientAddInfo', false)" name="billToKey" data-json-node="bill_to_label" data-is-array="false">
+                                        <br>
+                                        <input type="text" id="customer.name" class="adr" tabindex="8" placeholder="Your Client’s Company" onfocus="InvoiceGenerator.strikeInfo('clientAddInfo', true); InvoiceGenerator.showHideErr('billingAddress1', false);" onblur="InvoiceGenerator.strikeInfo('clientAddInfo', false)" name="customer.name" data-json-node="customer_name" data-is-array="false">
+                                        <small id="billingAddress1_err" class="text-danger hide">Please fill in your client’s name or their company name</small>
+                                        <br>
+                                        <input type="text" id="customer.address" class="adr" tabindex="9" placeholder="Client’s Address" onfocus="InvoiceGenerator.strikeInfo('clientAddInfo', true)" onblur="InvoiceGenerator.strikeInfo('clientAddInfo', false)" name="customer.address" data-json-node="customer_billing_address_1" data-is-array="false">
+                                        <br>
+                                        <input type="text" class="adr" id="city" tabindex="10" placeholder="City, State Zip" onfocus="InvoiceGenerator.strikeInfo('clientAddInfo', true)" onblur="InvoiceGenerator.strikeInfo('clientAddInfo', false)" name="city" data-json-node="customer_billing_address_2" data-is-array="false">
+                                        <br>
+
+                                        <input type="text" class="adr" tabindex="11" id="country" placeholder="Country" onfocus="InvoiceGenerator.strikeInfo('clientAddInfo', true)" onblur="InvoiceGenerator.strikeInfo('clientAddInfo', false)" name="country" data-json-node="customer_billing_country" data-is-array="false">
+                                        <br>
+                                        <input type="email" class="adr" tabindex="12" id="email" placeholder="Email" onfocus="InvoiceGenerator.strikeInfo('compAddInfo', true)" onblur="InvoiceGenerator.strikeInfo('compAddInfo', false)" name="email" data-json-node="company_country" data-is-array="false">
+                                        <br>
+                                        </td> -->
+                                        <!-- <td>
+                                            <table>
+                                                <tr>
+                                                    <input type="text" value="Buyer's Order No." id="orderNoKey" class="bld text-left" tabindex="19" onfocus="InvoiceGenerator.strikeInfo('invNumberInfo', true)" onblur="InvoiceGenerator.strikeInfo('invNumberInfo', false)" name="orderNoKey" data-json-node="invoice_number_label" data-is-array="false">
+                                                </tr>
+                                                <tr>
+                                                    <input type="text" class="" id="orderNoValue" tabindex="20" placeholder=" Add" onfocus="InvoiceGenerator.strikeInfo('invNumberInfo', true)" onblur="InvoiceGenerator.strikeInfo('invNumberInfo', false)" name="orderNoValue" data-json-node="invoice_number" data-is-array="false">
+                                                </tr>
+                                                <tr>
+                                                    <input type="text" value="Despatch Document No." id="dispatchedNoKey" class="bld text-left" tabindex="21" onfocus="InvoiceGenerator.strikeInfo('invNumberInfo', true)" onblur="InvoiceGenerator.strikeInfo('invNumberInfo', false)" name="dispatchedNoKey" data-json-node="invoice_number_label" data-is-array="false">
+                                                </tr>
+                                                <tr>
+                                                    <input type="text" class="" id="dispatchedNoValue" tabindex="22" placeholder=" Add" onfocus="InvoiceGenerator.strikeInfo('invNumberInfo', true)" onblur="InvoiceGenerator.strikeInfo('invNumberInfo', false)" name="dispatchedNoValue" data-json-node="invoice_number" data-is-array="false">
+                                                </tr>
+                                                <tr>
+                                                    <input type="text" value="Despatched through" id="dispatchedThroughKey" class="bld text-left w100" tabindex="23" onfocus="InvoiceGenerator.strikeInfo('invNumberInfo', true)" onblur="InvoiceGenerator.strikeInfo('invNumberInfo', false)" name="dispatchedThroughKey" data-json-node="invoice_number_label" data-is-array="false">
+                                                </tr>
+                                                <tr>
+                                                    <input type="text" class="059" id="dispatchedThroughValue" tabindex="24" placeholder=" Add" onfocus="InvoiceGenerator.strikeInfo('invNumberInfo', true)" onblur="InvoiceGenerator.strikeInfo('invNumberInfo', false)" name="dispatchedThroughValue" data-json-node="invoice_number" data-is-array="false">
+                                                </tr>
+                                            </table>
+                                        </td> -->
+
+                                        <td>
+                                            <table>
+                                                <tr> 
+                                                    <!-- <input id="orderDateValue" class="orderDate"type="text" placeholder="Date" onfocus="InvoiceGenerator.strikeInfo('invNumberInfo', true)" onblur="InvoiceGenerator.strikeInfo('invNumberInfo', false)" name="orderDateValue"  data-is-array="false">
+                                                </td>
+                                                <td>
+                                                    <input value="LeadId"  tabindex="32" type="text" placeholder=" Lead Id" onfocus="InvoiceGenerator.strikeInfo('invNumberInfo', true)" onblur="InvoiceGenerator.strikeInfo('invNumberInfo', false)" name="orderDateValue"  data-is-array="false">
+                                                    </td> -->
+                                                    <!-- <input type="text" id="companyName" class="adr bld f20" tabindex="1" autofocus="focus" placeholder="Your Company" onfocus="InvoiceGenerator.strikeInfo('compAddInfo', true); InvoiceGenerator.showHideErr('cName', false);" onblur="InvoiceGenerator.strikeInfo('compAddInfo', false)" name="companyName" data-json-node="company_name" data-is-array="false">
+                                            <small id="address1_err" class="text-danger hide">Please fill in your company’s name</small> -->
+                                            <input type="date" id="leadDate" name="leadDate" disabled="" tabindex="2"  onfocus="InvoiceGenerator.strikeInfo('compAddInfo', true)" placeholder="Date:" onblur="InvoiceGenerator.strikeInfo('compAddInfo', false)" name="street"data-is-array="false">
+                                            <br>
+                                            <input type="text" readonly id="leadId" name="leadId" class="adr" tabindex="2"  onfocus="InvoiceGenerator.strikeInfo('compAddInfo', true)" placeholder="Lead Id:" onblur="InvoiceGenerator.strikeInfo('compAddInfo', false)" name="street" data-json-node="user_name" data-is-array="false">
+                                            <br>
+                                            <!-- <input type="text" id="province" class="adr" tabindex="3" placeholder="Quote Id:" onfocus="InvoiceGenerator.strikeInfo('compAddInfo', true)" onblur="InvoiceGenerator.strikeInfo('compAddInfo', false)" name="province" data-json-node="company_address_1" data-is-array="false">
+                                            <br> -->
+                                            <input id="validUntil" name="validUntil" class="dispatchedDate" tabindex="4" placeholder="Valid Until:" onfocus="InvoiceGenerator.strikeInfo('compAddInfo', true)" onblur="InvoiceGenerator.strikeInfo('compAddInfo', false)" name="validUntil" data-json-node="due_date" data-is-array="false">
+                                                </tr>
+                                                </table>
+                                            
+
+                                                
+                                                
+                                                <!-- <tr>
+                                                    <input id="orderDateValue" class="orderDate" tabindex="32" type="text" placeholder=" Lead Id" onfocus="InvoiceGenerator.strikeInfo('invNumberInfo', true)" onblur="InvoiceGenerator.strikeInfo('invNumberInfo', false)" name="orderDateValue"  data-is-array="false">
+                                                </tr> -->
+                                                <!-- <tr>
+                                                    <input value="Quote Id" id="dispatchedDateKey" class="bld text-left" type="text" 
+                                                    placeholder=" Quote Id" tabindex="33" onfocus="InvoiceGenerator.strikeInfo('invNumberInfo', true)" onblur="InvoiceGenerator.strikeInfo('invNumberInfo', false)" name="dispatchedDateKey" data-json-node="due_date_label" data-is-array="false">
+                                                </tr> -->
+                                                <!-- <tr>
+                                                    <input id="dispatchedDateValue" class="dispatchedDate" tabindex="34" type="text" placeholder="Valid Until" onfocus="InvoiceGenerator.strikeInfo('invNumberInfo', true)" onblur="InvoiceGenerator.strikeInfo('invNumberInfo', false)" name="dispatchedDateValue" data-json-node="due_date" data-is-array="false">
+                                                </tr> -->
+                                                <!-- <tr>
+                                                    <input type="text" value="Destination" id="destinationKey" class="bld text-left w100" tabindex="35" onfocus="InvoiceGenerator.strikeInfo('invNumberInfo', true)" onblur="InvoiceGenerator.strikeInfo('invNumberInfo', false)" name="destinationKey" data-json-node="invoice_number_label" data-is-array="false">
+                                                </tr> -->
+                                                <!-- <tr>
+                                                    <input type="text" class="059" id="destinationValue" tabindex="36" placeholder=" Add Destination" onfocus="InvoiceGenerator.strikeInfo('invNumberInfo', true)" onblur="InvoiceGenerator.strikeInfo('invNumberInfo', false)" name="destinationValue" data-json-node="invoice_number" data-is-array="false">
+                                                </tr> -->
+                                            <!-- </table>
+                                        </td> -->
+                                        <!-- </tr> -->
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="row" style="padding:0px 50px 0px 50px;">
+                            <table width="100%" cellpadding="0" cellspacing="0" border="1">
+                                    <tbody>
+                                        <tr span="2">
+                                            <td width="51%">
+                                            <b><h4>Customer Detail:-</h4></b>
+                                            <input type="text" readonly id="customerName" name="customerName" class="adr" tabindex="2"  onfocus="InvoiceGenerator.strikeInfo('compAddInfo', true)" value="Name:" placeholder="Name:" onblur="InvoiceGenerator.strikeInfo('compAddInfo', false)" name="street" data-json-node="user_name" data-is-array="false">
+                                            <br>
+                                            <input type="text" readonly id="customerAddress" name="customerAddress" class="adr" tabindex="2"  onfocus="InvoiceGenerator.strikeInfo('compAddInfo', true)" placeholder="Address:" onblur="InvoiceGenerator.strikeInfo('compAddInfo', false)" name="street" data-json-node="user_name" data-is-array="false">
+                                            <br>
+                                            <input type="text" readonly id="customerMobile" name="customerMobile" class="adr" tabindex="2"  onfocus="InvoiceGenerator.strikeInfo('compAddInfo', true)" placeholder="Mobile:" onblur="InvoiceGenerator.strikeInfo('compAddInfo', false)" name="street" data-json-node="user_name" data-is-array="false">
+                                            <br>
+                                            <input type="email" readonly id="customerEmail" name="customerEmail" class="adr" tabindex="2"  onfocus="InvoiceGenerator.strikeInfo('compAddInfo', true)" placeholder="Email:" onblur="InvoiceGenerator.strikeInfo('compAddInfo', false)" name="street" data-json-node="user_name" data-is-array="false">
+                                            <br>
+                                            </td>
+                                            </tr>
+                                            </tbody>
+                                            </table> 
+                            </div>
+
+                            <div class="row" style="padding:0px 50px 0px 50px;">
+                                <div class="lineItemDIV">
+                                    <table width="100%" cellpadding="0" cellspacing="0" class="column" style="table-layout: fixed">
+                                        <thead>
+                                            <tr class="hd">
+                                                <td width="48%">
+                                                    <input style="text-align:left;" type="text" id="itemDescriptionKey" value="Item Description" class="bld w100" tabindex="" onfocus="InvoiceGenerator.strikeInfo('itemInfo', true)" onblur="InvoiceGenerator.strikeInfo('itemInfo', false)" name="itemDescriptionKey" data-json-node="name" data-is-array="false" data-parent-json="line_items_header">
+                                                </td>
+                                                <td width="17%">
+                                                    <input type="text" value="Qty" id="quantityKey" class="bld w100" tabindex="" onfocus="InvoiceGenerator.strikeInfo('itemInfo', true)" onblur="InvoiceGenerator.strikeInfo('itemInfo', false)" name="quantityKey" data-json-node="quantity" data-is-array="false" data-parent-json="line_items_header">
+                                                </td>
+                                                <td width="17%">
+                                                    <input type="text" value="Rate" id="rateKey" class="bld w100 text-left" tabindex="" onfocus="InvoiceGenerator.strikeInfo('itemInfo', true)" onblur="InvoiceGenerator.strikeInfo('itemInfo', false)" name="rateKey" data-json-node="rate" data-is-array="false" data-parent-json="line_items_header">
+                                                </td>
+                                                <td width="18%">
+                                                    <input type="text" value="Amount" id="amountKey" class="bld w100 text-right" style="text-align:right;" tabindex="" onfocus="InvoiceGenerator.strikeInfo('itemInfo', true)" onblur="InvoiceGenerator.strikeInfo('itemInfo', false)" name="amountKey" data-json-node="amount" data-is-array="false" data-parent-json="line_items_header">
+                                                </td>
+                                                <td style="" width="2%" class="dele-icon">&nbsp;</td>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody class="lineItems">
+                                            <tr class="row-item trClone hide" id="lineItem.0" onclick="InvoiceGenerator.strikeInfo('itemInfo', true)" onmouseover="javascript:CreateInvoiceUtil.showCloseIcon(this,true)" onmouseout="javascript:CreateInvoiceUtil.showCloseIcon(this,false)" onblur="InvoiceGenerator.strikeInfo('itemInfo', false)">
+                                                <td>
+                                                    <textarea type="text" class="w100" tabindex="37" id="itemDesc.0" onfocus="InvoiceGenerator.strikeInfo('itemInfo', true)" onkeypress="javascript:CreateInvoiceUtil.checkAndAddNewLineItem(this, event)" onblur="InvoiceGenerator.strikeInfo('itemInfo', false)" placeholder="Enter item name/description" name="itemDesc.0" data-json-node="name" data-is-array="true" data-array-parent="line_items"></textarea>
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="w100 text-right" value="1" tabindex="38" id="itemQty.0" onfocus="InvoiceGenerator.strikeInfo('itemInfo', true)" onblur="javascript:CreateInvoiceUtil.calculateItemTotal(this);InvoiceGenerator.strikeInfo('itemInfo', false)" name="itemQty.0" data-json-node="quantity" data-is-array="true" data-array-parent="line_items">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="w100 text-right" value="0.00" tabindex="39" id="itemRate.0" onfocus="InvoiceGenerator.strikeInfo('itemInfo', true)" onblur="javascript:CreateInvoiceUtil.calculateItemTotal(this);InvoiceGenerator.strikeInfo('itemInfo', false)" name="itemRate.0" data-json-node="rate" data-is-array="true" data-array-parent="line_items">
+                                                </td>
+                                                <td>
+                                                    <input readonly class="cursor-disabled w100 text-right" id="itemTotal.0" title="Amount is calculated automatically." name="itemTotal.0" data-json-node="amount" data-is-array="true" data-array-parent="line_items" value="0.00"/>
+                                                </td>
+
+                                                <td style="border-bottom:none;background:none;border-top:none" class="dele-icon">
+                                                    <div style="padding-top:4px"><a class="closeicon hide" style="cursor:pointer" title="Delete Row" id="itemClose.0" onclick="javascript:CreateInvoiceUtil.removeLineItem(this)"><span class="del pull-left">&nbsp;<i class="icon-close"></i></span></a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <tr class="row-item " id="lineItem.1" onclick="InvoiceGenerator.strikeInfo('itemInfo', true)" onmouseover="javascript:CreateInvoiceUtil.showCloseIcon(this,true)" onmouseout="javascript:CreateInvoiceUtil.showCloseIcon(this,false)">
+                                                <td>
+                                                    <textarea type="text" class="w100" id="itemDescriptionValue" tabindex="37" placeholder="Enter item name/description" onfocus="InvoiceGenerator.strikeInfo('itemInfo', true)" onkeypress="javascript:CreateInvoiceUtil.checkAndAddNewLineItem(this, event)" onblur="InvoiceGenerator.strikeInfo('itemInfo', false)" name="itemDescriptionValue" data-json-node="name" data-is-array="true" data-array-parent="line_items"></textarea>
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="w100 text-right" value="1" tabindex="38" id="itemQty.1" onfocus="InvoiceGenerator.strikeInfo('itemInfo', true)" onblur="javascript:CreateInvoiceUtil.calculateItemTotal(this);InvoiceGenerator.strikeInfo('itemInfo', false)" name="itemQty.1" data-json-node="quantity" data-is-array="true" data-array-parent="line_items">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="w100 text-right" value="100.00" tabindex="39" id="itemRate.1" onfocus="InvoiceGenerator.strikeInfo('itemInfo', true)" onblur="javascript:CreateInvoiceUtil.calculateItemTotal(this);InvoiceGenerator.strikeInfo('itemInfo', false)" name="itemRate.1" data-json-node="rate" data-is-array="true" data-array-parent="line_items">
+                                                </td>
+                                                <td>
+                                                    <input readonly class="cursor-disabled w100 text-right" id="itemTotal.1" title="Amount is calculated automatically." name="itemTotal.1" data-json-node="amount" data-is-array="true" data-array-parent="line_items" value="100.00"/>
+                                                </td>
+
+                                                <td style="border-bottom:none;background:none;border-top:none" class="dele-icon">
+                                                    <div style="padding-top:4px"><a class="closeicon hide" title="Delete Row" id="itemClose.1" style="cursor:pointer;" onclick="javascript:CreateInvoiceUtil.removeLineItem(this)"><span class="del pull-left">&nbsp;<i class="icon-close"></i></span></a> </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+
+                                                    <div>
+                                                        <a style="cursor:pointer;margin-left:0px;margin-top: -16px;" title="Add Row" onclick="javascript:CreateInvoiceUtil.addInvoiceLineItem()"><span class="add"><i class="icon-plus"></i> Add Line Item</span><!-- <span class="add"> <i class="icon-plus"></i> Add Line Item</span> --></a>
+
+                                                    </div>
+                                                </td>
+                                                <td colspan="3" style="border-right:none;">
+                                                    <table width="100%" cellpadding="0" cellspacing="0" style="margin-left:10px;border-bottom:solid 1px #c7c7c7;">
+                                                        <tbody>
+                                                            <tr class="sav-amo text-right">
+                                                                <td width="40%" class="bdr-non">
+                                                                    <input type="text" value="Sub Total" id="subTotalLabel" tabindex="" name="sub_total_label" data-json-node="sub_total_label" data-is-array="false">
+                                                                </td>
+                                                                <td class="bdr-non">
+                                                                    <span class="amount bld cursor-disabled" id="subTotal" title="Sub total is calculated automatically." name="subTotal" data-json-node="sub_total" data-is-array="false">100.00</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="text-right">
+                                                                <td width="40%">
+                                                                  
+                                                                    <input type="text" value="Sales Tax (15%)" tabindex="40" id="taxLabel" onblur="javascript:CreateInvoiceUtil.calculateInvTaxAndTotal(this)" name="tax_name" data-json-node="tax_name" data-is-array="false">
+                                                                  
+                                                                </td>
+                                                                <td>
+                                                                    <span class="amount bld cursor-disabled" id="taxAmt" title="Tax amount is calculated automatically." name="taxAmt" data-json-node="tax" data-is-array="false">15.00</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="tot">
+                                                                <td width="40%">
+                                                                    <input type="text" value="TOTAL" id="totalLabel" tabindex="" name="total_label" data-json-node="total_label" data-is-array="false">
+                                                                </td>
+                                                                <td>
+                                                                    <select class="hide select-currency" tabindex="27" id="currencySelect" onchange="InvoiceGenerator.showCurrencySelect('currencySelect', 'currencySym')">
+                                                                    </select>
+                                                                    
+                                                                    <input type="hidden" id="currencyCode" name="currency_code" data-json-node="currency_code" data-is-array="false" value="INR" />
+                                                                    <input type="text" style="border: 1px solid #444; background-color: #fdf4db;" class="currencycodetxt" maxlength="5" tabindex="" id="currencySym" value="Rs." name="currency_symbol" data-json-node="currency_symbol" data-is-array="false" onclick="InvoiceGenerator.showCurrencySelect('currencySym', 'currencySelect')">
+                                                                    
+                                                                    <span class="amount bld cursor-disabled" id="total" title="Amount is calculated automatically." name="total" data-json-node="total" data-is-array="false">115.00</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="tot text-right" colspan="2">
+                                                                    <textarea id="totalInwords" title="Words is calculated automatically." name="totalInwords" class="adr bill-to bld text-right" tabindex=""></textarea>
+                                                                    <br>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table><br>
+                                                </td>
+
+                                            </tr>
+
+                                        </tbody>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!-- <div class="row" style="padding:0px 50px 0px 50px;">
+                                <div>
+                                    <input type="text" value="Company Details:" id="cDetails" class="adr bill-to text-left bld" tabindex="" onfocus="InvoiceGenerator.strikeInfo('clientAddInfo', true)" onblur="InvoiceGenerator.strikeInfo('clientAddInfo', false)" name="cDetails" data-json-node="bill_to_label" data-is-array="false">               
+                                </div>
+                            
+                                <table width="100%" cellpadding="0" cellspacing="0" border="1px dotted">
+                                    <tbody>
+                                        <tr>
+                                            <td class="lft-txt" width="20%">
+                                                <input type="text" value="Service Tax No:" id="serviceTaxNoKey" class="text-left w100" tabindex="41" onfocus="InvoiceGenerator.strikeInfo('invNumberInfo', true)" onblur="InvoiceGenerator.strikeInfo('invNumberInfo', false)" name="serviceTaxNoKey" data-json-node="invoice_number_label" data-is-array="false">
+                                            </td>
+                                            <td class="lft-txt" width="30%">
+                                                <input type="text" value="AAHCA6820CSD001" id="serviceTaxNoValue" class="text-left w100 bld" tabindex="42" onfocus="InvoiceGenerator.strikeInfo('invNumberInfo', true)" onblur="InvoiceGenerator.strikeInfo('invNumberInfo', false)" name="serviceTaxNoValue" data-json-node="invoice_number_label" data-is-array="false">
+                                            </td>
+                                            <td class="lft-txt" width="20%">
+                                                <input type="text" value="Bank Name:" id="bankNameKey" class="text-left w100" tabindex="43" onfocus="InvoiceGenerator.strikeInfo('invNumberInfo', true)" onblur="InvoiceGenerator.strikeInfo('invNumberInfo', false)" name="bankNameKey" data-json-node="invoice_number_label" data-is-array="false">
+                                            </td>
+                                            <td class="lft-txt" width="30%">
+                                                <input type="text" value="Corporation Bank" id="bankNameValue" class="text-left w100 bld" tabindex="44" onfocus="InvoiceGenerator.strikeInfo('invNumberInfo', true)" onblur="InvoiceGenerator.strikeInfo('invNumberInfo', false)" name="bankNameValue" data-json-node="invoice_number_label" data-is-array="false">
+                                            </td>
+                                            </tr>
+                                            <tr>
+                                            <td class="lft-txt" width="20%">
+                                                <input type="text" value="PAN No:" id="panNoKey" class="text-left w100" tabindex="45" onfocus="InvoiceGenerator.strikeInfo('invNumberInfo', true)" onblur="InvoiceGenerator.strikeInfo('invNumberInfo', false)" name="panNoKey" data-json-node="invoice_number_label" data-is-array="false">
+                                            </td>
+                                            <td class="lft-txt" width="30%">
+                                                <input type="text" value="AAHCA6820C" id="panNoValue" class="text-left w100 bld" tabindex="46" onfocus="InvoiceGenerator.strikeInfo('invNumberInfo', true)" onblur="InvoiceGenerator.strikeInfo('invNumberInfo', false)" name="panNoValue" data-json-node="invoice_number_label" data-is-array="false">
+                                            </td>
+                                            <td class="lft-txt" width="20%">
+                                                <input type="text" value="Account No:" id="accountNoKey" class="text-left w100" tabindex="47" onfocus="InvoiceGenerator.strikeInfo('invNumberInfo', true)" onblur="InvoiceGenerator.strikeInfo('invNumberInfo', false)" name="accountNoKey" data-json-node="invoice_number_label" data-is-array="false">
+                                            </td>
+                                            <td class="lft-txt" width="30%">
+                                                <input type="text" value="201800201000113" id="accountNoValue" class="text-left w100 bld" tabindex="48" onfocus="InvoiceGenerator.strikeInfo('invNumberInfo', true)" onblur="InvoiceGenerator.strikeInfo('invNumberInfo', false)" name="accountNoValue" data-json-node="invoice_number_label" data-is-array="false">
+                                            </td>
+                                            </tr>
+                                            <tr>
+                                            <td class="lft-txt" width="20%">
+                                                <input type="text" value="TIN/TAN No:" id="tinNoKey" class="text-left w100" tabindex="49" onfocus="InvoiceGenerator.strikeInfo('invNumberInfo', true)" onblur="InvoiceGenerator.strikeInfo('invNumberInfo', false)" name="tinNoKey" data-json-node="invoice_number_label" data-is-array="false">
+                                            </td>
+                                            <td class="lft-txt" width="30%">
+                                                <input type="text" value="STMQ52187GN" id="tinNoValue" class="text-left w100 bld" tabindex="50" onfocus="InvoiceGenerator.strikeInfo('invNumberInfo', true)" onblur="InvoiceGenerator.strikeInfo('invNumberInfo', false)" name="tinNoValue" data-json-node="invoice_number_label" data-is-array="false">
+                                            </td>
+                                            <td class="lft-txt" width="20%">
+                                                <input type="text" value="Branch &amp; IFSC Code:" id="branchIfscKey" class="text-left w100" tabindex="51" onfocus="InvoiceGenerator.strikeInfo('invNumberInfo', true)" onblur="InvoiceGenerator.strikeInfo('invNumberInfo', false)" name="branchIfscKey" data-json-node="invoice_number_label" data-is-array="false">
+                                            </td>
+                                            <td class="lft-txt" width="30%">
+                                                <input type="text" value="CORP0002018" id="branchIfscValue" class="text-left w100 bld" tabindex="52" onfocus="InvoiceGenerator.strikeInfo('invNumberInfo', true)" onblur="InvoiceGenerator.strikeInfo('invNumberInfo', false)" name="branchIfscValue" data-json-node="invoice_number_label" data-is-array="false">
+                                            </td>
+                                            </tr>
+                                    </tbody>
+                                </table><br>
+                                <div>
+                                    <textarea class="bld text-right w100" id="description" tabindex="53" name="description" data-json-node="notes" data-is-array="false">for Hurreh Technologies Pvt Ltd</textarea>
+                                </div>
+                                <div>
+                                    <input type="text" value="Authorised Signatory" id="signature" class="bld text-right w100" tabindex="54" name="signature" data-json-node="invoice_number_label" data-is-array="false">
+                                </div>
+                                <div>
+                                    <input class="terms" value="Notes" id="notesKey" tabindex="55" name="notesKey" data-json-node="notes_label" data-is-array="false">
+                                </div>
+                                <div>
+                                    <textarea class="note" id="notesValue" tabindex="56" name="notes" data-json-node="notesValue" data-is-array="false">It was great doing business with you.</textarea>
+                                </div>
+                                <div style="margin-top:-24px;">
+                                    <input class="terms" value="Terms &amp; Conditions" id="termsKey" tabindex="57" name="termsKey" data-json-node="terms_and_conditions_label" data-is-array="false">
+                                </div>
+                                <div>
+                                    <textarea class="note" id="termsValue" tabindex="58" name="termsValue" data-json-node="terms_and_conditions" data-is-array="false">Please make the payment by the due date.</textarea>
+                                </div> -->
+                                <div class="row" style="padding:0px 50px 0px 50px;">
+                                <div style="margin-top:-24px;">
+                                    <input class="terms" value="Terms &amp; Conditions" id="termsKey" tabindex="57" name="termsKey" data-json-node="terms_and_conditions_label" data-is-array="false">
+                                </div>
+                                <div>
+                                    <textarea class="note" id="termsValue" tabindex="58" name="termsValue" data-json-node="terms_and_conditions" data-is-array="false">Please make the payment by the due date.</textarea>
+                                </div>
+                            <hr>    
+                            <div>
+                                <input type="text" value="Hurreh Technologies Pvt. Ltd." id="cNameId" class="adr bill-to bld text-center" tabindex="59" onfocus="InvoiceGenerator.strikeInfo('clientAddInfo', true)" onblur="InvoiceGenerator.strikeInfo('clientAddInfo', false)" name="cNameId" data-json-node="bill_to_label" data-is-array="false">
+                                <br>
+                            </div>
+                            </div>
+                            <div>
+                                <textarea class="note text-center" id="address" tabindex="60" name="address" data-json-node="terms_and_conditions" data-is-array="false">#303 , JC Residency , 2-21/2 , Sarakki Main Road , 1st Phase , JP Nagar , Bangalore</textarea>
+                            <br></div>
+                            <br>  
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="/invoices/templates/accwaves/js/index.js"></script>
+<!-- <script type="text/javascript" src="/invoices/templates/accwaves/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/invoices/templates/accwaves/js/bootstrap-datepicker.min.js"></script>
+ -->
+<script type="text/javascript" src="/invoices/templates/accwaves/js/autosize.min.js"></script>
+<script type="text/javascript" src="/invoices/templates/accwaves/js/toword.js"></script>

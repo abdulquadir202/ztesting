@@ -1,0 +1,1 @@
+Enquiry Date(YYYY/MM/DD),billNo,customerName,customerMobile,address,serviceName,employeeName,employeeMobile,Job Date(YYYY/MM/DD),spares(product1-quantity-price/product2-quantity2-price2),spareGst,serviceCharge,serviceGst,paid,status(confirm/new),remarks

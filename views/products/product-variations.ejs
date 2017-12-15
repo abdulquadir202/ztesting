@@ -1,0 +1,57 @@
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li><span><a href="/dashboard">Home</a></span><i class="fa fa-circle"></i></li>
+                <li><span><a href="/products/catalog">Products</a></span><i class="fa fa-circle"></i></li>
+                <li><span>Variations</span></li>
+            </ul>
+        </div>
+        <h1 class="page-title"></h1>
+        <div class="row">
+            <div class="col-md-12">
+                <div id="form-alerts"> </div>
+                <div class="portlet light bordered" id="shoppe_portlet">
+                    <div class="portlet-title">
+                        <div class="caption font-blue-hoki">
+                            <i class="icon-bag font-blue-hoki"></i>
+                            <span class="caption-subject bold uppercase"> Product Variations | <%= uname %> </span>
+                        </div>
+
+                        <div class="dt-buttons pull-right">
+                            <a class="dt-button buttons-print btn green btn-outline" data-toggle="modal" href="#addVariationModal"><span><i class="icon-plus"></i> Add Variation</span></a>
+                            <%- partial('partials/al/table-tools') %>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="dataTables_wrapper no-footer">
+
+                            <div class="portlet-body" id="tDiv">
+                                <table class="table table-striped table-bordered table-hover table-checkable order-column" id="shoppe">
+                                    <thead>
+                                        <tr class="uppercase">
+                                            <th class="table-checkbox">
+                                                <input type="checkbox" class="group-checkable" data-set="#shoppe .checkboxes" /> </th>
+                                            <th> Product Name </th>
+                                            <th> Variation </th>
+                                            <th> Price  </th>
+                                            <th> Quantity </th>
+                                            <th> Unit </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tableData"></tbody>
+                                </table>
+                            </div>
+                            <input type="hidden" id="apiUrl" value="<%= api.url %>"/>
+                            <input type="hidden" id="token" value="<%= user.token %>"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% punit = unit; %>
+
+<%- partial('partials/modal/addProduct-variation') %>

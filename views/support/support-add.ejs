@@ -1,0 +1,171 @@
+<link href="/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" type="text/css" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.3/toastr.min.css" rel="stylesheet" />
+
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li><span><a href="/dashboard">Home</a></span><i class="fa fa-circle"></i></li>
+                <li><span><a href="/support/tickets">Ticket</a></span><i class="fa fa-circle"></i></li>
+                <li><span>Add</span></li>
+            </ul>
+        </div>
+        <h1 class="page-title"></h1>                          
+        <div class="row">
+            <div class="col-md-12">
+                <div id="form-alerts"> </div>
+                <div class="portlet light portlet-fit portlet-form bordered">
+                    <div class="portlet-title">
+                        <div class="caption font-blue-hoki">
+                            <i class="fa fa-paper-plane font-blue-hoki"></i>
+                            <span class="caption-subject sbold uppercase"> Tickets Information </span>
+                        </div>
+                    </div>
+
+                    <div class="portlet-body">
+                        <form action="<%= api.url %>/api/support/ticket?token=<%= user.token %>" id="support_add_form" class="form-horizontal">
+                            <div class="form-body">
+                                <div class="alert alert-danger display-hide">
+                                    <button class="close" data-close="alert"></button> You have some form errors. Please check below. </div>
+                                <div class="alert alert-success display-hide">
+                                    <button class="close" data-close="alert"></button> New Support added successfully! </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Title
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" id="title" name="title">
+                                    </div>
+                                </div>
+                                <div class="form-group" id="customerOption">
+                                    <label class="control-label col-md-3">Customer
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select id="customerId" class="form-control select2-multiple select2-hidden-accessible" name="customerId"></select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <span class="help-block"><a data-toggle="modal" href="#addCustomerModal"><i class="icon-plus"></i> Add New</a></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Due Date
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" name="dueDate" id="dueDate" data-required="1" class="form-control form-control-inline date-picker" data-date-format="dd-mm-yyyy"/> 
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3"> Assign To 
+                                       <!-- <span class="required"> * </span> -->
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select id="employeeId" class="form-control select2-multiple select2-hidden-accessible" name="employeeId">
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <span class="help-block"><a data-toggle="modal" href="#addEmployeeModal"><i class="icon-plus"></i> Add New</a></span>
+                                    </div>
+                                </div>
+                                
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Type
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select class="form-control select2-multiple select2-hidden-accessible" name="type" id="type" data-required="1">
+                                            <option value="bug" selected="true">Bug</option>
+                                            <option value="enhanancement">Enhanancement</option>
+                                            <option value="task">Task</option>
+                                            <option value="proposal">Proposal</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Service
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select id="itemId" class="form-control select2-multiple select2-hidden-accessible" name="itemId">
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <span class="help-block"><a data-toggle="modal" href="#addItemModal"><i class="icon-plus"></i> Add New</a></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Priority
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select class="form-control select2-multiple select2-hidden-accessible" name="priority" id="priority" data-required="1">
+                                            <option value="low" selected="true">Low</option>
+                                            <option value="medium">Medium</option>
+                                            <option value="high">High</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Status
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select class="form-control select2-multiple select2-hidden-accessible" name="status" id="status">
+                                            <option value="open" selected="true">Open</option>
+                                            <option value="pending">Pending</option>
+                                            <option value="closed">Closed</option>
+                                        </select> 
+                                    </div>
+                                </div>
+
+                                <!-- <div class="form-group">
+                                    <label class="control-label col-md-3">Attachment
+                                    </label>
+                                    <div class="col-md-4">
+                                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                                            <div class="fileinput-new thumbnail" style="width: 150px; height: 150px;">
+                                                <img src="http://www.placehold.it/150x150/EFEFEF/AAAAAA&amp;text=choose+photo&amp;txtsize=30" alt="" /> </div>
+                                            <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 150px; max-height: 150px;"> </div>
+                                            <div>
+                                                <span class="btn default btn-file">
+                                                    <span class="fileinput-new"> Select image </span>
+                                                    <span class="fileinput-exists"> Change </span>
+                                                    <input type="file" name="picture" id="picture"> </span>
+                                                <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Remove </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> -->
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Description
+                                    </label>
+                                    <div class="col-md-4">
+                                        <textarea rows="4" class="form-control" id="description" name="description"></textarea>
+                                    </div>
+                                </div>
+                        
+                            </div>
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-offset-3 col-md-9">
+                                        <button class="btn green" type="submit" id="addTask"> Submit </button>
+                                        <button type="reset" class="btn default">Reset</button>
+                                    </div>
+                                </div>
+                            </div>
+                          </div>
+                         
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%- partial('partials/modal/addEmployee') %>
+<%- partial('partials/modal/addCustomer') %>
+<%- partial('partials/modal/addItem') %>

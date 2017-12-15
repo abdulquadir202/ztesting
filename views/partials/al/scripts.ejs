@@ -1,0 +1,16 @@
+        <!--[if lt IE 9]>
+        <script src="/assets/global/plugins/respond.min.js"></script>
+        <script src="/assets/global/plugins/excanvas.min.js"></script> 
+        <![endif]-->
+        <script src="/dist/js/zinetgo-plugins.min.js" type="text/javascript"></script>
+        <script>
+                $(document).ready(function () {
+                      setTimeout(function () {
+                        $('.load-delay').each(function () {
+                            var imagex = $(this);
+                            var imgOriginal = imagex.data('original');
+                            $(imagex).attr('src', imgOriginal);
+                        });
+                    }, 3000);
+                });
+        </script>

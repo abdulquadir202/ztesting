@@ -1,0 +1,111 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.3/toastr.min.css" rel="stylesheet" />
+
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li><span><a href="/dashboard">Home</a></span><i class="fa fa-circle"></i></li>
+                <li><span><a href="/tasks">Tasks</a></span><i class="fa fa-circle"></i></li>
+                <li><span>Details</span></li>
+            </ul>  
+        </div>
+        <h1 class="page-title"></h1>
+
+        <div class="row">
+            <div class="col-md-12" id="detail">
+                <div id="form-alerts"> </div>
+                <div class="portlet light bordered">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="fa fa-tasks font-blue-hoki"></i>
+                            <span class="caption-subject font-blue-hoki bold uppercase">Task Detail</span>
+                            <!-- <span class="caption-helper">some info...</span> -->
+                        </div>
+                        <div class="dt-buttons pull-right">
+                            <a class="dt-button buttons-print btn green blue-hoki btn-outline" href="/tasks/<%= taskId %>/edit"><span><i class="fa fa-edit"></i> Edit</span></a>
+                            <a class="dt-button buttons-print btn green blue-hoki btn-outline" href="javascript:;" id="delete"><span><i class="fa fa-trash"></i> Delete</span></a>
+                        </div>
+                    </div>
+                    <div class="portlet-body form">
+                        <!-- BEGIN FORM-->
+                        <input type="hidden" id="taskId" value="<%= taskId %>">
+                        <input type="hidden" id="url" value="<%= api.url %>/api/task/<%= taskId %>?token=<%= user.token %>">
+
+                        <form class="form-horizontal" role="form">
+                            <div class="form-body">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Name:</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="displayName"></p>
+                                    </div>
+                                </div>
+                            
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Category:</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="displayCategory"></p>
+                                    </div>
+                                </div>
+                            
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Assign To:</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="displayAssignTo"></p>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Start Date:</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="displayStartDate"></p>
+                                    </div>
+                                </div>
+                            
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Due Date:</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="displayDueDate"></p>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Importance:</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="displayImportance"></p>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Urgency:</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="displayUrgency"></p>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Status:</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="displayStatus"></p>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Description:</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="displayDescription"></p>
+                                    </div>
+                                </div>
+                                    
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<%- partial('partials/modal/addEmployee') %>
+<%- partial('partials/modal/addTaskCategory') %>

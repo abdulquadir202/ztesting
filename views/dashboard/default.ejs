@@ -1,0 +1,169 @@
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li><span><a href="/dashboard">Dashboard</a></span><i class="fa fa-circle"></i></li>
+                <li><span>Jobs</span></li>
+            </ul>
+            <div class="page-toolbar">
+                <div id="date-range" class="pull-right btn btn-sm">
+                    <i class="icon-calendar"></i>&nbsp;
+                    <span class="thin uppercase"></span>&nbsp;
+                    <i class="fa fa-angle-down"></i>
+                </div>
+            </div>
+        </div>
+        <h3 class="page-title"> Dashboard
+            <small>Jobs &amp; Revenue</small>
+        </h3>
+        <div class="row" id="leads_dashboard_portlet">
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="dashboard-stat dashboard-stat-v2 blue">
+                    <div class="visual">
+                        <i class="fa fa-briefcase fa-icon-medium"></i>
+                    </div>
+                    <div class="details">
+                        <div class="number"><span id="leads"></span> </div>
+                        <div class="desc"> Total Leads </div>
+                    </div>
+                    <a class="more" href="/leads"> View more
+                        <i class="m-icon-swapright m-icon-white"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="dashboard-stat dashboard-stat-v2 red">
+                    <div class="visual">
+                        <i class="fa fa-shopping-cart"></i>
+                    </div>
+                    <div class="details">
+                        <div class="number"> <span id="jobs"></span> </div>
+                        <div class="desc"> Total Jobs </div>
+                    </div>
+                    <a class="more" href="/leads-calendar"> View more
+                        <i class="m-icon-swapright m-icon-white"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="dashboard-stat dashboard-stat-v2 green">
+                    <div class="visual">
+                        <i class="fa fa-group fa-icon-medium"></i>
+                    </div>
+                    <div class="details">
+                        <div class="number"> <i class="fa fa-inr"></i> <span id="sales"></span> </div>
+                        <div class="desc"> Total Sales </div>
+                    </div>
+                    <a class="more" href="javascript:;"> View more
+                        <i class="m-icon-swapright m-icon-white"></i>
+                    </a>
+                </div>
+            </div>
+               <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="dashboard-stat dashboard-stat-v2 purple">
+                    <div class="visual">
+                        <i class="fa fa-group fa-icon-medium"></i>
+                    </div>
+                    <div class="details">
+                        <div class="number"> <i class="fa fa-inr"></i> <span id="average"></span> </div>
+                        <div class="desc"> Average Sale </div>
+                    </div>
+                    <a class="more" href="javascript:;"> View more
+                        <i class="m-icon-swapright m-icon-white"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <input type="hidden" id="setStatus" value="<%=tStatus %>">
+        <div class="row">
+            <div class="col-md-4 col-sm-4">
+                <div class="portlet light tasks-widget bordered">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="icon-share font-dark hide"></i>
+                            <span class="caption-subject font-dark bold uppercase">Tasks</span>
+                            <span class="caption-helper">today's summary...</span>
+                        </div>
+                        <div class="actions">
+                            <div class="btn-group">
+                                <a data-close-others="true" data-hover="dropdown" data-toggle="dropdown" href="javascript:;" class="btn btn-sm blue btn-outline btn-circle" aria-expanded="false"> Filter By
+                                    <i class="fa fa-angle-down"></i>
+                                </a>
+                                <ul class="dropdown-menu pull-right">
+                                    <li class="status" data-id="All">
+                                        <a href="javascript:;"> Total
+                                            <span class="badge badge-danger" id="total"></span>
+                                        </a>
+                                    </li>
+                                    <li class="status" data-id="To-do">
+                                        <a href="javascript:;"> Pending
+                                            <span class="badge badge-danger" id="tTotal"></span>
+                                        </a>
+                                    </li>
+                                    <li class="status" data-id="Completed">
+                                        <a href="javascript:;"> Completed
+                                            <span class="badge badge-success" id="cTotal"> </span>
+                                        </a>
+                                    </li>
+                                    <li class="status" data-id="In-Progress">
+                                        <a href="javascript:;"> In-Progress
+                                            <span class="badge badge-success" id="pTotal"> </span>
+                                        </a>
+                                    </li>
+                                </ul>    
+                            </div>
+                        </div>
+                        <div class="actions">
+                            <div class="btn-group">
+                                <a data-close-others="true" data-hover="dropdown" data-toggle="dropdown" href="javascript:;" class="btn btn-sm blue btn-outline btn-circle" aria-expanded="false"> Action
+                                    <i class="fa fa-angle-down"></i>
+                                </a>
+                                <ul class="dropdown-menu pull-right">
+                                    <li class="tStatus" data-id="Completed">
+                                        <a href="javascript:;"> Complete </a>
+                                    </li>
+                                    <li class="tStatus" data-id="To-do">
+                                        <a href="javascript:;"> Pending </a>
+                                    </li>
+                                    <li class="tStatus" data-id="In-Progress">
+                                        <a href="javascript:;"> In-progess </a>
+                                    </li>
+                                    <li id ="re-schedule">
+                                        <a  data-toggle="modal" href="#taskreschedule"> Re-schedule
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="task-content">
+                            <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 312px;">
+                                <div class="ScrollStyle" style=" height: 312px;overflow-y: scroll;">
+                                    <!-- START TASK LIST -->
+                                    <ul class="task-list" id="taskData">
+                                    </ul>
+                                    <!-- END START TASK LIST -->
+                                </div>
+                            
+                            </div>
+                        </div>
+                        <div class="task-footer">
+                            <div class="btn-arrow-link pull-right">
+                                <a href="/tasks">See All Records</a>
+                                <i class="icon-arrow-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 col-sm-8">
+                <div id="calendar1" class="has-toolbar"> </div>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="token" value="<%= user.token %>" />
+<input type="hidden" id="url" value="<%= api.url %>" />
+
+<%- partial('partials/modal/task-reschedule') %>

@@ -1,0 +1,24 @@
+<link href="/al/css/bootstrap-modal-bs3patch.css" rel="stylesheet" type="text/css" />
+<link href="/al/css/bootstrap-modal.css" rel="stylesheet" type="text/css" />
+
+<div id="itemCategoryModal" class="modal fade" tabindex="-1" data-width="760">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+        <h3 class="modal-title">Add New Category</h3>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12">
+                <h4>Category Information</h4>
+                <p> Category Name<span style="color:red;"> * </span>
+                    <input class="form-control" type="text" id="itemCategoryName"
+                     name="itemCategoryName" required="true"> 
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" data-dismiss="modal" class="btn green" id="addItemCategories">Submit</button>
+        <button type="button" data-dismiss="modal" class="btn btn-outline dark">Cancel</button>
+    </div>
+</div>

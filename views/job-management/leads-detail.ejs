@@ -1,0 +1,228 @@
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li><span><a href="/dashboard">Home</a></span><i class="fa fa-circle"></i></li>
+                <li><span> Jobs</span><i class="fa fa-circle"></i></li>
+                <li><span><a href="/leads">Leads</a></span><i class="fa fa-circle"></i></li>
+                <li><span class="lid"></span></li>
+            </ul>
+        </div>
+        <h1 class="page-title"></h1>
+        <div class="row">
+            <div class="col-md-12">
+                <div id="form-alerts"> </div>
+                <div class="portlet light bordered">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="fa fa-bullhornfa fa-bullhorn font-blue-hoki"></i>
+                            <span class="caption-subject font-blue-hoki bold uppercase">Leads Detail</span>
+                            <!-- <span class="caption-helper">some info...</span> -->
+                        </div>
+                        <div class="dt-buttons pull-right">
+                            <a class="dt-button buttons-print btn blue-hoki btn-outline" href="/leads/<%= leadId %>/edit"><span><i class="fa fa-edit"></i> Edit</span></a>
+                            <a class="dt-button buttons-print btn blue-hoki btn-outline btn-delete" href="javascript:;"><span><i class="fa fa-trash"></i> Delete</span></a>
+                            <!-- <a href="" class="collapse"> </a>
+                            <a href="#portlet-config" data-toggle="modal" class="config"> </a>
+                            <a href="" class="reload"> </a>
+                            <a href=""> <i class="fa fa-edit"></i> </a>
+                            <a href=""> <i class="fa fa-trash"></i> </a> -->
+                        </div>
+                    </div>
+                    <div class="portlet-body form">
+                        <!-- BEGIN FORM-->
+                        <input type="hidden" id="leadId" value="<%= leadId %>">
+                        <input type="hidden" id="apiUrl" value="<%= api.url %>"/>
+                        <input type="hidden" id="token" value="<%= user.token %>"/>
+                        <input type="hidden" id="url" value="<%= api.url %>/api/lead/<%= leadId %>?token=<%= user.token %>">
+                        <div class="tab-content">
+                            <div class="tab-pane active">
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="portlet yellow-crusta box">
+                                            <div class="portlet-title">
+                                                <div class="caption">
+                                                    <i class="fa fa-cogs"></i>Lead Details </div>
+                                            </div>
+                                            <div class="portlet-body">
+                                                <div class="row static-info">
+                                                    <div class="col-md-5 name"> Lead #: </div>
+                                                    <div class="col-md-7"> 
+                                                        <span id="bill"></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row static-info">
+                                                    <div class="col-md-5 name"> Booking Date: </div>
+                                                    <div class="col-md-7" id="bookingdate"></div>
+                                                </div>
+                                                <div class="row static-info">
+                                                    <div class="col-md-5 name"> Job Date: </div>
+                                                    <div class="col-md-7">
+                                                        <span class="label label-success" id="dueDate"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="row static-info">
+                                                    <div class="col-md-5 name"> Service: </div>
+                                                    <div class="col-md-7" id="item"></div>
+                                                </div>
+                                                <div class="row static-info">
+                                                    <div class="col-md-5 name"> Status: </div>
+                                                    <div class="col-md-7" id="leadStatus"></div>
+                                                </div>
+                                                <div class="row static-info">
+                                                    <div class="col-md-5 name"> Remarks: </div>
+                                                    <div class="col-md-7" id="remarks"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="portlet blue-hoki box">
+                                            <div class="portlet-title">
+                                                <div class="caption">
+                                                    <i class="fa fa-cogs"></i>Customer Information </div>
+                                            </div>
+                                            <div class="portlet-body">
+                                                <div class="row static-info">
+                                                    <div class="col-md-5 name"> Customer Name: </div>
+                                                    <div class="col-md-7" id="customer"> </div>
+                                                </div>
+                                                <div class="row static-info">
+                                                    <div class="col-md-5 name"> Phone Number: </div>
+                                                    <div class="col-md-7" id="mobile"></div>
+                                                </div>
+                                                <div class="row static-info">
+                                                    <div class="col-md-5 name"> Email: </div>
+                                                    <div class="col-md-7" id="cEmail"></div>
+                                                </div>
+                                                <div class="row static-info">
+                                                    <div class="col-md-5 name"> Address: </div>
+                                                    <div class="col-md-7" id="address"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                   <div class="col-md-6 col-sm-12">
+                                       <% if(user.profile.roles.indexOf('aggregator')<0){ %>
+                                            <div class="portlet blue-hoki box">
+                                                <div class="portlet-title">
+                                                    <div class="caption">
+                                                        <i class="fa fa-cogs"></i>Assign To </div>
+                                                </div>
+                                                <div class="portlet-body">
+                                                    <div class="row static-info">
+                                                        <div class="col-md-5 name"> Employee Name: </div>
+                                                        <div class="col-md-7" id="employeeName"> </div>
+                                                    </div>
+                                                    <div class="row static-info">
+                                                        <div class="col-md-5 name"> Phone Number: </div>
+                                                        <div class="col-md-7" id="employeeMob"></div>
+                                                    </div>
+                                                    <div class="row static-info">
+                                                        <div class="col-md-5 name"> Email: </div>
+                                                        <div class="col-md-7" id="employeeEmail"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                       <%} else {%>
+
+                                            <div class="portlet blue-hoki box">
+                                                <div class="portlet-title">
+                                                    <div class="caption">
+                                                        <i class="fa fa-cogs"></i>Assign To </div>
+                                                </div>
+                                                <div class="portlet-body">
+                                                    <div class="table-responsive">
+                                                        <table class="table table-hover table-bordered table-striped">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th> Vendor </th>
+                                                                    <th> Mobile </th>
+                                                                    <th> Email </th>
+                                                                    <th> Status</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody id='vData'></tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <% } %>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="portlet red-sunglo box">
+                                            <div class="portlet-title">
+                                                <div class="caption">
+                                                    <i class="fa fa-cogs"></i>Pricing </div>
+                                            </div>
+                                            <div class="portlet-body">
+                                                <div class="portlet-body">
+                                                    <div class="row static-info">
+                                                        <div class="col-md-5 name"> Service Charge: </div>
+                                                        <div class="col-md-7" id="sCharge"> </div>
+                                                    </div>
+                                                    <div class="row static-info">
+                                                        <div class="col-md-5 name"> Product GST: </div>
+                                                        <div class="col-md-7" id="pGst"></div>
+                                                    </div>
+                                                    <div class="row static-info">
+                                                        <div class="col-md-5 name"> Service GST: </div>
+                                                        <div class="col-md-7" id="sGst"></div>
+                                                    </div>
+                                                    <div class="row static-info">
+                                                        <div class="col-md-5 name"> Total Amount: </div>
+                                                        <div class="col-md-7" id="price"></div>
+                                                    </div>
+                                                    <div class="row static-info">
+                                                        <div class="col-md-5 name"> Paid: </div>
+                                                        <div class="col-md-7" id="paid"></div>
+                                                    </div>
+                                                    <div class="row static-info">
+                                                        <div class="col-md-5 name"> Due Amount: </div>
+                                                        <div class="col-md-7" id="dueAmount"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <% if(parseInt(user.profile.roles.indexOf('inventory')) >-1 ){   %>
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="portlet grey-cascade box">
+                                        <div class="portlet-title">
+                                            <div class="caption">
+                                                <i class="fa fa-cogs"></i>Product Detail
+                                            </div>
+                                        </div>
+                                        <div class="portlet-body">
+                                            <div class="table-responsive">
+                                                <table class="table table-hover table-bordered table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th> Product </th>
+                                                            <th> Price </th>
+                                                            <th> Quantity </th>
+                                                            <th> Total Price</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id='cData'></tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

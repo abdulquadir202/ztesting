@@ -1,0 +1,116 @@
+<link rel="shortcut icon" href="/img/favicon.png" />
+            <div class="page-sidebar-wrapper">
+                <div class="page-sidebar navbar-collapse collapse">
+                    <ul class="page-sidebar-menu page-header-fixed page-sidebar-menu-closed" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px">
+                        <li class="sidebar-toggler-wrapper hide">
+                            <div class="sidebar-toggler">
+                                <span></span>
+                            </div>
+                        </li>
+
+                        <li class="sidebar-search-wrapper">
+                            <form class="sidebar-search  sidebar-search-bordered sidebar-search-solid" action="/search" method="POST">
+                                <input type="hidden" name="_csrf" value="<%= token %>">
+                                <a href="javascript:;" class="remove">
+                                    <i class="icon-close"></i>
+                                </a>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Search...">
+                                    <span class="input-group-btn">
+                                        <a href="javascript:;" class="btn submit">
+                                            <i class="icon-magnifier"></i>
+                                        </a>
+                                    </span>
+                                </div>
+                            </form>
+                        </li>
+
+                        <li class="nav-item start <%= (nav.startsWith('dashboard'))? 'active open' : '' %>">
+                            <a href="/dashboard" class="nav-link nav-toggle">
+                                <i class="icon-home"></i>
+                                <span class="title">Dashboard</span>
+                                <% if(nav.startsWith('dashboard')) { %>
+                                    <span class="selected"></span>
+                                <% } %>
+                            </a>
+                        </li>
+
+                        <% if(user.profile.roles.includes('admin')){ %>
+                            <li class="nav-item <%= (nav.startsWith('business'))? 'active open' : '' %>">
+                                <a href="/organisation/detail" class="nav-link nav-toggle">
+                                    <i class="icon-briefcase"></i>
+                                    <span class="title">Business</span>
+                                    <% if(nav.startsWith('business')) { %>
+                                        <span class="selected"></span>
+                                    <% } %>
+                                </a>
+                            </li>
+
+                            <li class="nav-item <%= (nav.startsWith('admin'))? 'active open' : '' %>">
+                                <a href="/admin/users" class="nav-link nav-toggle">
+                                    <i class="icon-users"></i>
+                                    <span class="title">Users</span>
+                                    <% if(nav.startsWith('admin')) { %>
+                                        <span class="selected"></span>
+                                    <% } %>
+                                </a>
+                            </li>
+                        <% } %>
+
+                        <% if(user.profile.roles.indexOf('blog')>= 0){ %>
+                            <li class="heading">
+                                <h3 class="uppercase">Blog</h3>
+                            </li>
+                            
+                            <li class="nav-item <%= (nav.startsWith('blog-posts'))? 'active open' : '' %>">
+                                <a href="/admin/blog/posts" class="nav-link nav-toggle">
+                                    <i class="icon-speech"></i>
+                                    <span class="title">Posts</span>
+                                    <% if(nav.startsWith('blog-posts')) { %>
+                                        <span class="selected"></span>
+                                    <% } %>
+                                </a>
+                            </li>
+
+                            <li class="nav-item <%= (nav.startsWith('blog-categories'))? 'active open' : '' %>">
+                                <a href="/admin/blog/categories" class="nav-link nav-toggle">
+                                    <i class="icon-layers"></i>
+                                    <span class="title">Categories</span>
+                                    <% if(nav.startsWith('blog-categories')) { %>
+                                        <span class="selected"></span>
+                                    <% } %>
+                                </a>
+                            </li>
+                            <% if(user.profile.roles.includes('admin')){ %>
+                            <li class="nav-item <%= (nav.startsWith('blog-subscriber'))? 'active open' : '' %>">
+                                <a href="/admin/blog/subscribers" class="nav-link nav-toggle">
+                                    <i class="icon-tag"></i>
+                                    <span class="title">Subscribers</span>
+                                    <% if(nav.startsWith('blog-subscriber')) { %>
+                                        <span class="selected"></span>
+                                    <% } %>
+                                </a>
+                            </li>  
+                            <li class="nav-item <%= (nav.startsWith('carosal'))? 'active open' : '' %>">
+                                <a href="/slider/home" class="nav-link nav-toggle">
+                                    <i class="fa fa-picture-o"></i>
+                                    <span class="title">Advertisements</span>
+                                    <% if(nav.startsWith('carosal')) { %>
+                                        <span class="selected"></span>
+                                    <% } %>
+                                </a>
+                            </li>
+                            <% } %> 
+                                       
+                            <!--
+                            <li class="nav-item <%= (nav.startsWith('blog-tags'))? 'active open' : '' %>">
+                                <a href="/admin/blog/tags" class="nav-link nav-toggle">
+                                    <span class="title"><i class="icon-tag "></i> Tags </span>
+                                </a>
+                            </li>
+                            -->
+                                    
+                        <% } %>
+                    </ul>
+                </div>
+            </div>

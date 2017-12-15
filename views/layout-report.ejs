@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+    <!--<![endif]-->
+    <!-- BEGIN HEAD -->
+    <head>
+        <meta charset="utf-8" />
+        <title><%= title %> - zinetgo.com</title>
+        <link rel="shortcut icon" href="/img/favicon.ico" /> 
+        <script src="/login/js/jquery.min.js" type="text/javascript"></script>
+        <script src="/login/js/bootstrap.min.js" type="text/javascript"></script>
+        <style type="text/css" media="print">
+            /*@page { 
+                size: landscape;
+            }
+            body { 
+                writing-mode: tb-rl;
+            }*/ 
+            @media print {
+                .break {page-break-after: always;}
+            }
+
+            @media print{@page {size: landscape}}
+        </style>
+    </head>
+    <body>
+        <%- body %>
+    </body>
+</html>

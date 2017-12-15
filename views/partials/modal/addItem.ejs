@@ -1,0 +1,38 @@
+<link href="/al/css/bootstrap-modal-bs3patch.css" rel="stylesheet" type="text/css" />
+<link href="/al/css/bootstrap-modal.css" rel="stylesheet" type="text/css" />
+
+<div id="addItemModal" class="modal fade" tabindex="-1" data-width="760">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+        <h3 class="modal-title">Add New Item</h3>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12">
+                <form action="#"> 
+                <h4>Item Information</h4>
+                <p> Name<span style="color:red;"> * </span>
+                    <input type="text" class="form-control" id="mItemName" name="mItemName" required=""> </p>
+                <p> Price<span style="color:red;"> * </span>
+                    <input type="text" class="form-control" id="mItemPrice" name="mItemPrice" required=""> </p>
+                <p> Type<span style="color:red;"> * </span>
+                    <select class="form-control select2-multiple select2-hidden-accessible" name="mItemType" id="mItemType" required="">
+                        <option value="product" selected="true">Product</option>
+                        <option value="service">Service</option>
+                    </select>
+                </p>
+                <p> Unit<span style="color:red;"> * </span>
+                    <input type="text" class="form-control" id="mItemUnit" name="mItemUnit" required="">  </p>
+                <p> Description
+                    <textarea rows="2" class="form-control" id="mItemDescription" name="mItemDescription" required=""></textarea>  
+                </p>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn green" data-dismiss="modal" id="addItem">Submit</button>
+        <button type="button" data-dismiss="modal" class="btn btn-outline dark">Cancel</button>
+    </div>
+</div>

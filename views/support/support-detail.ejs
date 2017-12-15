@@ -1,0 +1,155 @@
+<link href="/assets/global/plugins/cubeportfolio/css/cubeportfolio.css" rel="stylesheet" type="text/css" />
+<link href="/assets/pages/css/portfolio.min.css" rel="stylesheet" type="text/css" />
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li><span><a href="/dashboard">Home</a></span><i class="fa fa-circle"></i></li>
+                <li><span><a href="/support/tickets">Support</a></span><i class="fa fa-circle"></i></li>
+                <li><span> Ticket</span><i class="fa fa-circle"></i></li>
+                
+                <li><span class="lid"></span></li>
+            </ul>
+        </div>
+        <h1 class="page-title"></h1>
+        <div class="row">
+            <div class="col-md-12">
+                <div id="form-alerts"> </div>
+                <div class="portlet light bordered">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="fa fa-bullhornfa fa-bullhorn font-blue-hoki"></i>
+                            <span class="caption-subject font-blue-hoki bold uppercase">Supports Detail</span>
+                            <!-- <span class="caption-helper">some info...</span> -->
+                        </div>
+                        <div class="dt-buttons pull-right">
+                            <a class="dt-button buttons-print btn blue-hoki btn-outline" href="/support/ticket/<%= tokenId %>/edit"><span><i class="fa fa-edit"></i> Edit</span></a>
+                            <a class="dt-button buttons-print btn blue-hoki btn-outline btn-delete" href="javascript:;"><span><i class="fa fa-trash"></i> Delete</span></a>
+                            <!-- <a href="" class="collapse"> </a>
+                            <a href="#portlet-config" data-toggle="modal" class="config"> </a>
+                            <a href="" class="reload"> </a>
+                            <a href=""> <i class="fa fa-edit"></i> </a>
+                            <a href=""> <i class="fa fa-trash"></i> </a> -->
+                        </div>
+                    </div>
+                    <div class="portlet-body form">
+                        <!-- BEGIN FORM-->
+                        
+                        <input type="hidden" id="apiUrl" value="<%= api.url %>"/>
+                        <input type="hidden" id="token" value="<%= user.token %>"/>
+                        <input type="hidden" id="url" value="<%= api.url %>/api/support/ticket/<%= tokenId %>?token=<%= user.token %>">
+
+                        <form class="form-horizontal" role="form">
+                            <div class="form-body">
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">#Ticket Id:-</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="tokenId"></p>
+                                    </div>
+                                </div>
+                            
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">#Title:-</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="title"></p>
+                                    </div>
+                                </div>
+                            
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">#Customer Name:-</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="displayCustomerName"></p><br>
+                                        <label class="control-label">Email:-</label>
+                                        <p class="form-control-static" id="displayCustomerEmail"></p><br>
+                                        <label class="control-label">Mobile:-</label>
+                                        <p class="form-control-static" id="displayCustomerMobile"></p>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">#Assigned To:</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="displayEmployeeName"></p><br>
+                                        <label class="control-label">Mobile:-</label>
+                                        <p class="form-control-static" id="displayEmployeeMobile"></p><br>
+                                        <label class="control-label">Email:-</label>
+                                        <p class="form-control-static" id="displayEmployeeEmail"></p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">#Service Name:-</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="displayServiceName"></p><br>
+                                        <label class="control-label">Unit:-</label>
+                                        <p class="form-control-static" id="displayServiceUnit"></p><br>
+                                        <label class="control-label">Price:-Rs.</label>
+                                        <p class="form-control-static" id="displayServicePrice"></p>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">#Due Date:-</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="dueDate" data-date-format="mm-dd-yyyy"/></p>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">#Status:-</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="sStatus"></p>
+                                    </div>
+                                </div>
+                                
+                                
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">#Priority:-</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="priority"></p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">#Description:-</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="description"></p>
+                                    </div>
+                                </div>
+                                    
+                                </div>
+                                <% if(parseInt(user.profile.roles.indexOf('superadmin')) >-1 ){   %>
+                                        <div class="row">
+                                            <div class="col-md-12 col-sm-12">
+                                                <div class="portlet grey-cascade box">
+                                                    <div class="portlet-title">
+                                                        <div class="caption">
+                                                            <i class="fa fa-cogs"></i>Product Detail
+                                                        </div>
+                                                    </div>
+                                                    <div class="portlet-body">
+                                                        <div class="table-responsive">
+                                                            <table class="table table-hover table-bordered table-striped">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th> Product </th>
+                                                                        <th> Price </th>
+                                                                        <th> Quantity </th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody id='cData'></tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                <% } %>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

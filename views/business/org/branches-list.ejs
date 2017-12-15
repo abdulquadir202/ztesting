@@ -1,0 +1,108 @@
+
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li><span><a href="/dashboard">Home</a></span><i class="fa fa-circle"></i></li>
+                <li><span> Business </span><i class="fa fa-circle"></i></li>
+                <li><span> Organisation </span><i class="fa fa-circle"></i></li>
+                <li><span> Branches </span></li>
+            </ul>
+        </div>
+        <h1 class="page-title"></h1>
+        <div class="row">
+            <div class="col-md-12">
+                <div id="form-alerts"> </div>
+                <div class="portlet light bordered" id="branches_portlet">
+                    <div class="portlet-title">
+                        <div class="caption font-blue-hoki">
+                            <i class="fa fa-sitemap font-blue-hoki"></i>
+                            <span class="caption-subject bold uppercase"> Branch List </span>
+                        </div>
+
+                        <div class="dt-buttons pull-right">
+                            <a class="dt-button buttons-print btn green btn-outline" href="/branches/new"><span><i class="icon-plus"></i> Add Branch</span></a>
+
+                            <%- partial('partials/al/table-tools') %>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="dataTables_wrapper no-footer">
+                            <div class="portlet box table-filters hide">
+                                <form class="horizontal-form">
+                                    <div class="form-body">
+                                        <div class="row">
+                                            <div class="col-md-4 col-sm-6">
+                                                <label class="control-label"> Branch Name</label>
+                                                <select id="name" class="form-control select2-multiple select2-hidden-accessible" name="name">
+                                                </select>
+                                            </div>
+                                            <div class="col-md-4 col-sm-6">
+                                                <label class="control-label">Mobile</label>
+                                                <select id="mobile" class="form-control select2-multiple select2-hidden-accessible" name="mobile">
+                                                </select>
+                                            </div>
+                                             <div class="col-md-2 col-sm-6 text-right">
+                                                <label class="control-label">&nbsp;</label><br>
+                                                <button id="filter-submit" class="btn green btn-outline">
+                                                    <i class="fa fa-search"></i> Search
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            
+                            <div class="portlet-body" id="tDiv">
+                                <table class="table table-striped table-bordered table-hover table-checkable order-column" id="branches">
+                                    <thead>
+                                        <tr class="uppercase">
+                                            <th class="table-checkbox">
+                                                <input type="checkbox" class="group-checkable" data-set="#branches .checkboxes" /> </th>
+                                            <th> Name </th>
+                                            <th> Mobile </th>
+                                            <th> Email </th>
+                                            <th> Website </th>
+                                            <th> Manager </th>
+                                            <th> Description </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tableData"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $().ready(function() {
+        var token = '<%= user.token %>';
+        var sUrl = '<%= api.url %>';
+        
+        // $('.filter-btn').on('click', function(){
+        //     $('.table-filters').toggleClass("hide");
+        //     populateBranches(buildUrl(sUrl,'branches', token, '<%= defaults.psize %>'), true);
+        // });
+
+        getBranchesData(buildUrl(sUrl,'branches', token, '<%= defaults.psize %>'));
+
+        $('#filter-submit').on('click', function(event){
+            var str = $('#reportrange span').html();
+            var dates = str.split(" - "); 
+            var fromDate = moment(dates[0], "MMMM D, YYYY");
+            var toDate = moment(dates[1], "MMMM D, YYYY");
+
+            event.preventDefault();
+
+            filterBranchesData(buildUrl(sUrl,'branches', token, '<%= defaults.psize %>'), $('#name').val(), $('#mobile').val());
+
+        });
+     });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.3/toastr.min.js"></script>
+<script src="/js/onground/business/org/branches-list.js"></script>

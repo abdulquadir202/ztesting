@@ -1,0 +1,69 @@
+
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li><span><a href="/dashboard">Home</a></span><i class="fa fa-circle"></i></li>
+                <li><span><a href="/slider/home">Sliders</a></span><i class="fa fa-circle"></i></li>
+                <li><span>Add</span></li>
+            </ul>  
+        </div>
+        <h1 class="page-title"></h1> 
+        <div class="row">
+            <div class="col-md-12">
+                <div id="form-alerts"> </div>
+                <div class="portlet light portlet-fit portlet-form bordered">
+                    <div class="portlet-title">
+                        <div class="caption font-blue-hoki">
+                            <i class="icon-bag font-blue-hoki"></i>
+                            <span class="caption-subject sbold uppercase"> Add Slider</span>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                    
+                        
+                    <form action="<%= api.url %>/api/home/carosal?token=<%= user.token %>" id="carosal_add_form" class="form-horizontal" enctype="multipart/form-data">
+                            <div class="form-body">
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Text on Image
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" name="cText" id="cText">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Position
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="number" class="form-control" name="cPosition" id="cPosition">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Cover Image
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="file" name="fileToUpload" id="fileToUpload">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-offset-3 col-md-9">
+                                        <button class="btn green" type="submit" id="addCarosal"> Submit </button>
+                                        <button type="reset" class="btn default">Reset</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

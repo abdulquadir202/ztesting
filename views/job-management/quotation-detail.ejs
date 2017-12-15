@@ -1,0 +1,162 @@
+<link href="//fonts.googleapis.com/css?family=Open+Sans:400,300" rel="stylesheet" type="text/css">
+<link href="/invoices/templates/accwaves/styles/free-invoice.css" rel="stylesheet">
+
+<div class="page-content-wrapper">
+  <div class="page-content">
+    <div class="page-bar">
+      <ul class="page-breadcrumb">
+        <li>
+          <span>
+            <a href="/dashboard">Home
+            </a>
+          </span>
+          <i class="fa fa-circle">
+          </i>
+        </li>
+        <li>
+          <span>
+            <a href ="/leads">Leads
+            </a>
+          </span>
+          <i class="fa fa-circle">
+          </i>
+        </li>
+        <li>
+          <span>
+            <a href="/quotations">Quotations
+            </a>
+          </span>
+          <i class="fa fa-circle">
+          </i>
+        </li>
+        <li>
+          <span>Quotation Detail
+          </span>
+        </li>
+      </ul>
+    </div>
+    <h1 class="page-title">
+    </h1>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="portlet light portlet-fit portlet-form bordered">
+          <div class="portlet-title" id="portlet-title">
+            <div class="caption">
+              <i class="fa fa-file-text-o font-blue-hoki">
+              </i>
+              <span class="caption-subject font-blue-hoki sbold uppercase"> Quotation | <span id="lid"></span>
+              </span>
+            </div>
+            <div class="dt-buttons pull-right">
+              <a class="dt-button buttons-print btn dark btn-outline pdf" href="javascript:;" target="_blank">
+                <span>
+                  <i class="fa fa-print">
+                  </i> Print
+                </span>
+              </a>
+              <a class="dt-button buttons-pdf buttons-html5 btn purple btn-outline pdf" href ="" target="_blank">
+                <span>
+                  <i class="fa fa-file-pdf-o">
+                  </i> PDF
+                </span>
+              </a>
+              <a class="dt-button buttons-csv buttons-html5 btn dark btn-outline fullscreen">
+                <span>
+                  <i class="icon-size-fullscreen">
+                  </i>
+                </span>
+              </a>
+            </div>
+          </div>
+          <div class="portlet-body">
+          <input type="hidden" id="url" value="<%= api.url %>/api/quotation/<%= quoteId %>?token=<%= user.token %>">
+                <div class="container">
+                <div class="col-md-8" style="margin-top:35px;">
+                    <div class="form-group">    
+                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                                <img src="<%= user.coverImage %>" style="max-width: 200px; max-height: 150px;" alt="" id ="logo"/> 
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:100px;">
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <h4 class="text-left"> Quotation From</h4> 
+                                    <textarea rows="6" class="form-control" style="width:300px;" id="from1" name="from1" disabled=""></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+
+                        </div>
+                         <div class="col-md-5">
+                            <div class="form-group">
+                                <h4 class="text-left"> Quotation To</h4> 
+                                    <textarea rows="6" class="form-control" style="width:300px;" id="to1" name="to1" disabled=""></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4"  style="margin-top:35px;">
+                    <div class="form-group">
+                        <h4 class="text-right">QUOTATION NO : <span id="qoteno1"></span></h4>
+                    </div>
+                    <div class="form-group">
+                        <h4 class="text-right"> PAN NO: <span id="pan1"></span></h4>
+                    </div>
+                    <div class="form-group">
+                        <h4 class="text-right">GSTIN NO: <span id="gst1"></span></h4>
+                    </div>
+                    <div class="form-group">
+                        <h4 class="text-right">QUOTATION DATE: <span id="date1"></span></h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <table style="width:80%;padding-top: 20px;margin-left: 16px;">
+                    <thead>
+                      <tr>
+                        <th class="text-left" style="width: 30%">Item</th>
+                        <th class="text-left" style="width: 20%">Rate</th> 
+                        <th class="text-left" style="width: 20%">Quantity</th>
+                        <th class="text-left" style="width: 30%">Amount</th>
+                      </tr>
+                    </thead>  
+                    <tbody id="tableData"></tbody>
+                    </table>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-8">
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="col-md-12">Sub Total: <span id="st1" style="padding-left :70px;"></span></label>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-12">Tax: <span id="tax1" style="padding-left :108px;"></span> </label>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-12">Discount: <span id="dis1" style="padding-left :73px;"></span></label>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-12">Total: <span id="total1" style="padding-left :100px;"></span> </label>
+                        </div>
+                </div>
+                <div class="col-md-9" style="margin-top: 20px;margin-left: 0px;">
+                    <div class="form-group">
+                        <h4 class="text-left"> Notes</h4> 
+                            <textarea rows="4" class="form-control" id="notes1" placeholder="Any Additional notes" name="notes" disabled=""></textarea>
+                    </div>
+                </div>
+                
+                <div class="col-md-9" style="margin-top: 20px;margin-left: 0px;">
+                    <div class="form-group">
+                        <h4 class="text-left"> Terms</h4> 
+                            <textarea rows="4" class="form-control" id="terms1" placeholder="your terms and payment schedule etc.." name="terms" disabled=""></textarea>
+                    </div>
+                </div> 
+            </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

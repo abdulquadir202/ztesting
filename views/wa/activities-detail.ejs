@@ -1,0 +1,89 @@
+<link href="/assets/global/plugins/cubeportfolio/css/cubeportfolio.css" rel="stylesheet" type="text/css" />
+<link href="/assets/pages/css/portfolio.min.css" rel="stylesheet" type="text/css" />
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li><span><a href="/dashboard">Home</a></span><i class="fa fa-circle"></i></li>
+                <li><span><a href="/wa/activities">Causes</a></span><i class="fa fa-circle"></i></li>
+                <li><span>Details</span></li>
+            </ul>
+        </div>
+        <h1 class="page-title"></h1>
+        <div class="row">
+            <div class="col-md-12">
+                <div id="form-alerts"> </div>
+                <div class="portlet light bordered">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="icon-puzzle font-blue-hoki"></i>
+                            <span class="caption-subject font-blue-hoki bold uppercase">Causes Detail</span>
+                            <!-- <span class="caption-helper">some info...</span> -->
+                        </div>
+                        <div class="dt-buttons pull-right">
+                            <a class="dt-button buttons-print btn blue-hoki btn-outline" href="/wa/activities/<%= activityId %>/edit""><span><i class="fa fa-edit"></i> Edit</span></a>
+
+                            <a class="dt-button buttons-print btn blue-hoki btn-outline" href="javascript:;"><span><i class="fa fa-trash"></i> Delete</span></a>
+                            <!-- <a href="" class="collapse"> </a>
+                            <a href="#portlet-config" data-toggle="modal" class="config"> </a>
+                            <a href="" class="reload"> </a>
+                            <a href=""> <i class="fa fa-edit"></i> </a>
+                            <a href=""> <i class="fa fa-trash"></i> </a> -->
+                        </div>
+                    </div>
+                    <div class="portlet-body form">
+                        <!-- BEGIN FORM-->
+                        <input type="hidden" id="activityId" value="<%= activityId %>">
+                        <input type="hidden" id="url" value="<%= api.url %>/api/wa/activity/<%= activityId %>?token=<%= user.token %>">
+
+                        <form class="form-horizontal" role="form">
+                            <div class="form-body">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Activity Type:</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="displayActivityType"></p>
+                                    </div>
+                                </div>
+                            
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Name:</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="displayActivityName"></p>
+                                    </div>
+                                </div>
+                            
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Picture:</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="displayPicture"></p>
+                                    </div>
+                                </div>
+                            
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Description:</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="displayDescription"></p>
+                                    </div>
+                                </div>
+                                    
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 
+<script type="text/javascript">
+    $().ready(function() {
+        var token = '<%= user.token %>';
+        var sUrl = '<%= api.url %>';
+     });
+</script> -->
+
+<script src="/js/onground/wa/activities-detail.js"></script>
+<script src="/assets/global/plugins/cubeportfolio/js/jquery.cubeportfolio.min.js" type="text/javascript"></script>
+<script src="/assets/pages/scripts/portfolio-1.min.js" type="text/javascript"></script>

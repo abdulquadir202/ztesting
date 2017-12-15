@@ -1,0 +1,36 @@
+<link href="/al/css/bootstrap-modal-bs3patch.css" rel="stylesheet" type="text/css" />
+<link href="/al/css/bootstrap-modal.css" rel="stylesheet" type="text/css" />
+
+<div id="addwalletModal" class="modal fade" tabindex="-1" data-width="760">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+        <h3 class="modal-title">Recharge Information</h3>
+    </div>
+    
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12">
+                <form action="#">
+                    <p> Collected By
+                    <select id="employeeId" class="form-control select2-multiple select2-hidden-accessible employee" name="employeeId" style="width: 100%;">
+                    </select>
+                    </p>
+                    <p> Mode Of payment
+                        <select class="form-control select2-multiple select2-hidden-accessible" name="type" id="type" data-required="1">
+                            <option value="CASH" selected="true">Cash</option>
+                            <option value="Bank Transfer">Bank Transfer</option>
+                            <option value="Cheque">Cheque</option>
+                        </select>
+                    </p>
+                    <p> Reference No:
+                        <input type="text" class="form-control" id="refNo" name="refNo" required=""> 
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" data-dismiss="modal" class="btn btn-outline dark">Cancel</button>
+        <button type="button" class="btn green" data-dismiss="modal" id="addMoney">Submit</button>
+    </div>
+</div>

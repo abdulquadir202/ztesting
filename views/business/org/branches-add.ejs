@@ -1,0 +1,285 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.3/toastr.min.css" rel="stylesheet" />
+
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li><span><a href="/dashboard"> Home </a></span><i class="fa fa-circle"></i></li>
+                <li><span> Business </span><i class="fa fa-circle"></i></li>
+                <li><span> Organisation </span><i class="fa fa-circle"></i></li>
+                <li><span><a href="/branches"> Branches </a></span><i class="fa fa-circle"></i></li>
+                <li><span> Add </span></li>
+            </ul>
+        </div>
+        <h1 class="page-title"></h1>
+        <div class="row">
+            <div class="col-md-12">
+                <div id="form-alerts"> </div>
+                <div class="portlet light portlet-fit portlet-form bordered">
+                    <div class="portlet-title">
+                        <div class="caption font-blue-hoki">
+                            <i class="fa fa-sitemap font-blue-hoki"></i>
+                            <span class="caption-subject sbold uppercase"> Branch Information</span>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <form action="<%= api.url %>/api/branch?token=<%= user.token %>" id="branches_add_form" class="form-horizontal">
+                            <div class="form-body">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Name
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" id="name" name="name">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Mobile Number
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="mobile" class="form-control" id="mobile" name="mobile" maxlength="10"> 
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Email
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="email" class="form-control" id="email" name="email">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Website
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" id="website" name="website"> 
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Manager
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" id="mName" name="mName"> 
+                                    </div>
+                                </div>
+                                <!-- <div class="form-group">
+                                    <label class="control-label col-md-3">Inauguration Date
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" id="inaugurationDate" name="inaugurationDate">                                    
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Inaugurated By
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" id="inauguratedBy" name="inauguratedBy">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Contact Type
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select class="form-control select2-multiple select2-hidden-accessible" name="contactType" id="contactType" data-required="1">
+                                            <option value="Mobile" selected="true">Mobile</option>
+                                            <option value="Phone">Phone</option>
+                                            <option value="Home">Home</option>
+                                            <option value="Work">Work</option>
+                                            <option value="Home Fax">Home Fax</option>
+                                            <option value="WhatsApp">WhatsApp</option>
+                                            <option value="Work Fax">Work Fax</option>
+                                            <option value="Custom">Custom</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Contact Number
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="number" class="form-control" id="contactNumber" name="contactNumber">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Email Type
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select class="form-control select2-multiple select2-hidden-accessible" name="emailType" id="emailType" data-required="1">
+                                            <option value="Home" selected="true">Home</option>
+                                            <option value="Work">Work</option>
+                                            <option value="Other">Other</option>
+                                            <option value="Custom">Custom</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Email Id
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="email" class="form-control" id="email" name="email">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Address
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select class="form-control select2-multiple select2-hidden-accessible" name="addressType" id="addressType" data-required="1">
+                                            <option value="Home" selected="true">Home</option>
+                                            <option value="Work">Work</option>
+                                            <option value="Other">Other</option>
+                                            <option value="Custom">Custom</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Street
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" id="street" name="street"> 
+                                    </div>
+                                </div>
+                                 <div class="form-group">
+                                    <label class="control-label col-md-3">Province
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" id="province" name="province"> 
+                                    </div>
+                                </div>
+                                 <div class="form-group">
+                                    <label class="control-label col-md-3">City
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" id="city" name="city"> 
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">State
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" id="state" name="state"> 
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Country
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" id="country" name="country"> 
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Pin
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="number" class="form-control" id="pin" name="pin"> 
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Website
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" id="website" name="website"> 
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Social Account
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select class="form-control select2-multiple select2-hidden-accessible" name="socialAccount" id="socialAccount" data-required="1">
+                                            <option value="Facebook" selected="true">Facebook</option>
+                                            <option value="Twitter">Twitter</option>
+                                            <option value="LinkedIn">LinkedIn</option>
+                                            <option value="Flicker">Flicker</option>
+                                            <option value="Myspace">Myspace</option>
+                                            <option value="Sina Weibo">Sina Weibo</option>
+                                            <option value="Custom">Custom</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Url
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" id="url" name="url"> 
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Instant Messanger
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select class="form-control select2-multiple select2-hidden-accessible" name="instantMessager" id="instantMessager" data-required="1">
+                                            <option value="Facebook" selected="true">Facebook</option>
+                                            <option value="Skype">Skype</option>
+                                            <option value="Google Talk">Google Talk</option>
+                                            <option value="MSN">MSN</option>
+                                            <option value="AIM">AIM</option>
+                                            <option value="Yahoo">Yahoo</option>
+                                            <option value="Custom">Custom</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Url
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" id="url" name="url"> 
+                                    </div>
+                                </div> -->
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Description
+                                        <!-- <span class="required"> * </span> -->
+                                    </label>
+                                    <div class="col-md-4">
+                                        <textarea rows="2" class="form-control" id="description" name="description"></textarea> 
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-offset-3 col-md-9">
+                                        <button class="btn green" type="submit" id="addBranches"> Submit </button>
+                                        <button type="reset" class="btn default">Reset</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $().ready(function() {
+        var token = '<%= user.token %>';
+        var sUrl = '<%= api.url %>';
+        // populateCustomers(buildUrl(sUrl,'customers', token, '<%= defaults.psize %>'));
+        // populateVendors(buildUrl(sUrl,'vendors', token, '<%= defaults.psize %>'));
+        // populateTypes(buildUrl(sUrl,'modes', token, '<%= defaults.psize %>'));
+        // addVendor(buildUrl(sUrl,'vendor', token, null),buildUrl(sUrl,'vendors', token, '<%= defaults.psize %>'));
+        // addCustomer(buildUrl(sUrl,'customer', token, null),buildUrl(sUrl,'customers', token, '<%= defaults.psize %>'));
+    });
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.3/toastr.min.js"></script>
+<script src="/js/onground/business/org/branches-add.js"></script>

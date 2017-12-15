@@ -1,0 +1,35 @@
+<link href="/al/css/bootstrap-modal-bs3patch.css" rel="stylesheet" type="text/css" />
+<link href="/al/css/bootstrap-modal.css" rel="stylesheet" type="text/css" />
+
+<div id="memberModal" class="modal fade" tabindex="-1" data-width="760">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+        <h3 class="modal-title">Add New Member</h3>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12">
+                <h4>Member Information</h4>
+                <p> Name<span style="color:red;"> * </span>
+                    <input class="form-control" type="text" id="memberName" name="memberName" required="true"> 
+                </p>
+                <p> Mobile<span style="color:red;"> * </span>
+                    <input class="form-control" type="mobile" id="memberMobile" name="memberMobile" required="true"> 
+                </p>
+                <p> Date Of Birth<span style="color:red;"> * </span>
+                    <input type="text" value="" size="16" class="form-control form-control-inline date-picker" name="dateOfBirth" id="dateOfBirth" data-date-format="mm-dd-yyyy"> 
+                </p>
+                <p> Start Date<span style="color:red;"> * </span>
+                    <input type="text" value="" size="16" class="form-control form-control-inline date-picker" name="startDate" id="startDate" data-date-format="mm-dd-yyyy"> 
+                </p>
+                <p> Designation<span style="color:red;"> * </span> 
+                    <input class="form-control" type="text" id="designation" name="designation" required="true"> 
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" data-dismiss="modal" class="btn green" id="addMembers">Submit</button>
+        <button type="button" data-dismiss="modal" class="btn btn-outline dark">Cancel</button>
+    </div>
+</div>

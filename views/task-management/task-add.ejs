@@ -1,0 +1,158 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.3/toastr.min.css" rel="stylesheet" />
+
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li><span><a href="/dashboard">Home</a></span><i class="fa fa-circle"></i></li>
+                <li><span><a href="/tasks">Tasks</a></span><i class="fa fa-circle"></i></li>
+                <li><span>Add</span></li>
+            </ul>
+        </div>
+        <h1 class="page-title"></h1>                          
+        <div class="row">
+            <div class="col-md-12">
+                <div id="form-alerts"> </div>
+                <div class="portlet light portlet-fit portlet-form bordered">
+                    <div class="portlet-title">
+                        <div class="caption font-blue-hoki">
+                            <i class="fa fa-tasks font-blue-hoki"></i>
+                            <span class="caption-subject sbold uppercase"> Task Information </span>
+                        </div>
+                    </div>
+
+                    <div class="portlet-body">
+                        <form action="<%= api.url %>/api/task?token=<%= user.token %>" id="task_add_form" class="form-horizontal">
+                            <div class="form-body">
+                                <div class="alert alert-danger display-hide">
+                                    <button class="close" data-close="alert"></button> You have some form errors. Please check below. </div>
+                                <div class="alert alert-success display-hide">
+                                    <button class="close" data-close="alert"></button> New Task added successfully! </div>
+                                    
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Name
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" id="name" name="name">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Category
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select id="taskCategoryId" class="form-control select2-multiple select2-hidden-accessible" name="taskCategoryId"></select>
+                                    </div>
+                                    <div class="col-md-4"
+                                        <span class="help-block pull-right"><a data-toggle="modal" href="#addTaskCategoryModal"><i class="icon-plus"></i> Add New</a></span>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Assign To
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select id="employeeId" class="form-control select2-multiple select2-hidden-accessible" name="employeeId"></select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <span class="help-block"><a data-toggle="modal" href="#addEmployeeModal"><i class="icon-plus"></i> Add New</a></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Start Date
+                                    </label>
+                                    <div class="col-md-4">
+                                        <div class="input-group date form_datetime form_datetime bs-datetime">
+                                            <input type="text" class="form-control" size="16" name="startDate" id="startDate" data-date-format="dd-mm-yyyy">
+                                            <span class="input-group-addon" style="padding:0px;">
+                                                <button type="button" class="btn default date-set">
+                                                    <i class="fa fa-calendar"></i>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Due Date
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <div class="input-group date form_datetime form_datetime bs-datetime">
+                                            <input type="text" class="form-control" size="16" name="dueDate" id="dueDate" data-date-format="dd-mm-yyyy">
+                                            <span class="input-group-addon" style="padding:0px;">
+                                                <button type="button" class="btn default date-set">
+                                                    <i class="fa fa-calendar"></i>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Importance
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select class="form-control select2-multiple select2-hidden-accessible" name="importance" id="importance" data-required="1">
+                                            <option value="high" selected="true">High</option>
+                                            <option value="low">Low</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Urgency
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select class="form-control select2-multiple select2-hidden-accessible" name="urgency" id="urgency" data-required="1">
+                                            <option value="high" selected="true">High</option>
+                                            <option value="low">Low</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Status
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select class="form-control select2-multiple select2-hidden-accessible" name="tStatus" id="tStatus" data-required="1">
+                                            <option value="To-do" selected="true">To-do</option>
+                                            <option value="In Progress">In Progress</option>
+                                            <option value="Completed">Completed</option>
+                                            
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Description
+                                    </label>
+                                    <div class="col-md-4">
+                                        <textarea rows="4" class="form-control" id="description" name="description"></textarea>
+                                    </div>
+                                </div>
+                        
+                            </div>
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-offset-3 col-md-9">
+                                        <button class="btn green" type="submit" id="addTask"> Submit </button>
+                                        <button type="reset" class="btn default">Reset</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- partial('partials/modal/addEmployee') %>
+<%- partial('partials/modal/addTaskCategory') %>

@@ -1,0 +1,257 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.3/toastr.min.css" rel="stylesheet" />
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li><span><a href="/dashboard">Home</a></span><i class="fa fa-circle"></i></li>
+                <li><span>Accounting</span><i class="fa fa-circle"></i></li>
+                <li><span><a href="/sales-ledger">Sales Ledger</a></span><i class="fa fa-circle"></i></li>
+                <li><span>Details</span></li>
+            </ul>  
+        </div>
+        <h1 class="page-title"></h1>
+
+        <div class="row">
+            <div class="col-md-12 hidden" id="edit">
+                <div id="form-alerts"> </div>
+                <div class="portlet light portlet-fit portlet-form bordered">
+                    <div class="portlet-title">
+                        <div class="caption font-blue-hoki">
+                            <i class="fa fa-line-chart font-blue-hoki"></i>
+                            <span class="caption-subject sbold uppercase"> Sales Entry Information</span>
+                        </div>
+                        <div class="dt-buttons pull-right">
+                            <a class="dt-button buttons-print btn green blue-hoki btn-outline" href="javascript:;" id="showDetail"><span><i class="fa fa-reply"></i> Detail</span></a>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        
+                    <form action="<%= api.url %>/api/sales-entry?token=<%= user.token %>" id="sales_entry_edit_form" class="form-horizontal">
+                            <input type="hidden" id="salesEntryId" value="<%= salesEntryId %>">
+                            <div class="form-body">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Date
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" value="" size="16" class="form-control form-control-inline date-picker" name="tDate" id="tDate" data-date-format="dd-mm-yyyy">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Amount
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" name="amount" id="amount"> 
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Tax
+                                    <!-- <span class="required"> * </span> -->
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" name="tax" id="tax"> 
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Total
+                                        <!-- <span class="required"> * </span> -->
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" name="total" id="total"> 
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Customer
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select id="customerId" class="form-control select2-multiple select2-hidden-accessible" name="customerId">
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <span class="help-block"><a data-toggle="modal" href="#addCustomerModal"><i class="icon-plus"></i> Add New</a></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Modes
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select class="form-control select2-multiple select2-hidden-accessible" name="modeType" id="modeType">
+                                            <option value="cash" selected="true">Cash</option>
+                                            <option value="bank">Bank</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group hide" id="bankOption">
+                                    <label class="control-label col-md-3">Bank Account
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select name="bankAccount" id="bankAccount" data-required="1" class="form-control select2-multiple select2-hidden-accessible"> </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <span class="help-block"><a data-toggle="modal" href="#addBankModal"><i class="icon-plus"></i> Add New</a></span>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Item
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select id="itemId" class="form-control select2-multiple select2-hidden-accessible" name="itemId">
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <span class="help-block"><a data-toggle="modal" href="#addItemModal"><i class="icon-plus"></i> Add New</a></span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Reference No</label>
+                                    <div class="col-md-4">
+                                        <input name="refNo" id="refNo" type="text" class="form-control" /> </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Description</label>
+                                    <div class="col-md-4">
+                                        <textarea rows="2" class="form-control" id="description" name="description"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-offset-3 col-md-9">
+                                        <button class="btn green" type="submit" id="updateSalesEntry"> Save </button>
+                                        <button type="button" class="btn default" id="cancelEdit">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12" id="detail">
+                <div id="form-alerts"> </div>
+                <div class="portlet light bordered">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="fa fa-line-chart font-blue-hoki"></i>
+                            <span class="caption-subject font-blue-hoki bold uppercase">Sales Entry Detail</span>
+                        </div>
+                        <div class="dt-buttons pull-right">
+                            <a class="dt-button buttons-print btn green blue-hoki btn-outline" href="javascript:;" id="showEdit"><span><i class="fa fa-edit"></i> Edit</span></a>
+                            <a class="dt-button buttons-print btn green blue-hoki btn-outline" href="javascript:;" id="delete"><span><i class="fa fa-trash"></i> Delete</span></a>
+                            <a class="dt-button buttons-print btn green blue-hoki btn-outline" href="/sales-report/<%= salesEntryId %>" target="_blank"><span><i class="fa fa-file-pdf-o"></i> Report </span></a>
+                        </div>
+                    </div>
+                    <div class="portlet-body form">
+                        <!-- BEGIN FORM-->
+                        <input type="hidden" id="salesEntryId" value="<%= salesEntryId %>">
+                        <input type="hidden" id="url" value="<%= api.url %>/api/sales-entry/<%= salesEntryId %>?token=<%= user.token %>">
+
+                        <form class="form-horizontal" role="form">
+                            <div class="form-body">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Date:</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="displayTDate"></p>
+                                    </div>
+                                </div>
+                            
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Amount:</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="displayAmount"></p>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Tax:</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="displayTax"></p>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Total:</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="displayTotal"></p>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Mode:</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="displayModeType"></p>
+                                    </div>
+                                </div>
+
+                                <div class="form-group hidden" id="dBank">
+                                    <label class="control-label col-md-3">Bank:</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="displayBank"></p>
+                                    </div>
+                                </div>
+                            
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Customer:</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="displayCustomer"></p>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Item:</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="displayItem"></p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Reference Number:</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="displayRefNo"></p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Description:</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="displayDescription"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- partial('partials/modal/addCustomer') %>
+<%- partial('partials/modal/addBank') %>
+<%- partial('partials/modal/addItem') %>
+
+<script type="text/javascript">
+    $().ready(function() {
+        var token = '<%= user.token %>';
+        var sUrl = '<%= api.url %>';
+        $('#tDate').val(moment().format('DD-MM-YYYY'));
+        populateCustomers(buildUrl(sUrl,'customers', token, '<%= defaults.psize %>'));
+        populateModes(buildUrl(sUrl,'modes', token, '<%= defaults.psize %>'));
+        populateTransactionTypes(true);
+        populateItems(buildUrl(sUrl,'items', token, '<%= defaults.psize %>'));
+        addCustomer(buildUrl(sUrl,'customer', token, null),buildUrl(sUrl,'customers', token, '<%= defaults.psize %>'));
+        addItem(buildUrl(sUrl,'item', token, null),buildUrl(sUrl,'items', token, '<%= defaults.psize %>'));
+        addBank(buildUrl(sUrl,'mode', token, null), buildUrl(sUrl,'modes', token, '<%= defaults.psize %>'));
+    });
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.3/toastr.min.js"></script>
+<script src="/js/onground/accounting/ledger/sales-ledger-detail.js"></script>

@@ -1,0 +1,126 @@
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li><span><a href="/dashboard">Home</a></span><i class="fa fa-circle"></i></li>
+                <li><span> Jobs</span><i class="fa fa-circle"></i></li>
+                <li><span><a href="/orders">Orders</a></span><i class="fa fa-circle"></i></li>
+                <li><span> Edit</span></li>
+            </ul>
+        </div>
+        <h1 class="page-title"></h1>
+        <div class="row">
+            <div class="col-md-12">
+                <div id="form-alerts"> </div>
+                <div class="portlet light portlet-fit portlet-form bordered">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="fa fa-bullhorn font-blue-hoki"></i>
+                            <span class="caption-subject font-blue-hoki sbold uppercase"> Edit Order</span> | <span class="lid"></span>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <form action="<%= api.url %>/api/order/<%= orderId %>?token=<%= user.token %>" id="orders_add_form" class="form-horizontal">
+                            <input type="hidden" id="orderId" value="<%= orderId %>">
+                            <input type="hidden" id="apiUrl" value="<%= api.url %>"/>
+                            <input type="hidden" id="token" value="<%= user.token %>"/>
+
+                            <div class="form-body">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Order Date
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" value="" size="16" class="form-control form-control-inline date-picker" name="orderDate" id="orderDate" data-date-format="dd-mm-yyyy">
+                                    </div>
+                                </div>
+                                
+                                
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Customer
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select id="customerId" class="form-control select2-multiple select2-hidden-accessible" name="customerId">
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <span class="help-block"><a data-toggle="modal" href="#addCustomerModal"><i class="icon-plus"></i> Add New</a></span>
+                                    </div>
+                                </div>
+
+                                <!-- <div class="form-group">
+                                    <label class="control-label col-md-3">Item
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select id="itemId" class="form-control select2-multiple select2-hidden-accessible" name="itemId">
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <span class="help-block"><a data-toggle="modal" href="#addItemModal"><i class="icon-plus"></i> Add New</a></span>
+                                    </div>
+                                </div> -->
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Amount Total
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" name="grossTotal" id="grossTotal" data-required="1" class="form-control" value="0.0"/> 
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Amount Paid
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" name="amountPaid" id="amountPaid" data-required="1" class="form-control" value="0.0"/>
+                                        <span class="help-block hide" id="amountDueDiv"> Amount Due: <i class="fa fa-inr"></i> <span id="amountDue">0</span></span> 
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Delivery Address
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" name="deliveryAddress" id="deliveryAddress" data-required="1" class="form-control" /> 
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Order Status
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select class="form-control select2-multiple select2-hidden-accessible" name="orderStatus" id="orderStatus">
+                                            <option value="open" selected="true">Open</option>
+                                            <option value="packing">Packing</option>
+                                            <option value="shipping">Shipped</option>
+                                            <option value="dispatched">Dispatched</option>
+                                            <option value="delivered">Delivered</option>
+                                            <option value="cancelled">Cancelled</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-offset-3 col-md-9">
+                                        <button class="btn green" type="submit" id="editOrder"> Update </button>
+                                        <button type="reset" class="btn default">Reset</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<%- partial('partials/modal/addCustomer') %>
+<%- partial('partials/modal/addItem') %>

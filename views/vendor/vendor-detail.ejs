@@ -1,0 +1,415 @@
+<link href="/assets/pages/css/profile.min.css" rel="stylesheet" type="text/css" />
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li><span><a href="/dashboard">Home</a></span><i class="fa fa-circle"></i></li>
+                <li><span>Business</span><i class="fa fa-circle"></i></li>
+                <li><span>Professional</span><i class="fa fa-circle"></i></li>
+                <li><span>Profile</span></li>
+            </ul>
+        </div>
+        
+        <h1 class="page-title"></h1>
+        <div class="row">
+            <div class="col-md-12">
+                <div id="form-alerts"> </div>
+                <div class="profile-sidebar">
+                    <div class="portlet light profile-sidebar-portlet">
+                        <div class="profile-userpic">
+                            <img id ="cover" src="/al/img/avatar.png" class="img-responsive" alt=""> 
+                        </div>
+                        <div class="profile-usertitle">
+                            <div class="profile-usertitle-name"> <span id="vName"></span> </div>
+                            <div class="profile-usertitle-job"> Admin </div>
+                        </div>
+                        <!-- <div class="profile-userbuttons">
+                            <button type="button" class="btn btn-circle green btn-sm">Follow</button>
+                            <button type="button" class="btn btn-circle red btn-sm">Message</button>
+                        </div> -->
+                    </div>
+                    <div class="portlet light ">
+                        <div>
+                            <div class="profile-usermenu">
+                               <ul class="nav">
+                                    <li class="active">
+                                        <a href="/admin/vendors/<%=uname %>">
+                                            <i class="icon-settings"></i> Accounts </a>
+                                    </li>
+                                    <li>
+                                        <a href="/admin/vendors/<%=uname %>/leads">
+                                            <i class="fa fa-bullhorn"></i> Jobs </a>
+                                    </li>
+                                    <li>
+                                        <a href="/admin/vendors/<%=uname %>/services">
+                                            <i class="icon-layers"></i> Services </a>
+                                    </li>
+                                    <li>
+                                        <a href="/admin/vendors/<%=uname %>/wallet">
+                                            <i class="icon-wallet"></i> Wallet </a>
+                                    </li>
+                                    <% if(user.profile.roles.indexOf('super-admin')>-1){ %>
+                                        <li>
+                                            <a href="/admin/vendors/<%=uname %>/roles">
+                                                <i class="icon-check"></i> Roles  </a>
+                                        </li>
+                                    <% } %>
+                                    <li>
+                                        <a href="/admin/vendors/<%=uname %>/integration">
+                                            <i class="fa fa-exchange"></i> Integration </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                 <div class="profile-content">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="portlet light ">
+                                    <div class="portlet-title tabbable-line">
+                                        <div class="caption caption-md">
+                                            <i class="icon-globe theme-font hide"></i>
+                                            <span class="caption-subject font-blue-madison bold uppercase">Business Profile</span>
+                                        </div>
+                                        <ul class="nav nav-tabs">
+                                            <li class="active">
+                                                <a href="#tab_1_1" data-toggle="tab">Basic Info</a>
+                                            </li>
+                                            <li>
+                                                <a href="#tab_1_2" data-toggle="tab">Legal Info</a>
+                                            </li>
+                                            <li>
+                                                <a href="#tab_1_3" data-toggle="tab">Social Info</a>
+                                            </li>
+                                            <li>
+                                                <a href="#tab_1_4" data-toggle="tab">Documents</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="portlet-body">
+                                        <div class="tab-content">
+                                            <!-- PERSONAL INFO TAB -->
+                                            <input type="hidden" id="uname" value="<%= uname %>">
+                                            <input type="hidden" id="apiUrl" value="<%= api.url %>"/>
+                                            <input type="hidden" id="token" value="<%= user.token %>"/>
+                                            <div class="tab-pane active" id="tab_1_1">
+                                                <form role="form" action="<%= api.url %>/api/orgs/<%= uname %>?token=<%= user.token %>" class="orgs_add_form">
+                                                    <div class="form-body">
+                                                        <div class = "row">
+                                                            <div class = "col-md-6">
+                                                                <div class="form-group">
+                                                                    <label class="control-label">Company Name</label>
+                                                                    <input type="text" placeholder="Company Name" class="form-control" name="orgName" id="orgName" value="" disabled /> 
+                                                                </div>
+                                                            </div>
+                                                           <div class = "col-md-6">
+                                                                <div class="form-group">
+                                                                    <label class="control-label">Mobile Number</label>
+                                                                    <input type="text" placeholder="Mobile Number" class="form-control" name="mobile" id="mobile" value="" maxlength="10" disabled/> 
+                                                                </div>
+                                                            </div>    
+                                                        </div>
+                                                        <div class = "row">
+                                                            <div class = "col-md-6">
+                                                                <div class="form-group">
+                                                                    <label class="control-label">Email</label>
+                                                                    <input type="text" placeholder="Email" class="form-control" name="email" id="email" value=""/> 
+                                                                </div>
+                                                            </div>
+                                                            <div class = "col-md-6">
+                                                                <div class="form-group">
+                                                                    <label class="control-label">Website</label>
+                                                                    <input type="text" placeholder="Website" class="form-control" name="website" id="website" value="" /> 
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class = "row">
+                                                            <div class = "col-md-6">
+                                                                <div class="form-group">
+                                                                    <label class="control-label">Model</label>
+                                                                    <select class="form-control select2-multiple select2-hidden-accessible" name="vendorType" id="vendorType" data-required="1">
+                                                                        <option value="leadModel" selected="true">Lead</option>
+                                                                        <option value="converstion">Conversion</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class = "col-md-6 hidden" id ="per">
+                                                                <div class="form-group">
+                                                                    <label class="control-label">Percentage</label>
+                                                                    <input type="number" placeholder="lead percentage" class="form-control" name="leadper" id="leadper" value="" /> 
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label class="control-label">Address</label>
+                                                            <textarea class="form-control" name="address" id="address" rows="4" placeholder="address"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-actions">
+                                                        <div class="row">
+                                                            <div class="col-md-offset-3 col-md-9">
+                                                                <button class="btn green" type="submit" id="editProduct"> Update </button>
+                                                                <button type="reset" class="btn default">Reset</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <!-- END PERSONAL INFO TAB -->
+                                            <!-- CHANGE PASSWORD TAB -->
+                                            <div class="tab-pane" id="tab_1_2">
+                                                <form action="<%= api.url %>/api/orgs/<%= uname %>?token=<%= user.token %>" class="orgs_add_form">
+                                                    <div class="form-body">
+                                                        <div class="form-group">
+                                                            <label class="control-label">PAN Number</label>
+                                                            <input type="text" placeholder="Pan number" class="form-control" name="panNumber" id="panNumber" value="" /> 
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label">TAN Number</label>
+                                                            <input type="text" placeholder="TAN number" class="form-control" name="tanNumber" id="tanNumber" value="" /> 
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label">ServiceTax Number</label>
+                                                            <input type="text" placeholder="ServiceTax number" class="form-control" name="serNumber" id="ServiceTaxNumber" value="" /> 
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label class="control-label">GST Number</label>
+                                                            <input type="text" placeholder="GST number" class="form-control" name="gstNumber" id="gstNumber" value="" /> 
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-actions">
+                                                        <div class="row">
+                                                            <div class="col-md-offset-3 col-md-9">
+                                                                <button class="btn green" type="submit" id="editProduct"> Update </button>
+                                                                <button type="reset" class="btn default">Reset</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                           
+                                            <div class="tab-pane" id="tab_1_3">
+                                                <form role="form" action="<%= api.url %>/api/orgs/<%= uname %>?token=<%= user.token %>" class="orgs_add_form">
+                                                    <div class="form-body">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Facebook </label>
+                                                            <div>
+                                                                <div class="input-group">
+                                                                    <span class="input-group-addon">
+                                                                        <i class="fa fa-facebook"></i>
+                                                                    </span>
+                                                                    <input type="text" class="form-control" placeholder="Facebook" name="facebook" id="facebook" value="">
+                                                                 </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label">Twitter</label>
+                                                            <div>
+                                                                <div class="input-group">
+                                                                    <span class="input-group-addon">
+                                                                        <i class="fa fa-twitter"></i>
+                                                                    </span>
+                                                                    <input type="text" class="form-control" placeholder="Twitter" name="twitter" id="twitter" value="">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label">Linked In</label>
+                                                            <div>
+                                                                <div class="input-group">
+                                                                    <span class="input-group-addon">
+                                                                        <i class="fa fa-linkedin"></i>
+                                                                    </span>
+                                                                    <input type="text" class="form-control" placeholder="Linked iN" name="linkedIn" id="linkedIn" value="">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label">Youtube</label>
+                                                            <div>
+                                                                <div class="input-group">
+                                                                    <span class="input-group-addon">
+                                                                        <i class="fa fa-youtube"></i>
+                                                                    </span>
+                                                                   <input type="text" class="form-control" placeholder="Youtube" name="youtube" id="youtube" value="">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-actions">
+                                                        <div class="row">
+                                                            <div class="col-md-offset-3 col-md-9">
+                                                                <button class="btn green" type="submit" id="editProduct"> Update </button>
+                                                                <button type="reset" class="btn default">Reset</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="tab-pane" id="tab_1_4">
+                                                <form>
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <h4><u><b>Adhar Card</b></u></h4>
+                                                                <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                                    <div class="fileinput-new thumbnail" style="width: 261px; height: 150px;">
+                                                                        <img id ="adharImage" src="/al/img/not-updated-zinetgo.jpg" alt="" /> </div>
+                                                                         <input type="file" name="adhar" id="adhar">
+                                                                    
+                                                                    <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 261px; max-height: 150px;"> 
+                                                                    </div>
+                                                                </div>
+                                                                <!-- <div class="clearfix margin-top-10">
+                                                                    <span class="label label-danger">NOTE! </span>
+                                                                    <span>Attached image thumbnail is supported in Latest Firefox, Chrome, Opera, Safari and Internet Explorer 10 only </span>
+                                                                </div>-->
+                                                            </div>
+                                                            <div class="margin-top-10">
+                                                        
+                                                                <button class="btn blue btn-block" type="submit" id="adharSubmit"> Save </button> 
+                                                                
+                                                            </div> 
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <h4><u><b>PAN Card</b></u></h4>
+                                                                <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                                    <div class="fileinput-new thumbnail" style="width: 261px; height: 150px;">
+                                                                        <img id = "pancard" src="/al/img/not-updated-zinetgo.jpg" alt="" /> </div>
+                                                                         <input type="file" name="pan" id="pan">
+                                                                    
+                                                                    <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 261px; max-height: 150px;"> </div>
+                                                                    
+                                                                </div>
+                                                                
+                                                                <!-- <div class="clearfix margin-top-10">
+                                                                    <span class="label label-danger">NOTE! </span>
+                                                                    <span>Attached image thumbnail is supported in Latest Firefox, Chrome, Opera, Safari and Internet Explorer 10 only </span>
+                                                                </div>-->
+                                                            </div> 
+                                                            <div class="margin-top-10">
+                                                        
+                                                                 <button class="btn blue btn-block" type="submit" id="uploadPan"> Save </button>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <h4><u><b>Service Tax</b></u></h4>
+                                                                <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                                    <div class="fileinput-new thumbnail" style="width: 261px; height: 150px;">
+                                                                        <img id = "serviceTaxImg" src="/al/img/not-updated-zinetgo.jpg" alt="" /> </div>
+                                                                         <input type="file" name="serviceTax" id="serviceTax">
+                                                                    
+                                                                    <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 261px; max-height: 150px;"> </div>
+                                                                    
+                                                                </div>
+                                                                
+                                                                <!-- <div class="clearfix margin-top-10">
+                                                                    <span class="label label-danger">NOTE! </span>
+                                                                    <span>Attached image thumbnail is supported in Latest Firefox, Chrome, Opera, Safari and Internet Explorer 10 only </span>
+                                                                </div>-->
+                                                            </div> 
+                                                            <div class="margin-top-10">
+                                                        
+                                                                <button class="btn blue btn-block" type="submit" id="uploadserviceTax"> Save </button>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <h4><u><b>Address Proof</b></u></h4>
+                                                                <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                                    <div class="fileinput-new thumbnail" style="width: 261px; height: 150px;">
+                                                                        <img id = "addressp" src="/al/img/not-updated-zinetgo.jpg" alt="" /> </div>
+                                                                         <input type="file" name="addressProof" id="addressProof">
+                                                                    
+                                                                    <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 261px; max-height: 150px;"> </div>
+                                                                    
+                                                                </div>
+                                                                
+                                                                <!-- <div class="clearfix margin-top-10">
+                                                                    <span class="label label-danger">NOTE! </span>
+                                                                    <span>Attached image thumbnail is supported in Latest Firefox, Chrome, Opera, Safari and Internet Explorer 10 only </span>
+                                                                </div>-->
+                                                            </div>
+
+                                                            <div class="margin-top-10">
+                                                        
+                                                                <button class="btn blue btn-block" type="submit" id="uploadaddress"> Save </button>
+                                                                
+                                                            </div> 
+                                                        </div>
+
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <h4><u><b>Letterhead - Header</b></u></h4>
+                                                                <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                                    <div class="fileinput-new thumbnail" style="width: 261px; height: 150px;">
+                                                                        <img id = "lath" src="/al/img/not-updated-zinetgo.jpg" alt="" /> </div>
+                                                                         <input type="file" name="letterh" id="letterh">
+                                                                    
+                                                                    <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 261px; max-height: 150px;"> </div>
+                                                                    
+                                                                </div>
+                                                                
+                                                                <!-- <div class="clearfix margin-top-10">
+                                                                    <span class="label label-danger">NOTE! </span>
+                                                                    <span>Attached image thumbnail is supported in Latest Firefox, Chrome, Opera, Safari and Internet Explorer 10 only </span>
+                                                                </div>-->
+                                                            </div>
+                                                            
+                                                            <div class="margin-top-10">
+                                                        
+                                                                <button class="btn blue btn-block" type="submit" id="letterhb"> Save </button>
+                                                                
+                                                            </div> 
+                                                        </div>
+
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <h4><u><b>Letterhead - Footer</b></u></h4>
+                                                                <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                                    <div class="fileinput-new thumbnail" style="width: 261px; height: 150px;">
+                                                                        <img id = "lathf" src="/al/img/not-updated-zinetgo.jpg" alt="" /> </div>
+                                                                         <input type="file" name="letterhf" id="letterhf">
+                                                                    
+                                                                    <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 261px; max-height: 150px;"> </div>
+                                                                    
+                                                                </div>
+                                                                
+                                                                <!-- <div class="clearfix margin-top-10">
+                                                                    <span class="label label-danger">NOTE! </span>
+                                                                    <span>Attached image thumbnail is supported in Latest Firefox, Chrome, Opera, Safari and Internet Explorer 10 only </span>
+                                                                </div>-->
+                                                            </div>
+                                                            
+                                                            <div class="margin-top-10">
+                                                        
+                                                                <button class="btn blue btn-block" type="submit" id="letterhfb"> Save </button>
+                                                                
+                                                            </div> 
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                <!-- END PROFILE CONTENT -->
+            </div>
+        </div>
+    </div>
+</div>

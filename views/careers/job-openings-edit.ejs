@@ -1,0 +1,190 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.3/toastr.min.css" rel="stylesheet" />
+
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li><span><a href="/dashboard">Home</a></span><i class="fa fa-circle"></i></li>
+                
+                <li><span><a href="/jobs-list">Job Openings </a></span><i class="fa fa-circle"></i></li>
+
+                <li><span> Edit</span></li>
+            </ul>
+        </div>
+        <h1 class="page-title"></h1> 
+        <div class="row">
+            <div class="col-md-12">
+                <div id="form-alerts"> </div>
+                <div class="portlet light portlet-fit portlet-form bordered">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="fa fa-bullhorn font-blue-hoki"></i>
+                            <span class="caption-subject font-blue-hoki sbold uppercase"> Edit Job Details</span> | <span class="lid"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="portlet-body">
+                        <form action="<%= api.url %>/api/jobopening/<%= jobId %>?token=<%= user.token %>" id="jobs_add_form" class="form-horizontal">
+                            <input type="hidden" id="jobId" value="<%= jobId %>">
+                            <input type="hidden" id="apiUrl" value="<%= api.url %>"/>
+                            <input type="hidden" id="token" value="<%= user.token %>"/>
+
+                            <div class="form-body">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Job Title:
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" name="jobTitle" id="jobTitle">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Company Name:
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" name="company" id="company" >
+                                    </div>
+                                </div>
+
+                            <!--<div class="form-group">
+                                    <label class="control-label col-md-3">Category
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select id="categoryId" class="form-control select2-multiple select2-hidden-accessible" name="categoryId">
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <span class="help-block"><a data-toggle="modal" href="#addCategoryModal"><i class="icon-plus"></i> Add New</a></span>
+                                    </div>
+                                </div> -->
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Number of Openings:<span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" name="noOpening" id="noOpening">
+                                    </div>
+                                </div>
+
+                            <!--<div class="form-group">
+                                    <label class="control-label col-md-3"> Measurement Unit
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select class="form-control select2-multiple select2-hidden-accessible" name="unit" id="unit" data-required="1">
+                                            <option value="piece" selected="true">Piece</option>
+                                            <option value="kg">KG</option>
+                                        </select>
+                                    </div>
+                                </div> -->
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3"> Experience:</label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" name="experience" id="experience">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="control-label col-md-3"> Posted Date:
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                    <input type="text" name="postedDate" id="postedDate" data-required="1" class="form-control form-control-inline date-picker" data-date-format="dd-mm-yyyy"/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Expiry Date:
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" name="expireDate" id="expireDate" data-required="1" class="form-control form-control-inline date-picker" data-date-format="dd-mm-yyyy"/> 
+                                    </div>
+                                </div>                                
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Location:
+                                    
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" name="location" id="location">
+                                    </div>
+                                </div>                                
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Qualification:
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" name="qualification" id="qualification">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3"> Job Type:
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select class="form-control select2-multiple " name="jobType" id="jobType" data-required="1">
+                                            <option value="Full-time" selected="true">Permanent</option>
+                                            <option value="Part-time">Part Time</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3"> Shift Type:
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select class="form-control select2-multiple " name="shiftType" id="shiftType" data-required="1">
+                                            <option value="Day" selected="true">Day</option>
+                                            <option value="Night"> Night</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Salary:  ( <i class="fa fa-inr"></i> )
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" name="salary" id="salary">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Skill Level:
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" name="skill" id="skill">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Description</label>
+                                    <div class="col-md-7">
+                                        <textarea rows="4" class="form-control" id="description" name="description"></textarea>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-offset-3 col-md-9">
+                                        <button class="btn green" type="submit" id="editProduct"> Update </button>
+                                        <button type="reset" class="btn default">Reset</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- partial('partials/modal/addCategory') %>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.3/toastr.min.js"></script>
+<script src="/js/onground/job/job-openings/job-openings-edit.js"></script>

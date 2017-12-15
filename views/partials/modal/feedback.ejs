@@ -1,0 +1,94 @@
+
+<div id="content" class="modal fade" tabindex="-1" data-width="1000" class="modal-sample-pdf">
+    <div class="modal-header">
+        <a href="#" class="close" data-dismiss="modal" aria-label="close">&times;</a>
+        <div id="remove-me">
+            <button id="download-me" class="pull-right">Print</button>
+        </div> 
+    </div>
+
+  <div class="print" id="pdf">
+    <div class="modal-body" style="margin: 10px 10px 10px 10px;padding:0px 20px;">
+        <div class="row">
+            <div class="col-md-12">
+              <form>
+                  <div class="text-center" style="color:red;">
+                  <%if(user.letterHead && user.letterHead!=''){ %>
+                    <img src="<%= user.letterHead %>" width="100%"> 
+                    <br>
+                    <br>
+                  <%}else{%>
+                    <strong class="uppercase"><%= user.name %></strong>
+                    <hr>
+                  <%}%>
+                  </div>
+
+                  <div class="modal-sample">
+                    <label> <b>Name:</b> <span id="customerName"></span></label>
+                  </div>
+                  <div class="modal-sample">
+                    <label> <b>Contact No:</b> <span id="customerNo"></span></label>
+                  </div>
+                  <div class="modal-sample">
+                    <label> <b>Address: </b> <span id="customerAddress"></span></label>
+                  </div>
+                  <div class="modal-sample">
+                    <label> <b>Service: </b> <span id="customerService"></span></label>
+                  </div>
+                  <div class="modal-sample">
+                    <label> <b>Date: </b> <span id="jDate"></span></label>
+                  </div>
+
+                  <div class="modal-sample">
+                    <label> <b>Price: INR </b> <span id="price"></span></label>
+                  </div>
+                    <h3 style="color:red;"> <b>Feedback</b></h3>
+                  <div class="modal-sample">
+                    <label>1. How was the service experience?</label>
+                    <br>
+                    <label>&nbsp;&nbsp;<i class="fa fa-star-o" aria-hidden="true"></i>&nbsp;&nbsp;<i class="fa fa-star-o" aria-hidden="true"></i>&nbsp;&nbsp;<i class="fa fa-star-o" aria-hidden="true"></i>&nbsp;&nbsp;<i class="fa fa-star-o" aria-hidden="true"></i>&nbsp;&nbsp;<i class="fa fa-star-o" aria-hidden="true"></i></label>
+                  </div>
+                  <div class="modal-sample">
+                    <label>2. How was the behaviour of the technicians?</label>
+                    <br>
+                    <label>&nbsp;&nbsp;<i class="fa fa-star-o" aria-hidden="true"></i>&nbsp;&nbsp;<i class="fa fa-star-o" aria-hidden="true"></i>&nbsp;&nbsp;<i class="fa fa-star-o" aria-hidden="true"></i>&nbsp;&nbsp;<i class="fa fa-star-o" aria-hidden="true"></i>&nbsp;&nbsp;<i class="fa fa-star-o" aria-hidden="true"></i></label>
+                  </div>
+                  <div class="modal-sample">
+                    <label>3. How was the overall experience ?</label>
+                    <br>
+                    <label>&nbsp;&nbsp;<i class="fa fa-star-o" aria-hidden="true"></i>&nbsp;&nbsp;<i class="fa fa-star-o" aria-hidden="true"></i>&nbsp;&nbsp;<i class="fa fa-star-o" aria-hidden="true"></i>&nbsp;&nbsp;<i class="fa fa-star-o" aria-hidden="true"></i>&nbsp;&nbsp;<i class="fa fa-star-o" aria-hidden="true"></i></label>
+                  </div>
+                  <div class="modal-sample">
+                    <label>4. Will you recommend us to your family &amp; friends?</label>
+                      &nbsp;Yes <input type="checkbox">  No<input type="checkbox">
+                  </div>
+                  <div class="modal-sample">
+                    <label>5. Would you like to share anything with us? _____________________________________________________________________</label>
+                  </div>
+                  <div class="modal-sample">
+                    <label>Customer signature : _______________</label>
+                  </div>
+                  <div class="modal-sample" style=" border: 1px solid black; margin: 10px; padding:10px;">
+                  <b>Note:</b><br>
+                    <ul>
+                      <li>
+                        We request you to keep your valuables ,Cash ,Jewelry, Document,etc.. in your custody before commencing the work (Condition Apply)
+                      </li>
+                      <li>
+                        Please check certify your Goods & Service,No complains entertained once the team and vehicles leave the premises
+                      </li>
+                      <li>
+                        Warrenty applicable on company's Term & Condition
+                      </li>
+                      <li>
+                        For further details contact phone no: <%= user.mobile %>
+                      </li>
+                    </ul>
+                  </div>
+
+              </form>
+            </div>
+        </div>
+    </div>
+  </div>  
+</div>

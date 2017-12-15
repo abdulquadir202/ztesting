@@ -1,0 +1,162 @@
+<link href="/assets/pages/css/profile.min.css" rel="stylesheet" type="text/css" />
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li><span><a href="/dashboard">Home</a></span><i class="fa fa-circle"></i></li>
+                <li><span>Business</span><i class="fa fa-circle"></i></li>
+                <li><span>Organisation</span><i class="fa fa-circle"></i></li>
+                <li><span>Profile</span></li>
+            </ul>
+        </div>
+        
+        <h1 class="page-title"></h1>
+        <div class="row">
+            <div class="col-md-12">
+                <div id="form-alerts"> </div>
+                <div class="profile-sidebar">
+                    <div class="portlet light profile-sidebar-portlet">
+                        <div class="profile-userpic">
+                            <img id ="cover" src="/al/img/avatar.png" class="img-responsive" alt=""> 
+                        </div>
+                        <div class="profile-usertitle">
+                            <div class="profile-usertitle-name"> <span id="vName"></span> </div>
+                            <div class="profile-usertitle-job"> Admin </div>
+                        </div>
+                        <!-- <div class="profile-userbuttons">
+                            <button type="button" class="btn btn-circle green btn-sm">Follow</button>
+                            <button type="button" class="btn btn-circle red btn-sm">Message</button>
+                        </div> -->
+                    </div>
+                    <div class="portlet light ">
+                        <div>
+                            <div class="profile-usermenu">
+                               <ul class="nav">
+                                    <li>
+                                        <a href="/admin/vendors/<%=uname %>">
+                                            <i class="icon-settings"></i> Accounts </a>
+                                    </li>
+                                    <li>
+                                        <a href="/admin/vendors/<%=uname %>/leads">
+                                            <i class="fa fa-bullhorn"></i> Jobs </a>
+                                    </li>
+                                    <li>
+                                        <a href="/admin/vendors/<%=uname %>/services">
+                                            <i class="icon-layers"></i> Services </a>
+                                    </li>
+                                     <li class="active">
+                                        <a href="/admin/vendors/<%=uname %>/wallet">
+                                            <i class="icon-wallet"></i> Wallet </a>
+                                    </li>
+                                    <% if(user.profile.roles.indexOf('super-admin')>-1){ %>
+                                        <li>
+                                            <a href="/admin/vendors/<%=uname %>/roles">
+                                                <i class="icon-check"></i> Roles  </a>
+                                        </li>
+                                    <% } %>
+                                    <li>
+                                        <a href="/admin/vendors/<%=uname %>/integration">
+                                            <i class="fa fa-exchange"></i> Integration </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                 <div class="profile-content">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="portlet light ">
+                                    <div class="portlet-title tabbable-line">
+                                        <div>
+                                            <div class="row">
+                                                <div class="col-md-7 caption font-blue-hoki">
+                                                    <i class="icon-wallet font-blue-hoki"></i>
+                                                    <span class="caption-subject bold uppercase"> Available Wallet Balance:  <span id="wbal"></span> </span>
+                                                </div>
+                                                <div class="col-md-5">
+                                                    <div class="row">
+                                                        <div class="col-md-9">
+                                                            <form class="search-form search-form-expanded" style="width:100%">
+                                                                <input type="text" name="amount" placeholder="Enter amount..." class="form-control" id="amount">
+                                                            </form>
+                                                        </div>
+                                                        <div class="pull-left">
+                                                            <a class="dt-button buttons-print btn green btn-outline" data-toggle="modal" href="#addwalletModal"><span>Recharge</span></a>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <div class = "row">
+                                                        <div class="col-md-9">
+                                                            <form class="search-form search-form-expanded" style="width:100%">
+                                                                <input type="text" name="amount" placeholder="Enter amount..." class="form-control" id="amount1">
+                                                            </form>
+                                                        </div>
+                                                        <div class="pull-left">
+                                                            <a class="dt-button buttons-print btn green btn-outline" style="width:118%" data-toggle="modal" href="#refundwalletModal"><span>Refund</span></a>
+                                                        </div>
+                                                    </div>    
+                                                     <br>
+                                                    <div class = "row">
+                                                        <div class="col-md-9">
+                                                            <form class="search-form search-form-expanded" style="width:100%">
+                                                                <input type="text" name="amount" placeholder="Enter amount..." class="form-control" id="amount2">
+                                                            </form>
+                                                        </div>
+                                                        <div class="pull-left">
+                                                            <a class="dt-button buttons-print btn green btn-outline" style="width:118%" data-toggle="modal" href="#deductwalletModal"><span>Deduct</span></a>
+                                                        </div>
+                                                    </div>    
+
+                                                </div>   
+                                                <br> 
+                                                  
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body">
+                                        <div class="tab-content">
+                                            <!-- PERSONAL INFO TAB -->
+                                            <input type="hidden" id="uname" value="<%= uname %>">
+                                            <input type="hidden" id="apiUrl" value="<%= api.url %>"/>
+                                            <input type="hidden" id="token" value="<%= user.token %>"/>
+                                            <a class="dt-button buttons-excel buttons-html5 btn green btn-outline btn-activate pull-right hidden" data-toggle="modal" href="#leadUpdateModal"><i class="icon-check"></i> <span>Update</span></a>
+                                            
+                                            <div class="portlet-body">
+                                                <div class="dataTables_wrapper no-footer">
+                                                    <div class="portlet-body" id="tDiv">
+                                                        <table class="table table-striped table-bordered table-hover table-checkable order-column" id="wallets_list">
+                                                            <thead>
+                                                                <tr class="uppercase">
+                                                                    <th style="max-width: 100%;padding-left: 5;padding-right: 5; width: 102px;"> Date </th>
+                                                                    <th class="text-center"> Deposit </th>
+                                                                    <th class="text-center"> withdrawl </th>
+                                                                    <th class="text-center"> Previous Balance </th>
+                                                                    <th class="text-center"> After Balance </th>
+                                                                    <th> Remarks </th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody id="tableData"></tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                <!-- END PROFILE CONTENT -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" id="apiUrl" value="<%= api.url %>"/>
+
+<input type="hidden" id="role" value="<%= user.profile.roles.indexOf('aggregator') %>"/>
+<%- partial('partials/modal/wallet-recharge') %>
+<%- partial('partials/modal/refund-wallet') %>
+<%- partial('partials/modal/deduct-wallet') %>

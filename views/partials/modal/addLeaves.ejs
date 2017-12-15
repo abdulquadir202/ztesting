@@ -1,0 +1,43 @@
+<link href="/al/css/bootstrap-modal-bs3patch.css" rel="stylesheet" type="text/css" />
+<link href="/al/css/bootstrap-modal.css" rel="stylesheet" type="text/css" />
+
+<div id="addLeavesModal" class="modal fade" tabindex="-1" data-width="760">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+        <h3 class="modal-title">Add Leave</h3>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12">
+                <form action="#"> 
+                <h4>Leave Information</h4>
+                <p> Leave Type<span style="color:red;"> * </span>
+                    <select id="leaveTypeId" class="form-control select2-multiple select2-hidden-accessible" name="leaveTypeId"></select> </p>
+                <p> Days Taken<span style="color:red;"> * </span>
+                    <input type="text" class="form-control" id="daysTaken" name="daysTaken" required=""> </p>
+                <p> Max. Days<span style="color:red;"> * </span>
+                    <input type="email" class="form-control" id="maxDays" name="maxDays" required=""> </p>
+                <p> Max. Nagative Bal<span style="color:red;"> * </span>
+                    <input type="text" class="form-control" id="maxNagativeBal" name="maxNagativeBal" required=""> </p>
+                <p> Negative Bal.<span style="color:red;"> * </span>
+                    <input type="email" class="form-control" id="negativeBal" name="negativeBal" required=""> 
+                </p>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn green" data-dismiss="modal" id="addLeaves">Submit</button>
+        <button type="button" data-dismiss="modal" class="btn btn-outline dark">Cancel</button>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $().ready(function() {
+        var token = '<%= user.token %>';
+        var sUrl = '<%= api.url %>';
+        populateLeaveType(buildUrl(sUrl,'leaveTypes', token, '<%= defaults.psize %>'));
+        //addLeave(buildUrl(sUrl,'leaveType', token, null),buildUrl(sUrl,'leaveTypes', token, '<%= defaults.psize %>'));
+        
+    });
+</script>

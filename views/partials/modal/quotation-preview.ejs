@@ -1,0 +1,99 @@
+<link href="/al/css/bootstrap-modal-bs3patch.css" rel="stylesheet" type="text/css" />
+<link href="/al/css/bootstrap-modal.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+
+</style>
+
+<div id="preview" class="modal fade" tabindex="-1" style="margin-left: -720px; width: 100%;" data-width="100%">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+        <h3 class="modal-title">Quotation Preview</h3>
+    </div>
+    
+    <div class="modal-body">
+    <div class="container">
+        <div class="col-md-8" style="margin-top:35px;">
+            <div class="form-group">    
+                <div class="fileinput fileinput-new" data-provides="fileinput">
+                        <img src="<%= user.coverImage %>" style="max-width: 200px; max-height: 150px;" alt="" id ="logo"/> 
+                </div>
+            </div>
+            <div class="row" style="margin-top:100px;">
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <h4 class="text-left"> Quotation From</h4> 
+                            <textarea rows="6" class="form-control" style="width:300px;" id="from1" name="from1"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-1">
+
+                </div>
+                 <div class="col-md-5">
+                    <div class="form-group">
+                        <h4 class="text-left"> Quotation To</h4> 
+                            <textarea rows="6" class="form-control" style="width:300px;" id="to1" name="to1"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4"  style="margin-top:35px;">
+            <div class="form-group">
+                <h4 class="text-right">QUOTATION NO : <span id="qoteno1"></span></h4>
+            </div>
+            <div class="form-group">
+                <h4 class="text-right"> PAN NO: <span id="pan1"></span></h4>
+            </div>
+            <div class="form-group">
+                <h4 class="text-right">GSTIN NO: <span id="gst1"></span></h4>
+            </div>
+            <div class="form-group">
+                <h4 class="text-right">QUOTATION DATE: <span id="date1"></span></h4>
+            </div>
+        </div>
+        <div class="row">
+            <table style="width:80%;padding-top: 20px;margin-left: 16px;">
+            <thead>
+              <tr>
+                <th class="text-left" style="width: 30%">Item</th>
+                <th class="text-left" style="width: 20%">Rate</th> 
+                <th class="text-left" style="width: 20%">Quantity</th>
+                <th class="text-left" style="width: 30%">Amount</th>
+              </tr>
+            </thead>  
+            <tbody id="tableData"></tbody>
+            </table>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-8">
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="col-md-12">Sub Total: <span id="st1" style="padding-left :70px;"></span></label>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-12">Tax: <span id="tax1" style="padding-left :108px;"></span> </label>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-12">Discount: <span id="dis1" style="padding-left :73px;"></span></label>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-12">Total: <span id="total1" style="padding-left :100px;"></span> </label>
+                </div>
+        </div>
+        <div class="col-md-9" style="margin-top: 20px;margin-left: 0px;">
+            <div class="form-group">
+                <h4 class="text-left"> Notes</h4> 
+                    <textarea rows="4" class="form-control" id="notes1" placeholder="Any Additional notes" name="notes"></textarea>
+            </div>
+        </div>
+        
+        <div class="col-md-9" style="margin-top: 20px;margin-left: 0px;">
+            <div class="form-group">
+                <h4 class="text-left"> Terms</h4> 
+                    <textarea rows="4" class="form-control" id="terms1" placeholder="your terms and payment schedule etc.." name="terms"></textarea>
+            </div>
+        </div> 
+    </div>
+    </div>
+</div>

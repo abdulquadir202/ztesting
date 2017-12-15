@@ -1,0 +1,235 @@
+<link href="/assets/pages/css/profile.min.css" rel="stylesheet" type="text/css" />
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li><span><a href="/dashboard">Home</a></span><i class="fa fa-circle"></i></li>
+                <li><span>Business</span><i class="fa fa-circle"></i></li>
+                <li><span>Organisation</span><i class="fa fa-circle"></i></li>
+                <li><span>Profile</span></li>
+            </ul>
+        </div>
+        
+        <h1 class="page-title"></h1>
+        <div class="row">
+            <div class="col-md-12">
+                <div id="form-alerts"> </div>
+                <div class="profile-sidebar">
+                    <div class="portlet light profile-sidebar-portlet">
+                        <div class="profile-userpic">
+                            <img src="<%= (user.coverImage ? user.coverImage : '/al/img/avatar.png')%>" class="img-responsive" alt="">
+                        </div>
+                        <div class="profile-usertitle">
+                            <div class="profile-usertitle-name"> <%= user.name %> </div>
+                            <div class="profile-usertitle-job"> Admin </div>
+                        </div>
+                        <!-- <div class="profile-userbuttons">
+                            <button type="button" class="btn btn-circle green btn-sm">Follow</button>
+                            <button type="button" class="btn btn-circle red btn-sm">Message</button>
+                        </div> -->
+                    </div>
+                    <div class="portlet light ">
+                        <div>
+                            <div class="profile-usermenu">
+                               <ul class="nav">
+                                    <li>
+                                        <a href="/organisation/detail">
+                                            <i class="icon-settings"></i> Account Settings </a>
+                                    </li>
+                                    <li>
+                                        <a href="/organisation/preference">
+                                            <i class="icon-info"></i> Preferences </a>
+                                    </li>
+                                    <li>
+                                        <a href="/organisation/templates">
+                                            <i class="fa fa-code"></i> Templetes </a>
+                                    </li>
+                                    <li class="active">
+                                        <a href="/organisation/documents/<%= user.uname %>">
+                                            <i class="fa fa-folder-o"></i> Documents </a>
+                                    </li>
+                                    <li>
+                                        <a href="/organisation/integration/<%= user.uname %>">
+                                            <i class="fa fa-exchange"></i> Integration </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                 <div class="profile-content">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="portlet light ">
+                                <div class="portlet-title tabbable-line">
+                                    <div class="caption caption-md">
+                                        <i class="icon-globe theme-font hide"></i>
+                                        <span class="caption-subject font-blue-madison bold uppercase">Documents </span>
+                                    </div>
+                                    
+                                </div>
+                                    <div class="portlet-body">
+                                        <input type="hidden" id="apiUrl" value="<%= api.url %>"/>
+                                        <input type="hidden" id="token" value="<%= user.token %>"/>
+                                        <input type="hidden" id="uname" value="<%= uname %>"/>
+                                        <form>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <h4><u><b>Adhar Card</b></u></h4>
+                                                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                            <div class="fileinput-new thumbnail" style="width: 261px; height: 150px;">
+                                                                <img id ="adharImage" src="/al/img/not-updated-zinetgo.jpg" alt="" /> </div>
+                                                                 <input type="file" name="adhar" id="adhar">
+                                                            
+                                                            <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 261px; max-height: 150px;"> 
+                                                            </div>
+                                                        </div>
+                                                        <!-- <div class="clearfix margin-top-10">
+                                                            <span class="label label-danger">NOTE! </span>
+                                                            <span>Attached image thumbnail is supported in Latest Firefox, Chrome, Opera, Safari and Internet Explorer 10 only </span>
+                                                        </div>-->
+                                                    </div>
+                                                    <div class="margin-top-10">
+                                                
+                                                        <button class="btn blue btn-block" type="submit" id="adharSubmit"> Save </button> 
+                                                        
+                                                    </div> 
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <h4><u><b>PAN Card</b></u></h4>
+                                                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                            <div class="fileinput-new thumbnail" style="width: 261px; height: 150px;">
+                                                                <img id = "pancard" src="/al/img/not-updated-zinetgo.jpg" alt="" /> </div>
+                                                                 <input type="file" name="pan" id="pan">
+                                                            
+                                                            <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 261px; max-height: 150px;"> </div>
+                                                            
+                                                        </div>
+                                                        
+                                                        <!-- <div class="clearfix margin-top-10">
+                                                            <span class="label label-danger">NOTE! </span>
+                                                            <span>Attached image thumbnail is supported in Latest Firefox, Chrome, Opera, Safari and Internet Explorer 10 only </span>
+                                                        </div>-->
+                                                    </div> 
+                                                    <div class="margin-top-10">
+                                                
+                                                         <button class="btn blue btn-block" type="submit" id="uploadPan"> Save </button>
+                                                        
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <h4><u><b>Service Tax</b></u></h4>
+                                                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                            <div class="fileinput-new thumbnail" style="width: 261px; height: 150px;">
+                                                                <img id = "serviceTaxImg" src="/al/img/not-updated-zinetgo.jpg" alt="" /> </div>
+                                                                 <input type="file" name="serviceTax" id="serviceTax">
+                                                            
+                                                            <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 261px; max-height: 150px;"> </div>
+                                                            
+                                                        </div>
+                                                        
+                                                        <!-- <div class="clearfix margin-top-10">
+                                                            <span class="label label-danger">NOTE! </span>
+                                                            <span>Attached image thumbnail is supported in Latest Firefox, Chrome, Opera, Safari and Internet Explorer 10 only </span>
+                                                        </div>-->
+                                                    </div> 
+                                                    <div class="margin-top-10">
+                                                
+                                                        <button class="btn blue btn-block" type="submit" id="uploadserviceTax"> Save </button>
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <h4><u><b>Address Proof</b></u></h4>
+                                                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                            <div class="fileinput-new thumbnail" style="width: 261px; height: 150px;">
+                                                                <img id = "addressp" src="/al/img/not-updated-zinetgo.jpg" alt="" /> </div>
+                                                                 <input type="file" name="addressProof" id="addressProof">
+                                                            
+                                                            <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 261px; max-height: 150px;"> </div>
+                                                            
+                                                        </div>
+                                                        
+                                                        <!-- <div class="clearfix margin-top-10">
+                                                            <span class="label label-danger">NOTE! </span>
+                                                            <span>Attached image thumbnail is supported in Latest Firefox, Chrome, Opera, Safari and Internet Explorer 10 only </span>
+                                                        </div>-->
+                                                    </div>
+
+                                                    <div class="margin-top-10">
+                                                
+                                                        <button class="btn blue btn-block" type="submit" id="uploadaddress"> Save </button>
+                                                        
+                                                    </div> 
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <h4><u><b>Letterhead - Header</b></u></h4>
+                                                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                            <div class="fileinput-new thumbnail" style="width: 261px; height: 150px;">
+                                                                <img id = "lath" src="/al/img/not-updated-zinetgo.jpg" alt="" /> </div>
+                                                                 <input type="file" name="letterh" id="letterh">
+                                                            
+                                                            <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 261px; max-height: 150px;"> </div>
+                                                            
+                                                        </div>
+                                                        
+                                                        <!-- <div class="clearfix margin-top-10">
+                                                            <span class="label label-danger">NOTE! </span>
+                                                            <span>Attached image thumbnail is supported in Latest Firefox, Chrome, Opera, Safari and Internet Explorer 10 only </span>
+                                                        </div>-->
+                                                    </div>
+                                                    
+                                                    <div class="margin-top-10">
+                                                
+                                                        <button class="btn blue btn-block" type="submit" id="letterhb"> Save </button>
+                                                        
+                                                    </div> 
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <h4><u><b>Letterhead - Footer</b></u></h4>
+                                                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                            <div class="fileinput-new thumbnail" style="width: 261px; height: 150px;">
+                                                                <img id = "lathf" src="/al/img/not-updated-zinetgo.jpg" alt="" /> </div>
+                                                                 <input type="file" name="letterhf" id="letterhf">
+                                                            
+                                                            <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 261px; max-height: 150px;"> </div>
+                                                            
+                                                        </div>
+                                                        
+                                                        <!-- <div class="clearfix margin-top-10">
+                                                            <span class="label label-danger">NOTE! </span>
+                                                            <span>Attached image thumbnail is supported in Latest Firefox, Chrome, Opera, Safari and Internet Explorer 10 only </span>
+                                                        </div>-->
+                                                    </div>
+                                                    
+                                                    <div class="margin-top-10">
+                                                
+                                                        <button class="btn blue btn-block" type="submit" id="letterhfb"> Save </button>
+                                                        
+                                                    </div> 
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" id="apiUrl" value="<%= api.url %>"/>
+                <!-- END PROFILE CONTENT -->
+            </div>
+        </div>
+    </div>
+</div>

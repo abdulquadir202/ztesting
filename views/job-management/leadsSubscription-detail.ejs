@@ -1,0 +1,159 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.3/toastr.min.css" rel="stylesheet" />
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li><span><a href="/dashboard">Home</a></span><i class="fa fa-circle"></i></li>
+                <li><span><a href="/subscriptions">Subscription</a></span><i class="fa fa-circle"></i></li>
+                <li><span>Details</span></li>
+            </ul>  
+        </div>
+        <h1 class="page-title"></h1>
+        <div class="row">
+            <div class="col-md-12" id="detail">
+                <div id="form-alerts"> </div>
+                <div class="portlet light bordered">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="icon-control-play font-blue-hoki"></i>
+                            <span class="caption-subject font-blue-hoki bold uppercase">Subscription Detail</span>
+                        </div>
+                        <div class="dt-buttons pull-right">
+                            <a class="dt-button buttons-print btn green blue-hoki btn-outline" href="/subscriptions/<%= subscribeId %>/edit"><span><i class="fa fa-edit"></i> Edit</span></a>
+                        </div>
+                    </div>
+
+                    //detail
+                    <div class="portlet-body form">
+                        <input type="hidden" id="subscribeId" value="<%= subscribeId %>">
+                        <input type="hidden" id="url" value="<%= api.url %>/api/subscription/<%= subscribeId %>?token=<%= user.token %>">
+                        <input type="hidden" id="token" value="<%= user.token %>">
+
+                        <form class="form-horizontal" role="form">
+                        	<div class="form-body">
+	                        	<div class="form-group">
+                                    <label class="control-label col-md-3">Customer Name:</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="displayCustomer"></p>
+                                    </div>
+                                </div>
+	                            <div class="form-group">
+                                    <label class="control-label col-md-3">Service Name:</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="displayService"></p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Start Date:</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="displayStart"></p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">End Date:</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="displayEnd"></p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Next Due Date:</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="displayNext"></p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Location:</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="displayLocation"></p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">No. of Service:</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="displaynoService"></p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Total Amount:</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="displayTamount"></p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Amount per Service:</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="displaySamount"></p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Tax Applicable(%):</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="displayTax"></p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Frequency:</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="displayFrequency"></p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Tax Class:</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="displayTclass"></p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Payment Method:</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="displayPayment"></p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Payment Mode:</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="displayMode"></p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Payable:</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="displayPayable"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="portlet grey-cascade box">
+                                        <div class="portlet-title">
+                                            <div class="caption">
+                                                <i class="fa fa-cogs"></i>Service Schedule
+                                            </div>
+                                        </div>
+                                        <div class="portlet-body">
+                                            <div class="table-responsive">
+                                                <table class="table table-hover table-bordered table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th> Date </th>
+                                                            <th> Service </th>
+                                                            <th> Payment Amount / Service </th>
+                                                            <th> Status </th>
+                                                            <th> Action </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id='cData'></tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,136 @@
+<link href="/assets/pages/css/blog.min.css" rel="stylesheet" type="text/css" />
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li><span><a href="/dashboard">Home</a></span><i class="fa fa-circle"></i></li>
+                <li><span><a href="/admin/blog/posts">Posts</a></span><i class="fa fa-circle"></i></li>
+                <li><span><%= data.title %></span></li>
+            </ul>
+        </div>
+        <h1 class="page-title"></h1>
+
+        <div class="blog-page blog-content-2">
+            <div class="row">
+                <div class="col-lg-9">
+                    <div class="blog-single-content bordered blog-container">
+                        <div class="blog-single-head">
+                            <h1 class="blog-single-head-title"><%= data.displayTitle %></h1>
+                        </div>
+                        <div class="blog-single-desc">
+                            <%- data.content %>
+                        </div>
+                        <div class="blog-single-foot">
+                            <div class="blog-single-foot-date">
+                                <i class="icon-calendar font-blue"></i>
+                                <a href="javascript:;"><%= data.createdOn %></a>
+                            </div>
+                            
+                            <div>
+                                <i class="icon-user font-blue"></i>
+                                <a href="javascript:;"><%= data.user.name %></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="blog-single-sidebar bordered blog-container" style="padding-top:1px;">
+                        <div class="blog-single-sidebar-ui">
+                            <h3 class="blog-sidebar-title uppercase">Status: <b><%= data.approvedStatus %></b></h3>
+                            <div>
+
+                                <% if(user.profile.roles.indexOf('admin') >-1|| user.profile.roles.indexOf('Editor')>-1){ %>
+                                    <% if(data.approvedStatus === 'Pending'){ %>
+                                        <a class="dt-button buttons-print btn green blue-hoki btn-outline" href="javascript:;" data-id= <%=data.id %> data-uname= <%=data.uName %> id="updateStatus" value="<%= data.approvedStatus %>">
+                                            <span><i class="icon-like"></i> Publish Post </span>
+                                        </a>
+                                    <% }else{ %>
+                                        <a class="dt-button buttons-print btn green blue-hoki btn-outline" href="javascript:;"data-id= <%=data.id %> data-uname= <%=data.uName %> id="updateStatus" value="<%= data.approvedStatus %>">
+                                            <span><i class="icon-dislike"></i> Unpublish Post </span>
+                                        </a>
+                                    <% } %>
+                                <% } %>
+                                
+                                <div class="actions pull-right">
+                                    <div class="btn-group">
+                                        <a class="btn btn-sm green dropdown-toggle" href="javascript:;" data-toggle="dropdown" aria-expanded="true"> Actions
+                                            <i class="fa fa-angle-down"></i>
+                                        </a>
+                                        <ul class="dropdown-menu pull-right">
+                                            <li>
+                                                <a href="/admin/blog/posts/new" class="edit-post">
+                                                    <i class="fa fa-plus-square-o"></i> New Post </a>
+                                            </li>
+                                            <li>
+                                                <a href="/admin/blog/posts/<%= data.id %>/edit" class="edit-post">
+                                                    <i class="fa fa-pencil-square-o"></i> Edit Post </a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:;" class="delete-post">
+                                                    <i class="fa fa-trash-o"></i> Delete Post </a>
+                                            </li>
+                                           <!--  <li>
+                                                <a href="javascript:;">
+                                                    <i class="fa fa-ban"></i> Ban </a>
+                                            </li>
+                                            <li class="divider"> </li>
+                                            <li>
+                                                <a href="javascript:;"> Make admin </a>
+                                            </li> -->
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="blog-single-sidebar-ui">
+                            <h3 class="blog-sidebar-title uppercase">Cover Image</h3>
+                            <div class="row ui-margin">
+                                <div class="col-md-12 ui-padding">
+                                    <img src="<%= data.coverImage %>">
+                                </div>
+                            </div>
+                        </div>
+
+                        <% if(user.profile.roles.indexOf('news')>-1){ %>
+                            <br>
+                            <div class="blog-single-sidebar-ui">
+                                <% if(data.isBreakingNews && data.isBreakingNews === true){  %>
+                                    Breaking  News
+                            </div>
+                        <% } }%>
+
+                        <div class="blog-single-sidebar-tags">
+                            <h3 class="blog-sidebar-title uppercase">Category</h3>
+                            <ul class="blog-post-tags">
+                                <li class="uppercase">
+                                <% if(data.category){  %>
+
+                                    <a href="javascript:;"><%= data.category.displayName ? data.category.displayName :data.category.name %></a>
+                                 <% } %>
+
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="blog-single-sidebar-tags">
+                            <h3 class="blog-sidebar-title uppercase">Tags</h3>
+                            <ul class="blog-post-tags">
+                                <% if(data && data.tags){
+                                    var tags = data.tags.split(',');
+                                    for (var i=0;i<tags.length;i++){
+                                %>
+
+                                    <li class="uppercase">
+                                        <a href="javascript:;"><%= tags[i] %></a>
+                                    </li>
+
+                                <% }} %>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

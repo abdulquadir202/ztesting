@@ -1,0 +1,32 @@
+<link href="/al/css/bootstrap-modal-bs3patch.css" rel="stylesheet" type="text/css" />
+<link href="/al/css/bootstrap-modal.css" rel="stylesheet" type="text/css" />
+
+<div id="addVendorModal" class="modal fade" tabindex="-1" data-width="760">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+        <h3 class="modal-title">Add New Vendor</h3>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12">
+                <form action="#"> 
+                <h4>Vendor Information</h4>
+                <p> Mobile No<span style="color:red;"> * </span>
+                    <input type="mobile" class="form-control" id="mVendorMobile" name="mVendorMobile" required=""> </p>
+                <p> Name<span style="color:red;"> * </span>
+                    <input type="text" class="form-control" id="mVendorName" name="mVendorName" required=""> </p>
+                <p> Email<span style="color:red;"> * </span>
+                    <input type="email" class="form-control" id="mVendorEmail" name="mVendorEmail" required=""> </p>
+                <p> Address<span style="color:red;"> * </span>
+                    <input type="text" class="form-control" id="mVendorAddress" name="mVendorAddress" required=""> </p>
+                <p> Description
+                    <textarea rows="2" class="form-control" id="mVendorDescription" name="mVendorDescription"></textarea> </p>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn green" data-dismiss="modal" id="addVendor">Submit</button>
+        <button type="button" data-dismiss="modal" class="btn btn-outline dark">Cancel</button>
+    </div>
+</div>

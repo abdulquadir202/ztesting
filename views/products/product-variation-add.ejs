@@ -1,0 +1,73 @@
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li><span><a href="/dashboard">Home</a></span><i class="fa fa-circle"></i></li>
+                <li><span> Jobs</span><i class="fa fa-circle"></i></li>
+                <li><span><a href="/products/catalog">Products</a></span><i class="fa fa-circle"></i></li>
+                <li><span> Variation</span></li>
+            </ul>
+        </div>
+        <h1 class="page-title"></h1>
+        <div class="row">
+            <div class="col-md-12">
+                <div id="form-alerts"> </div>
+                <div class="portlet light portlet-fit portlet-form bordered">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="fa fa-bullhorn font-blue-hoki"></i>
+                            <span class="caption-subject font-blue-hoki sbold uppercase"> Product variation</span> | <span class="lid"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="portlet-body">
+                        <form action="<%= api.url %>/api/product/<%= productId %>?token=<%= user.token %>" id="products_add_form" class="form-horizontal">
+                            <input type="hidden" id="productId" value="<%= productId %>">
+                            <input type="hidden" id="apiUrl" value="<%= api.url %>"/>
+                            <input type="hidden" id="token" value="<%= user.token %>"/>
+                            <input type="hidden" id="id" value=""/>
+
+                            <div class="form-body">
+
+                                <div class="form-group mt-repeater">
+                                <div data-repeater-list="group-c">
+                                    <div data-repeater-item class="mt-repeater-item">
+                                        <div class="row mt-repeater-row">
+                                            <div class="col-md-3">
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label class="control-label">Product Price</label>
+                                                <input type="text" placeholder="price" class="form-control" /> 
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label class="control-label">Qty</label>
+                                                <input type="text" placeholder="qauntity" class="form-control" /> 
+                                            </div>
+                                            <div class="col-md-1">
+                                                <label class="control-label">Unit</label>
+                                                <input class="form-control" name="productUnit" id="productUnit" disabled/> 
+                                            </div>
+                                            <div class="col-md-1">
+                                            <label class="control-label">Delete</label>
+                                                <a href="javascript:;" data-repeater-delete class="btn btn-danger mt-repeater-delete">
+                                                    <i class="fa fa-close"></i>
+                                                </a>
+                                            </div>
+                                            <a href="#" id="save">Save</a>
+                                            <div class="col-md-3">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="javascript:;" data-repeater-create class="btn btn-info mt-repeater-add text">
+                                    <i class="fa fa-plus"></i> Add Product Variation</a>
+                            </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

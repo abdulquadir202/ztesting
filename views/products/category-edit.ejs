@@ -1,0 +1,61 @@
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li><span><a href="/dashboard">Home</a></span><i class="fa fa-circle"></i></li>
+                <li><span><a href="/categories">Categories</a></span><i class="fa fa-circle"></i></li>
+                <li><span> Edit</span></li>
+            </ul>
+        </div>
+        <h1 class="page-title"></h1>
+        <div class="row">
+             <div class="col-md-12">
+                <div id="form-alerts"> </div>
+                <div class="portlet light portlet-fit portlet-form bordered">
+                    <div class="portlet-title">
+                        <div class="caption font-blue-hoki">
+                            <i class="icon-bag font-blue-hoki"></i>
+                            <span class="caption-subject sbold uppercase"> Category Information</span>
+                        </div>
+                        <div class="dt-buttons pull-right">
+                            <a class="dt-button buttons-print btn green blue-hoki btn-outline" href="/category/<%= categoryId %>"><span><i class="fa fa-reply"></i> Detail</span></a>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                    <form action="<%= api.url %>/api/category/<%= categoryId %>?token=<%= user.token %>" id="category_edit_form" class="form-horizontal">
+
+                            <input type="hidden" id="apiUrl" value="<%= api.url %>"/>
+                            <input type="hidden" id="token" value="<%= user.token %>"/>
+                            <input type="hidden" id="categoryId" value="<%= categoryId %>">
+                            <div class="form-body">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Name
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" name="categoryName" id="categoryName">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Description</label>
+                                    <div class="col-md-4">
+                                        <textarea rows="4" class="form-control" id="description" name="description"></textarea>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-offset-3 col-md-9">
+                                        <button class="btn green" type="submit" id="updateCategory"> Save </button>
+                                        <button type="button" class="btn default" id="cancelEdit">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

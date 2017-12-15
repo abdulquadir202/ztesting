@@ -1,0 +1,148 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.3/toastr.min.css" rel="stylesheet" />
+<link href="/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" type="text/css" />
+
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li><span><a href="/dashboard">Home</a></span><i class="fa fa-circle"></i></li>
+                <li><span><a href="/products/catalog">Products</a></span><i class="fa fa-circle"></i></li>
+                <li><span><%= productId %></span></li>
+            </ul>  
+        </div>
+        <h1 class="page-title"></h1>
+
+        <div class="row">
+            <div class="col-md-12 hidden" id="edit">
+                <div id="form-alerts"> </div>
+                <div class="portlet light portlet-fit portlet-form bordered">
+                    <div class="portlet-title">
+                        <div class="caption font-blue-hoki">
+                            <i class="icon-bag font-blue-hoki"></i>
+                            <span class="caption-subject sbold uppercase"> Product Information</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12" id="detail">
+                <div id="form-alerts"> </div>
+                <div class="portlet light bordered">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="icon-bag font-blue-hoki"></i>
+                            <span class="caption-subject font-blue-hoki bold uppercase">Product Detail</span>
+                            <!-- <span class="caption-helper">some info...</span> -->
+                        </div>
+                        <div class="dt-buttons pull-right">
+                            <a class="dt-button buttons-print btn green blue-hoki btn-outline" href="/products/<%= productId %>/edit"><span><i class="fa fa-edit"></i> Edit</span></a>
+                            <a id="pVar" class="dt-button buttons-print btn green blue-hoki btn-outline" href="/products/<%= productId %>/variation"><span><i class="fa fa-plus"></i> Variations</span></a>
+                            <a id="piu" class="dt-button buttons-print btn green btn-outline" href="#"><span><i class="icon-plus"></i> Add Photos</span></a>
+                            <a class="dt-button buttons-print btn green blue-hoki btn-outline" href="javascript:;" id="delete"><span><i class="fa fa-trash"></i> Delete</span></a>
+                        </div>
+                    </div>
+                    <div class="portlet-body form">
+                        <!-- BEGIN FORM-->
+                        <input type="hidden" id="productId" value="<%= productId %>">
+                        <input type="hidden" id="url" value="<%= api.url %>/api/product/<%= productId %>?token=<%= user.token %>">
+
+                        <form class="form-horizontal" role="form">
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <div class="form-body">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">Name:</label>
+                                            <div class="col-md-9">
+                                                <p class="form-control-static" id="displayProductName"></p>
+                                            </div>
+                                        </div>
+                                    
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">SKU:</label>
+                                            <div class="col-md-9">
+                                                <p class="form-control-static" id="displaySku"></p>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">Picture:</label>
+                                            <div class="col-md-9">
+                                                <p class="form-control-static" id="displayPicture"></p>
+                                            </div>
+                                        </div>
+                                    
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">Brand Name:</label>
+                                            <div class="col-md-9">
+                                                <p class="form-control-static" id="displayBrandName"></p>
+                                            </div>
+                                        </div>
+                                    
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">Category:</label>
+                                            <div class="col-md-9">
+                                                <p class="form-control-static" id="displayCategory"></p>
+                                            </div>
+                                        </div>
+                                   
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">Stock:</label>
+                                            <div class="col-md-9">
+                                                <p class="form-control-static" id="displayStock"></p>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">Measurement Unit:</label>
+                                            <div class="col-md-9">
+                                                <p class="form-control-static" id="displayUnit"></p>
+                                            </div>
+                                        </div>
+                                   
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">MRP:</label>
+                                            <div class="col-md-9">
+                                                <p class="form-control-static" id="displayPrice"></p>
+                                            </div>
+                                        </div>
+                                    
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">Discount Price:</label>
+                                            <div class="col-md-9">
+                                                <p class="form-control-static" id="displaySalesPackage"></p>
+                                            </div>
+                                        </div>
+                                   
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">Description:</label>
+                                            <div class="col-md-9">
+                                                <p class="form-control-static" id="displayDescription"></p>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">Is Featured:</label>
+                                            <div class="col-md-9">
+                                                <p class="form-control-static" id="displayIsFeatured"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <img id="coverImage" width="100%"/>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/js/onground/products/products-detail.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.3/toastr.min.js"></script>
+<script src="/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>
+
+

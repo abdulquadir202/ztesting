@@ -1,0 +1,75 @@
+<style>
+.fancybox-wrap{
+    top: 40px;
+}
+</style>
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li><span><a href="/dashboard">Home</a></span><i class="fa fa-circle"></i></li>
+                <li><span>Slider</span></li>
+            </ul>
+        </div>
+        <h1 class="page-title"></h1>
+        <div class="row">
+            <div class="col-md-12">
+                <div id="form-alerts"> </div>
+                <div class="portlet light bordered" id="carosals_portlet">
+                    <div class="portlet-title">
+                        <div class="caption font-blue-hoki">
+                            <i class="fa fa-picture-o font-blue-hoki"></i>
+                            <span class="caption-subject bold uppercase"> Slider List </span>
+                        </div>
+
+                        <div class="dt-buttons pull-right">
+                            <a class="dt-button buttons-print btn green btn-outline" href="/slider/home/new"><span><i class="icon-plus"></i> Add Slidder</span></a>
+
+                            <%- partial('partials/al/table-tools') %>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab_meta">
+                </div>
+                <div class="portlet-body" id="tDiv">
+                    <div class="row">
+                        <div id="tab_images_uploader_filelist" class="col-md-6 col-sm-12"> </div>
+                    </div>
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr role="row" class="heading">
+                                <th width="8%"> Image </th>
+                                <th width="25%"> Text On Image </th>
+                                <th width="12%"> Sort Order </th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableData">
+                            <!--
+                            <tr>
+                                <td>
+                                    <a href="../assets/pages/media/works/img1.jpg" class="fancybox-button" data-rel="fancybox-button">
+                                        <img class="img-responsive" src="../assets/pages/media/works/img1.jpg" alt=""> </a>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" name="product[images][1][label]" value="Thumbnail image"> </td>
+                                <td>
+                                    <input type="text" class="form-control" name="product[images][1][sort_order]" value="1"> </td>
+                                <td>
+                                    <a href="javascript:;" class="btn btn-default btn-sm">
+                                        <i class="fa fa-save"></i> Save </a>
+                                </td>
+                                <td>
+                                    <a href="javascript:;" class="btn btn-default btn-sm">
+                                        <i class="fa fa-times"></i> Remove </a>
+                                </td>
+                            </tr>
+                            -->
+                        </tbody>
+                    </table>
+                </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

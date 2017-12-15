@@ -1,0 +1,116 @@
+<link href="/assets/pages/css/blog.min.css" rel="stylesheet" type="text/css" />
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li><span><a href="/dashboard">Home</a></span><i class="fa fa-circle"></i></li>
+                <li><span><a href="/admin/blog/posts">Posts</a></span><i class="fa fa-circle"></i></li>
+                <li><span><%= data.title %></span></li>
+            </ul>  
+        </div>
+        <h1 class="page-title"></h1> 
+        <div class="blog-page blog-content-2">
+        <form action="<%= api.url %>/api/blog/<%= data.id %>?token=<%= user.token %>" id="posts_update_form" class="form-horizontal" enctype="multipart/form-data" role="form">
+        <input type="hidden" value="<%= data.id %>" id="blogId"/>
+            <div class="row">
+                <div class="col-lg-9">
+                    <div class="blog-single-content bordered blog-container">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="title" name="title" placeholder="Enter the blog title" value="<%= data.title %>"/>
+                        </div>
+
+                        <div class="form-group">
+                            <textarea  rows="3" type="text" class="form-control" id="shortDescription" name="shortDescription" placeholder="Enter short description" ><%= data.shortDescription %></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <div id="summernote123"></div>
+                            <input type="hidden" value="<%= data.content %>" id="scontent"/>
+                        </div>
+                    </form>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="blog-single-sidebar bordered blog-container" style="padding-top:1px;">
+                        
+                        <div class="blog-single-sidebar-ui">
+                            <h3 class="blog-sidebar-title uppercase">Cover Image
+                                <span class="required"> * </span></h3>
+                            <div class="row ui-margin">
+                                <div class="col-md-12 ui-padding">
+                                    <img src="<%= data.coverImage %>" id="coverImagePreview">
+                                </div>
+                                <input type="hidden" role="uploadcare-uploader" id="coverImage" name="coverImage" data-images-only value="<%= data.coverImage %>" />
+                            </div>
+                        </div>
+                        <% if(user.profile.roles.indexOf('news')>-1){ %>
+                            <br>
+                            <div class="blog-single-sidebar-ui">
+                                <div class="mt-checkbox-list">
+                                    <label class="mt-checkbox">
+                                        <% if(data.isBreakingNews && data.isBreakingNews === true){ %>
+                                            <input type="checkbox" id="breakingnews" class="mt-checkbox" checked> Breaking News
+                                            <span></span>
+                                            <input type="hidden" id="breaking" value="true">
+                                        <% }else{ %>
+                                            <input type="checkbox" id="breakingnews" class="mt-checkbox"> Breaking News
+                                            <span></span>
+                                            <input type="hidden" id="breaking" value="false">
+                                            <% } %>
+                                    </label>
+                                </div>
+                            </div>
+                        <% } %>
+                        <% if(user.profile.roles.indexOf('admin')>-1 || user.profile.roles.indexOf('Editor')>-1){ %>
+                        <div class="blog-single-sidebar-ui">
+                            <h3 class="blog-sidebar-title uppercase">
+                                Status <span class="required"> * </span>
+                            </h3>
+                            <div class="form-group">
+                                <select id="status" class="form-control select2-multiple select2-hidden-accessible" name="status">
+                                    <% if(data.approvedStatus == 'Approved') { %>
+                                    <option value="Pending">Pending</option>
+                                    <option value="Approved" selected>Approved</option>
+                                    <% } else{ %>
+                                        <option value="Pending" selected>Pending</option>
+                                        <option value="Approved">Approved</option>
+                                    <% } %>
+                                    
+                                </select>
+                            </div>
+                        </div>
+                        <% } %>
+
+                        <div class="blog-single-sidebar-ui">
+                            <h3 class="blog-sidebar-title uppercase">Category
+                                <span class="required"> * </span></h3>
+                                <input type="hidden" value="<%= data.categoryId ? data.categoryId:'' %>" id = "catId" />
+                            <div class="form-group">
+                                <select id="blogCategoriesId" class="form-control select2-multiple select2-hidden-accessible" name="blogCategoriesId"></select>
+                            </div>
+                            <!-- <div class="form-group">
+                                <span class="help-block"><a data-toggle="modal" href="#addBlogCategoriesModal"><i class="icon-plus"></i> Add New</a></span>
+                            </div> -->
+                        </div>
+
+                        <div class="blog-single-sidebar-ui">
+                            <h3 class="blog-sidebar-title uppercase">Tags
+                                <span class="required"> * </span></h3>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="tags" name="tags" value="<%= data.tags %>">
+                            </div>
+                        </div>
+
+                         <div class="blog-single-sidebar-ui">
+                            <h3 class="blog-sidebar-title uppercase"></h3>
+                            <div class="form-group">
+                                <button class="btn green" type="submit" id="updatePost"> Update Post </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>

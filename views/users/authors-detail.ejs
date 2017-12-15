@@ -1,0 +1,123 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.3/toastr.min.css" rel="stylesheet" />
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li><span><a href="/dashboard">Home</a></span><i class="fa fa-circle"></i></li>
+                <li><span><a href="/admin/users">Users</a></span><i class="fa fa-circle"></i></li>
+                <li><span>Details</span></li>
+            </ul>  
+        </div>
+        <h1 class="page-title"></h1>
+
+        <div class="row">
+            <div class="col-md-12 hidden" id="edit">
+                <div id="form-alerts"> </div>
+                <div class="portlet light portlet-fit portlet-form bordered">
+                    <div class="portlet-title">
+                        <div class="caption font-blue-hoki">
+                            <i class="icon-layers font-blue-hoki"></i>
+                            <span class="caption-subject sbold uppercase"> User Information</span>
+                        </div>
+                        <div class="dt-buttons pull-right">
+                            <a class="dt-button buttons-print btn green blue-hoki btn-outline" href="javascript:;" id="showDetail"><span><i class="fa fa-reply"></i> Detail</span></a>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        
+                    <form action="<%= api.url %>/api/user?token=<%= user.token %>" id="authors_edit_form" class="form-horizontal">
+                        <input type="hidden" id="authorId" value="<%= authorId %>">
+                            
+                            <div class="form-body">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Name</label>
+                                    <div class="col-md-4">
+                                        <input name="authorName" id="authorName" type="text" class="form-control" /> 
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Mobile</label>
+                                    <div class="col-md-4">
+                                        <input type="mobile" class="form-control" id="authorMobile" name="authorMobile" maxlength="10"> 
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Email</label>
+                                    <div class="col-md-4">
+                                        <input type="email" class="form-control" id="authorEmail" name="authorEmail">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Address</label>
+                                    <div class="col-md-4">
+                                        <textarea rows="2" class="form-control" id="authorAddress" name="authorAddress"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-offset-3 col-md-9">
+                                        <button class="btn green" type="submit" id="updateAuthors"> Save </button>
+                                        <button type="button" class="btn default" id="cancelEdit">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12" id="detail">
+                <div id="form-alerts"> </div>
+                <div class="portlet light bordered">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="icon-layers font-blue-hoki"></i>
+                            <span class="caption-subject font-blue-hoki bold uppercase">User Detail</span>
+                        </div>
+                        <div class="dt-buttons pull-right">
+                            <a class="dt-button buttons-print btn green blue-hoki btn-outline" href="/admin/users/<%= authorId %>/edit"><span><i class="fa fa-edit"></i> Edit</span></a>
+                            <a class="dt-button buttons-print btn green blue-hoki btn-outline" href="javascript:;" id="delete"><span><i class="fa fa-trash"></i> Delete</span></a>
+                        </div>
+                    </div>
+                    <div class="portlet-body form">
+                        <!-- BEGIN FORM-->
+                        <input type="hidden" id="authorId" value="<%= authorId %>">
+                        <input type="hidden" id="url" value="<%= api.url %>/api/user/<%= authorId %>?token=<%= user.token %>">
+
+                        <form class="form-horizontal" role="form">
+                            <div class="form-body">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Name:</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="displayName"></p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Mobile:</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="displayMobile"></p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Email:</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="displayEmail"></p>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Address:</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="displayAddress"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

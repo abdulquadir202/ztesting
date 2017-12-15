@@ -1,0 +1,374 @@
+<link href="/assets/pages/css/profile.min.css" rel="stylesheet" type="text/css" />
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li><span><a href="/dashboard">Home</a></span><i class="fa fa-circle"></i></li>
+                <li><span>Business</span><i class="fa fa-circle"></i></li>
+                <li><span>Organisation</span><i class="fa fa-circle"></i></li>
+                <li><span>Profile</span></li>
+            </ul>
+        </div>
+        
+        <h1 class="page-title"></h1>
+        <div class="row">
+            <div class="col-md-12">
+                <div id="form-alerts"> </div>
+                <div class="profile-sidebar">
+                    <div class="portlet light profile-sidebar-portlet">
+                        <div class="profile-userpic">
+                            <img src="<%= (user.coverImage ? user.coverImage : '/al/img/avatar.png')%>" class="img-responsive" alt="">
+                        </div>
+                        <div class="profile-usertitle">
+                            <div class="profile-usertitle-name"> <%= user.name %> </div>
+                            <div class="profile-usertitle-job"> Admin </div>
+                        </div>
+                        <!-- <div class="profile-userbuttons">
+                            <button type="button" class="btn btn-circle green btn-sm">Follow</button>
+                            <button type="button" class="btn btn-circle red btn-sm">Message</button>
+                        </div> -->
+                    </div>
+                    <div class="portlet light ">
+                        <div>
+                            <div class="profile-usermenu">
+                               <ul class="nav">
+                                    <li>
+                                        <a href="/organisation/detail">
+                                            <i class="icon-settings"></i> Account Settings </a>
+                                    </li>
+                                    <li class="active">
+                                        <a href="/organisation/preference">
+                                            <i class="icon-info"></i> Preferences </a>
+                                    </li>
+                                    <li>
+                                        <a href="/organisation/templates">
+                                            <i class="fa fa-code"></i> Templetes </a>
+                                    </li>
+                                    <li>
+                                        <a href="/organisation/documents/<%= user.uname %>">
+                                            <i class="fa fa-folder-o"></i> Documents </a>
+                                    </li>
+                                    <li>
+                                        <a href="/organisation/integration/<%= user.uname %>">
+                                            <i class="fa fa-exchange"></i> Integration </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                 <div class="profile-content">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="portlet light ">
+                                <div class="portlet-title tabbable-line">
+                                    <div class="caption caption-md">
+                                        <i class="icon-globe theme-font hide"></i>
+                                        <span class="caption-subject font-blue-madison bold uppercase">Preferences Setting</span>
+                                    </div>
+                                    <ul class="nav nav-tabs">
+                                        <li class="active">
+                                            <a href="#tab_1_1" data-toggle="tab">Email & SMS</a>
+                                        </li>
+                                        <% if(user.orgType !=="blog"){ %>
+                                            <li>
+                                                <a href="#tab_1_2" data-toggle="tab">Advance</a>
+                                            </li>
+                                        <% } %>
+                                        
+                                        <!-- <li>
+                                            <a href="#tab_1_3" data-toggle="tab">Social Info</a>
+                                        </li>
+                                        <li>
+                                            <a href="#tab_1_4" data-toggle="tab">Upload Images</a>
+                                        </li> -->
+                                    </ul>
+                                </div>
+
+                                <div class="portlet-body">
+                                    <div class="tab-content">
+                                        <!-- PERSONAL INFO TAB -->
+                                        <input type="hidden" id="apiUrl" value="<%= api.url %>"/>
+                                        <input type="hidden" id="token" value="<%= user.token %>"/>
+                                        <input type="hidden" id="perId" value=""/>
+                                        <div class="tab-pane active" id="tab_1_1">
+                                            <form role="form" class="preference_add_form">
+                                                <div class="form-body">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Enable Email:</label>
+                                                          
+                                                            <label>
+                                                                <input type="radio" value="0" name="enableEmail" checked="checked" > No </label>
+                                                            <label>
+                                                                <input type="radio" value="1" name="enableEmail"> Yes </label>
+                                                            
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label class="control-label">Email Id</label>
+                                                            <input type="email" placeholder="Email" class="form-control" name="emailId" id="emailId" value="" /> 
+                                                        </div>
+                                                       
+                                                        <div class="form-group">
+                                                            <label class="control-label">Password</label>
+                                                            <input type="text" placeholder="Password" class="form-control" name="pwd" id="pwd" value=""/> 
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label">host</label>
+                                                            <input type="text" placeholder="host" class="form-control" name="host" id="host" value="smtp.gmail.com"/> 
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label">Port</label>
+                                                            <input type="number" placeholder="Port" class="form-control" name="port" id="port" value="465"/> 
+                                                        </div>
+                                                    </div> 
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Enable SmS : </label>
+                                                          
+                                                            <label>
+                                                                <input type="radio" value="0" name="enableSms" checked="checked" > No </label>
+                                                            <label>
+                                                                <input type="radio" value="1" name="enableSms"> Yes </label>
+                                                            
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label class="control-label">Authentication Key</label>
+                                                            <input type="text" placeholder="Authentication Key" class="form-control" name="authKey" id="authKey" value="" /> 
+                                                        </div>
+                                                       
+                                                        <div class="form-group">
+                                                            <label class="control-label">Sender Id</label>
+                                                            <input type="text" placeholder="sender Id" class="form-control" name="senderId" id="senderId" value=""/> 
+                                                        </div>
+                                                    </div>  
+                                                </div>
+                                                <div class="form-actions">
+                                                    <div class="row">
+                                                        <div class="col-md-offset-3 col-md-9">
+                                                            <button class="btn green" type="submit" id="editProduct"> Update </button>
+                                                            <button type="reset" class="btn default">Reset</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="tab-pane" id="tab_1_2">
+                                            <form role="form" class="preference_add_form">
+                                                <div class="form-body">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <span class="caption-subject font-blue-madison bold">Lead Preferences</span>
+                                                            <hr>
+                                                            <div class="form-group">
+                                                                <div class="col-md-6">
+                                                                    <label class="control-label">Lead Id Prefix (Default :- <%= user.name.substring(0, 3).toUpperCase() %>-LD)</label>
+                                                                    <input type="text" placeholder="prefix" class="form-control" name="leadPrefix" id="leadPrefix" value="" /> 
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <label class="control-label">Sequence no (Default starts:- 0000)</label>
+                                                                    <input type="number" placeholder="number" class="form-control" name="leadseq" id="leadseq" value="" /> 
+                                                                </div>
+                                                            </div>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            <label><b>Note:</b> &nbsp;0000 is the sequence number and your default lead id is <%= user.name.substring(0, 3).toUpperCase() %>-LD-0000</label>
+                                                            <br>
+                                                            <br>
+                                                        </div> 
+                                                        <div class="col-md-6">
+                                                            <span class="caption-subject font-blue-madison bold">Employee Preferences</span>
+                                                            <hr>
+                                                            <div class="form-group">
+                                                                <div class="col-md-6">
+                                                                    <label class="control-label">Employee Id Prefix (Default :- <%= user.name.substring(0, 3).toUpperCase() %>)</label>
+                                                                    <input type="text" placeholder="prefix" class="form-control" name="empPrefix" id="empPrefix" value="" /> 
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                <label class="control-label">Sequence no (Default starts :- 1)</label>
+                                                                 <input type="number" placeholder="number" class="form-control" name="empseq" id="empseq" value="" /> 
+                                                                </div>
+                                                            </div>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            <label><b>Note:</b> &nbsp;1 is the sequence number and your default employee id is <%= user.name.substring(0, 3).toUpperCase() %>  0000</label>
+                                                        </div>  
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <span class="caption-subject font-blue-madison bold">Invoice Preferences</span>
+                                                            <hr>
+                                                            <div class="form-group">
+                                                                <div class="col-md-6">
+                                                                    <label class="control-label">Invoice Id Prefix (Default :- #)</label>
+                                                                    <input type="text" placeholder="prefix" class="form-control" name="iPrefix" id="iPrefix" value="" /> 
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <label class="control-label">Sequence no (Default starts:- 1)</label>
+                                                                    <input type="number" placeholder="number" class="form-control" name="iseq" id="iseq" value="" /> 
+                                                                </div>
+                                                            </div>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            <label><b>Note:</b> &nbsp;1 is the sequence number and your default invoice id is #1</label>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            
+                                                            <span class="caption-subject font-blue-madison bold">Lead notification</span>
+                                                            <hr>
+                                                            <div class="form-group">
+                                                                <div class="col-sm-3">
+                                                                  <label class="control-label"></label>
+                                                                </div>
+                                                                <div class="col-sm-5">
+                                                                    <span class="caption-subject font-blue-madison bold">Email</span>
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                     <span class="caption-subject font-blue-madison bold">SMS</span>
+                                                                </div>
+                                                            </div>
+                                                            <br>
+                                                            <br>
+                                                            <div class="form-group">
+                                                                <div class="col-sm-3">
+                                                                  <label class="control-label">New:</label>
+                                                                </div>
+                                                                <div class="col-sm-5">
+                                                                    <label>
+                                                                        <input type="radio" value="0" name="enableEmailnew" checked="checked" > No 
+                                                                    </label>
+                                                                    <label>
+                                                                        <input type="radio" value="1" name="enableEmailnew"> Yes 
+                                                                    </label>
+                                                                </div>
+                                                                <label>
+                                                                <input type="radio" value="0" name="enableSmsnew" checked="checked" > No 
+                                                                </label>
+                                                                <label>
+                                                                <input type="radio" value="1" name="enableSmsnew"> Yes 
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="col-sm-3">
+                                                                  <label class="control-label">Cancel:</label>
+                                                                </div>
+                                                                <div class="col-sm-5">
+                                                                    <label>
+                                                                        <input type="radio" value="0" name="enableEmailcancel" checked="checked" > No 
+                                                                    </label>
+                                                                    <label>
+                                                                        <input type="radio" value="1" name="enableEmailcancel"> Yes 
+                                                                    </label>
+                                                                </div>
+                                                                <label>
+                                                                <input type="radio" value="0" name="enableSmscancel" checked="checked" > No 
+                                                                </label>
+                                                                <label>
+                                                                <input type="radio" value="1" name="enableSmscancel"> Yes 
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="col-sm-3">
+                                                                  <label class="control-label">Reschedule:</label>
+                                                                </div>
+                                                                <div class="col-sm-5">
+                                                                    <label>
+                                                                        <input type="radio" value="0" name="enableEmailre" checked="checked" > No 
+                                                                    </label>
+                                                                    <label>
+                                                                        <input type="radio" value="1" name="enableEmailre"> Yes 
+                                                                    </label>
+                                                                </div>
+                                                                <label>
+                                                                <input type="radio" value="0" name="enableSmsre" checked="checked" > No 
+                                                                </label>
+                                                                <label>
+                                                                <input type="radio" value="1" name="enableSmsre"> Yes 
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="col-sm-3">
+                                                                  <label class="control-label">Confirm:</label>
+                                                                </div>
+                                                                <div class="col-sm-5">
+                                                                    <label>
+                                                                        <input type="radio" value="0" name="enableEmailconfirm" checked="checked" > No 
+                                                                    </label>
+                                                                    <label>
+                                                                        <input type="radio" value="1" name="enableEmailconfirm"> Yes 
+                                                                    </label>
+                                                                </div>
+                                                                <label>
+                                                                <input type="radio" value="0" name="enableSmsconfirm" checked="checked" > No 
+                                                                </label>
+                                                                <label>
+                                                                <input type="radio" value="1" name="enableSmsconfirm"> Yes 
+                                                                </label>
+                                                            </div>
+                                                            <br>
+                                                            <br>
+                                                        </div> 
+                                                        <div class="col-md-6">
+                                                            <span class="caption-subject font-blue-madison bold">Quotation Preferences</span>
+                                                            <hr>
+                                                            <div class="form-group">
+                                                                <div class="col-md-6">
+                                                                    <label class="control-label">Quotation Id Prefix (Default :- #)</label>
+                                                                    <input type="text" placeholder="prefix" class="form-control" name="qPrefix" id="qPrefix" value="" /> 
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                <label class="control-label">Sequence no (Default starts :- 1)</label>
+                                                                 <input type="number" placeholder="number" class="form-control" name="qseq" id="qseq" value="" /> 
+                                                                </div>
+                                                            </div>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            <label><b>Note:</b> &nbsp;1 is the sequence number and your default quotation id is #1</label>
+                                                        </div>  
+                                                    </div>
+                                                </div>
+                                                <div class="form-actions">
+                                                    <div class="row">
+                                                        <div class="col-md-offset-3 col-md-9">
+                                                            <button class="btn green" type="submit" id="editProduct"> Update </button>
+                                                            <button type="reset" class="btn default">Reset</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" id="apiUrl" value="<%= api.url %>"/>
+                <!-- END PROFILE CONTENT -->
+            </div>
+        </div>
+    </div>
+</div>

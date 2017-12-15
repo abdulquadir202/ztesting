@@ -1,0 +1,229 @@
+
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li><span><a href="/dashboard">Home</a></span><i class="fa fa-circle"></i></li>
+                <li><span>Posts</span></li>
+            </ul>
+            <div class="page-toolbar">
+                <div id="date-range" class="pull-right btn btn-sm">
+                    <i class="icon-calendar"></i>&nbsp;
+                    <span class="thin uppercase"></span>&nbsp;
+                    <i class="fa fa-angle-down"></i>
+                </div>
+            </div>
+        </div>
+        <h1 class="page-title"></h1>
+        <div class="row">
+            <div class="col-md-12">
+                <div id="form-alerts"> </div>
+                <div class="portlet light bordered" id="blogs_portlet">
+                    <div class="portlet-title">
+                        <div class="caption font-blue-hoki">
+                            <i class="fa fa-bullhorn font-blue-hoki"></i>
+                            <span class="caption-subject bold uppercase"> Blogs </span>
+                        </div>
+                        <div class="btn-group pull-right">
+                            <a class="btn sbold green" href="/admin/blog/posts/new" style="padding:6px 12px;margin-right:5px;"><span><i class="icon-plus"></i> Add Blog</span></a>
+
+                            <button data-toggle="dropdown" class="btn green btn-sm btn-outline btn-action dropdown-toggle hidden" type="button" aria-expanded="false" style="padding:6px 12px;margin-right:5px;"> Actions
+                                <i class="fa fa-angle-down"></i>
+                            </button>
+                            <ul role="menu" class="dropdown-menu pull-right">
+                                <li id="delete">
+                                    <a class="mt-sweetalert">
+                                        <i class="icon-trash"></i> Delete</a>
+                                </li>
+                                <li class="hidden" id="edit">
+                                    <a href="#">
+                                        <i class="fa fa-edit"></i> Edit</a>
+                                </li>
+                            </ul>
+
+                            <a class="dt-button buttons-csv buttons-html5 btn dark btn-outline fullscreen"><span><i class="icon-size-fullscreen"></i></span></a>
+                        </div>
+                    </div>
+
+                    <div class="portlet-body">
+                     <input type="hidden" id="total" value="<%= total %>" />
+                     <input type="hidden" id="from" value="<%= from %>"/>
+                      <input type="hidden" id="to" value="<%= to %>"/>
+                     <input type="hidden" id="pno" value="<%= pno %>" /> 
+                     <input type="hidden" id="psize" value="<%= psize %>" />
+                    <input type="hidden" id="option" value="<%= option %>" />
+ 
+                        <form class="search-form search-form-expanded">
+                            <div class="input-group pull-right" style="width:20%;">
+                                <input type="text" name="q" placeholder="Search..." class="form-control" id="query">
+                                <span class="input-group-btn">
+                                    <a class="btn submit" id="searched">
+                                        <i class="icon-magnifier"></i>
+                                    </a>
+                                </span>
+                            </div>
+                        </form>
+                        <br>
+
+                        <div class="bootstrap-table">
+                            <div class="fixed-table-toolbar">
+                                <br>
+                                <br>
+                            </div>
+                            <div class="fixed-table-container" style="height: 186px; padding-bottom: 41px;">
+                                <div class="fixed-table-body" id="tDiv">
+                                    <div class="fixed-table-loading" style="top: 42px; display: none;">Loading, please wait...
+                                    </div>
+                                    <table data-search="true" data-toggle="table" id="table-pagination" class= "table table-striped table-bordered table-hover table-checkable order-column" id="blog" style="margin-top: -41px;">
+                                        <thead>
+                                            <tr>
+                                                <th tabindex="0" data-field="state" style="width: 36px; " class="table-checkbox">
+                                               <!--  <input type="checkbox" class="group-checkable" data-set="#blogs_list .checkboxes" />  -->
+                                                       
+                                                </th>           
+                                                <th tabindex="0" data-field="id"><div class="th-inner sortable both">Date</div><div class="fht-cell"></div>
+                                                </th>
+                                                <th tabindex="0" data-field="name">
+                                                    <div class="th-inner sortable both">Blog Title</div>
+                                                    <div class="fht-cell">
+                                                        
+                                                    </div>
+                                                </th>
+                                                <th tabindex="0" data-field="price" style="">
+                                                    <div class="th-inner sortable both">Category</div>
+                                                    <div class="fht-cell">
+                                                        
+                                                    </div>
+                                                </th>
+                                                <th tabindex="0" data-field="price" style="">
+                                                    <div class="th-inner sortable both">Status</div>
+                                                    <div class="fht-cell">
+                                                        
+                                                    </div>
+                                                </th>
+                                                <th tabindex="0" data-field="price" style="">
+                                                    <div class="th-inner sortable both">Author</div>
+                                                    <div class="fht-cell">
+                                                        
+                                                    </div>
+                                                </th>
+                                                <th tabindex="0" data-field="price" style="">
+                                                    <div class="th-inner sortable both">Tags</div>
+                                                    <div class="fht-cell">
+                                                        
+                                                    </div>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tableData">
+                                        <% if (data == undefined || data.length < 1){ %>
+                                                
+                                                <tr>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td style="text-align: center;"> There is no blogs  in your list</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                            <%}else{ for(var i=0; i < data.length; i++) { %>
+
+                                                 <tr data-index=i>
+                                                    <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
+                                                        <td>
+                                                            <input type="checkbox" class="checkboxes" name="btSelectItem" data-index='+ i +'value="1" data-id="<%= data[i].id %>"/>
+                                                        </td>
+                                                        <span>
+                                                        
+                                                        </span>
+                                                    </label>
+                                                    <td class="clickable" onClick="document.location.href='/admin/blog/posts/<%= data[i].id%>';"> <%= data[i].createdOn != undefined ? moment(new Date( data[i].createdOn)).format("DD MMMM YYYY - HH:mm") : ''%> </td>
+                                                    <td class="clickable" onClick="document.location.href='/admin/blog/posts/<%= data[i].id%>';"> <%= data[i].title != undefined ?  data[i].title: ''%> </td>
+                                                    <td class="clickable" onClick="document.location.href='/admin/blog/posts/<%= data[i].id%>';"> <%= (data[i].category != undefined ?  (data[i].category.displayName || data[i].category.name) : '') %>  </td>
+                                            
+                                                    <td class="clickable" onClick="document.location.href='/admin/blog/posts/<%= data[i].id%>';">  <%= data[i].approvedStatus != undefined ?  data[i].approvedStatus: ''%> </td>
+                                                    <td class="clickable" onClick="document.location.href='/admin/blog/posts/<%= data[i].id%>';"> <%= data[i].user != undefined ?  data[i].user.name: ''%>  </td>
+
+                                                    <td class="clickable" onClick="document.location.href='/admin/blog/posts/<%= data[i].id%>';">  <%= data[i].tags != undefined ?  data[i].tags: ''%> </td>   
+                                                </tr></a>
+                                       <% }}%>
+                                        
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <% if (data != undefined || data.length > 0){ %>
+                                            <div class="pull-left pagination-detail">
+                                                
+                                                <% if(pno === 1){ var from1 = 1; var to1 = data.length%>
+
+                                                <%}else{ var from1 = (((pno* psize)+1)-psize); var to1 = from1 + data.length -1 %>
+                                                <% } %>
+                                                <span class="pagination-info">Showing <%= from1 %>  to <%= to1 %>  of <%=total %> rows
+                                                </span>
+                                                <% var url = '/admin/blog/posts?pno=1&psize=10'; if(from !=''){ url =url+'&fromDate='+from+'&toDate='+to } if(option !=''){ url = url+'&q='+option} %>
+
+                                                <% var url1 = '/admin/blog/posts?pno=1&psize=25'; if(from !=''){ url1 =url1+'&fromDate='+from+'&toDate='+to } if(option !=''){ url1 = url1+'&q='+option} %>
+
+                                                <% var url2 = '/admin/blog/posts?pno=1&psize=50'; if(from !=''){ url2 =url2+'&fromDate='+from+'&toDate='+to } if(option !=''){ url2 = url2+'&q='+option} %>
+
+                                                <% var url3 = '/admin/blog/posts?pno=1&psize=100'; if(from !=''){ url3 =url3+'&fromDate='+from+'&toDate='+to } if(option !=''){ url3 = url3+'&q='+option} %>
+
+                                                <span class="page-list">
+                                                    <span class="btn-group dropup">
+                                                        <button data-toggle="dropdown" class="btn btn-default  dropdown-toggle" type="button">
+                                                            <span class="page-size">
+                                                            </span> 
+                                                            <span class="caret">
+                                                            </span>
+                                                        </button>
+                                                        <ul role="menu" class="dropdown-menu">
+                                                            <li><a href="<%= url %>">10</a>
+                                                            </li>
+                                                            <li><a href="<%= url1 %>">25</a>
+                                                            </li>
+                                                            <li><a href="<%= url2 %>">50</a>
+                                                            </li>
+                                                            <li><a href="<%= url3 %>">100</a>
+                                                            </li>
+                                                        </ul>
+                                                    </span> records per page 
+                                                </span>
+                                            </div>
+                                        <% }%>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="col-md-12 text-right">
+                                            <ul class="pagination">
+                                                <!-- 
+                                                <li><a href="#">«</a></li>
+                                                <li class="active"><a href="#">1</a></li>
+                                                <li><a href="#">2</a></li>
+                                                <li><a href="#">3</a></li>
+                                                <li><a href="#">4</a></li>
+                                                <li><a href="#">5</a></li>
+                                                <li><a href="#">»</a></li>
+                                                -->
+                                            </ul>
+                                        </div>
+                                    </div>  
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="apiUrl" value="<%= api.url %>"/>
+<input type="hidden" id="token" value="<%= user.token %>"/>

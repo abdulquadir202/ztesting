@@ -1,0 +1,141 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.3/toastr.min.css" rel="stylesheet" />
+
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li><span><a href="/dashboard">Home</a></span><i class="fa fa-circle"></i></li>
+                <li><span> Jobs</span><i class="fa fa-circle"></i></li>
+                <li><span><a href="/visitors">Visitors</a></span><i class="fa fa-circle"></i></li>
+                <li><span> Edit</span></li>
+            </ul>
+        </div>
+        <h1 class="page-title"></h1>
+        <div class="row">
+            <div class="col-md-12">
+                <div id="form-alerts"> </div>
+                <div class="portlet light portlet-fit portlet-form bordered">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="fa fa-bullhorn font-blue-hoki"></i>
+                            <span class="caption-subject font-blue-hoki sbold uppercase"> Edit Visitor</span> | <span class="lid"></span>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <form action="<%= api.url %>/api/visitor/<%= visitorId %>?token=<%= user.token %>" id="visitors_add_form" class="form-horizontal">
+                            <input type="hidden" id="visitorId" value="<%= visitorId %>">
+                            <input type="hidden" id="apiUrl" value="<%= api.url %>"/>
+                            <input type="hidden" id="token" value="<%= user.token %>"/>
+
+                            <div class="form-body">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Date
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" name="vDate" id="vDate" data-required="1" class="form-control form-control-inline date-picker" data-date-format="dd-mm-yyyy"/> 
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Name
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" id="name" name="name">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Mobile Number
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="mobile" class="form-control" id="mobile" name="mobile" maxlength="10"> 
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Email
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="email" class="form-control" id="email" name="email">
+                                    </div>
+                                </div>
+
+                                <div class="form-group" id="employeeOption">
+                                    <label class="control-label col-md-3">Attended By
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select id="employeeId" class="form-control select2-multiple select2-hidden-accessible" name="employeeId"></select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <span class="help-block"><a data-toggle="modal" href="#addEmployeeModal"><i class="icon-plus"></i> Add New</a></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Address
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" id="address" name="address"> 
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Sales Stage
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select class="form-control select2-multiple select2-hidden-accessible" name="salesStage" id="salesStage">
+                                            <option value="visit" selected="true">Visit</option>
+                                            <option value="measurement">Measurement</option>
+                                            <option value="quotation">Quotation</option>
+                                            <option value="confirmed">Confirmed</option>
+                                            <option value="unsuccessful">Unsuccessful</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group" id="follow">
+                                    <label class="control-label col-md-3">Follow-up Date
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" name="fDate" id="fDate" data-required="1" class="form-control form-control-inline date-picker" data-date-format="dd-mm-yyyy"/> 
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Description
+                                        <!-- <span class="required"> * </span> -->
+                                    </label>
+                                    <div class="col-md-4">
+                                        <textarea rows="2" class="form-control" id="description" name="description"></textarea> 
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">
+                                        <!-- <span class="required"> * </span> -->
+                                    </label>
+                                    <div class="col-md-4" id ="sms">
+                                        <label class="mt-checkbox mt-checkbox-outline"> 
+                                            <input type="checkbox" id="sendSms" name="sendSms" value="1"> Send SMS to visitor
+                                            <span></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-offset-3 col-md-9">
+                                        <button class="btn green" type="submit" id="editVisitor"> Update </button>
+                                        <button type="reset" class="btn default">Reset</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- partial('partials/modal/addEmployee') %>
